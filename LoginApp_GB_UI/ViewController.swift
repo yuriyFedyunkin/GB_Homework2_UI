@@ -23,9 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordInput: UITextField!
     
     @IBAction func loginButtonPressed(_ sender: Any) {
-        //:TODO Реализовать логику входа
-
     }
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     // Когда клавиатура появляется
@@ -67,6 +66,36 @@ class ViewController: UIViewController {
         self.scrollView?.endEditing(true)
     }
 
-
+    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
+        passwordInput.text = nil
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let checkResult = checkLoginData()
+        
+        if !checkLoginData() {
+            showLoginError()
+        }
+        return checkResult
+    }
+    
+    func checkLoginData() -> Bool {
+        guard let login = loginInput.text, let password = passwordInput.text else { return false }
+        
+        if login == "admin" && password == "12345" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func showLoginError() {
+        let alert = UIAlertController(title: "Error", message: "Incorrect login or password", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
