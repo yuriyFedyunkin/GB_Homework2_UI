@@ -18,9 +18,9 @@ class FriendsListController: UITableViewController {
     ]
     
     var friendsIconList = [
-        UIImage.init(named: "frodoIcon"),
-        UIImage.init(named: "aragornIcon"),
-        UIImage.init(named: "gendalfIcon")
+        UIImage(named: "frodoIcon"),
+        UIImage(named: "aragornIcon"),
+        UIImage(named: "gendalfIcon")
     ]
     
     override func viewDidLoad() {
