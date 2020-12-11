@@ -6,4 +6,12 @@
 //  Copyright © 2020 Yuriy Fedyunkin. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+struct Group {
+    let groupName: String?
+    let groupIcon: UIImage?
+}
+
+
+

@@ -566,7 +566,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="9mm-H7-BST" customClass="UserGroupCell" customModule="LoginApp_GB_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGroupsCell" id="9mm-H7-BST" customClass="UserGroupCell" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="58.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9mm-H7-BST" id="5So-a5-dru">
@@ -600,6 +600,7 @@
                                 <connections>
                                     <outlet property="groupIcon" destination="R3K-He-npV" id="ve5-Op-WpB"/>
                                     <outlet property="groupNameText" destination="LBn-gV-rlI" id="mPF-ab-cNg"/>
+                                    <segue destination="XP1-Tu-VC1" kind="unwind" identifier="addGroup" unwindAction="addGroupWithSegue:" id="is3-6N-Lie"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -611,6 +612,7 @@
                     <navigationItem key="navigationItem" title="Available Groups" id="Vur-f2-Ygo"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DxE-y8-E8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="XP1-Tu-VC1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4273.913043478261" y="557.8125"/>
         </scene>

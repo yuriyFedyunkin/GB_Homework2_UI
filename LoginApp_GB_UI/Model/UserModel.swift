@@ -6,4 +6,10 @@
 //  Copyright © 2020 Yuriy Fedyunkin. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+struct User {
+    let userName: String?
+    let userIcon: UIImage?
+    var userPhotoLibrary = [UIImage]()
+}

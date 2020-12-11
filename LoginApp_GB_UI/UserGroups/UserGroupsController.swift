@@ -15,12 +15,22 @@ class UserGroupsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    @IBAction func addGroup(segue: UIStoryboardSegue){
+        if segue.identifier == "addGroup" {
+            guard let searchGroupsController = segue.source as? SearchGroupsController else { return }
+            if let indexPath = searchGroupsController.tableView.indexPathForSelectedRow {
+                let group = searchGroupsController.groupsToSearchName[indexPath.row]
+                //let icon = searchGroupsController.groupToSearchIcon[indexPath.row]
+                if !userGroupsName.contains(group) {
+                    userGroupsName.append(group)
+                    userGroupsIcon.append(UIImage(named: "testPhoto"))
+                    tableView.reloadData()
+                }
+            }
+        }
+        
     }
 
     // MARK: - Table view data source
@@ -55,17 +65,16 @@ class UserGroupsController: UITableViewController {
     }
     */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            userGroupsName.remove(at: indexPath.row)
+            userGroupsIcon.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
