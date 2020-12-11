@@ -9,11 +9,13 @@
 import UIKit
 
 class PhotoCollectionController: UICollectionViewController {
-
+// Реализовать загрузку библитеки фото после перехода из списка друзей
+    var photoLibrary = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     /*
     // MARK: - Navigation
 
@@ -39,7 +41,7 @@ class PhotoCollectionController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCollectionCell
-        cell.friendPhoto.image = UIImage.init(named: "testPhoto")
+        cell.friendPhoto.image = UIImage(named: "testPhoto")
         
         return cell
     }

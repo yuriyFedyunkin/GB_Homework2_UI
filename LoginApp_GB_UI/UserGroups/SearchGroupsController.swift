@@ -9,9 +9,13 @@
 import UIKit
 
 class SearchGroupsController: UITableViewController {
-
-    var groupsToSearchName = ["Hobbit","Harry Potter"]
-    var groupToSearchIcon = [UIImage(named: "testPhoto"), UIImage(named: "testPhoto")]
+    
+    var availableGroups = [
+        Group(groupName: "Harry Potter", groupIcon: UIImage(named: "hpIcon")),
+        Group(groupName: "The Game Of Thrones", groupIcon: UIImage(named: "gotIcon")),
+        Group(groupName: "Lord Of The Rings", groupIcon: UIImage(named: "lorIcon")),
+        Group(groupName: "Hobbit", groupIcon: UIImage(named: "hobbitIcon"))
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +30,15 @@ class SearchGroupsController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groupsToSearchName.count
+        return availableGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AvailableGroupsCell", for: indexPath) as! UserGroupCell
-        let group = groupsToSearchName[indexPath.row]
-        let icon = groupToSearchIcon[indexPath.row]
+        let group = availableGroups[indexPath.row]
         
-        cell.groupNameText.text = group
-        cell.groupIcon.image = icon
+        cell.groupNameText.text = group.groupName
+        cell.groupIcon.image = group.groupIcon
 
         return cell
     }

@@ -10,8 +10,10 @@ import UIKit
 
 class UserGroupsController: UITableViewController {
 
-    var userGroupsName = ["Lord Of The Rings", "The Game Of Thrones"]
-    var userGroupsIcon = [UIImage(named: "testPhoto"), UIImage(named: "testPhoto")]
+    var userGroups = [
+        Group(groupName: "Lord Of The Rings", groupIcon: UIImage(named: "lorIcon")),
+        Group(groupName: "Hobbit", groupIcon: UIImage(named: "hobbitIcon"))
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +23,9 @@ class UserGroupsController: UITableViewController {
         if segue.identifier == "addGroup" {
             guard let searchGroupsController = segue.source as? SearchGroupsController else { return }
             if let indexPath = searchGroupsController.tableView.indexPathForSelectedRow {
-                let group = searchGroupsController.groupsToSearchName[indexPath.row]
-                //let icon = searchGroupsController.groupToSearchIcon[indexPath.row]
-                if !userGroupsName.contains(group) {
-                    userGroupsName.append(group)
-                    userGroupsIcon.append(UIImage(named: "testPhoto"))
+                let group = searchGroupsController.availableGroups[indexPath.row]
+                if !userGroups.contains(group) {
+                    userGroups.append(group)
                     tableView.reloadData()
                 }
             }
@@ -42,17 +42,16 @@ class UserGroupsController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return userGroupsName.count
+        return userGroups.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! UserGroupCell
-        let group = userGroupsName[indexPath.row]
-        let icon = userGroupsIcon[indexPath.row]
+        let group = userGroups[indexPath.row]
         
-        cell.groupNameText.text = group
-        cell.groupIcon.image = icon
+        cell.groupNameText.text = group.groupName
+        cell.groupIcon.image = group.groupIcon
 
         return cell
     }
@@ -68,12 +67,9 @@ class UserGroupsController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            userGroupsName.remove(at: indexPath.row)
-            userGroupsIcon.remove(at: indexPath.row)
+            userGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
     /*

@@ -12,20 +12,15 @@ class FriendsListController: UITableViewController {
 
     
     var friendsList = [
-        "Frodo",
-        "Aragron",
-        "Gendalf"
-    ]
-    
-    var friendsIconList = [
-        UIImage(named: "frodoIcon"),
-        UIImage(named: "aragornIcon"),
-        UIImage(named: "gendalfIcon")
+        User(userName: "Frodo", userIcon: UIImage(named: "frodoIcon")),
+        User(userName: "Aragorn", userIcon: UIImage(named: "aragornIcon")),
+        User(userName: "Gendalf", userIcon: UIImage(named: "gendalfIcon"))
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
 
     // MARK: - Table view data source
 
@@ -35,16 +30,14 @@ class FriendsListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return friendsList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         let friend = friendsList[indexPath.row]
-        let icon = friendsIconList[indexPath.row]
-        cell.friendName.text = friend
-        cell.friendIcon.image = icon
+        cell.friendName.text = friend.userName
+        cell.friendIcon.image = friend.userIcon
 
         return cell
     }
