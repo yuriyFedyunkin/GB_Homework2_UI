@@ -9,7 +9,7 @@
 import UIKit
 
 class PhotoCollectionController: UICollectionViewController {
-// Реализовать загрузку библитеки фото после перехода из списка друзей
+
     var photoLibrary = [UIImage]()
     
     override func viewDidLoad() {
@@ -36,12 +36,12 @@ class PhotoCollectionController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
+        return photoLibrary.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCollectionCell
-        cell.friendPhoto.image = UIImage(named: "testPhoto")
+        cell.friendPhoto.image = photoLibrary[indexPath.row]
         
         return cell
     }

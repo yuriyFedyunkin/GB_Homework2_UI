@@ -12,13 +12,24 @@ class FriendsListController: UITableViewController {
 
     
     var friendsList = [
-        User(userName: "Frodo", userIcon: UIImage(named: "frodoIcon")),
-        User(userName: "Aragorn", userIcon: UIImage(named: "aragornIcon")),
-        User(userName: "Gendalf", userIcon: UIImage(named: "gendalfIcon"))
+        User(userName: "Frodo", userIcon: UIImage(named: "frodoIcon"), userPhotoLibrary: [UIImage(named: "testPhoto")!, UIImage(named: "frodoIcon")!]),
+        User(userName: "Aragorn", userIcon: UIImage(named: "aragornIcon"), userPhotoLibrary: [UIImage(named: "aragornIcon")!, UIImage(named: "testPhoto")!]),
+        User(userName: "Gendalf", userIcon: UIImage(named: "gendalfIcon"), userPhotoLibrary: [UIImage(named: "testPhoto")!, UIImage(named: "gendalfIcon")!])
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    // Segue с передачей библиотеки фото юзера из массива в PhotoCollection
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showLibrary" {
+            guard let destinationVC = segue.destination as? PhotoCollectionController else { return }
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let user = friendsList[indexPath.row]
+                destinationVC.photoLibrary.append(contentsOf: user.userPhotoLibrary)
+            }
+        }
     }
     
 

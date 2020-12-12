@@ -430,7 +430,7 @@
                                 <connections>
                                     <outlet property="friendIcon" destination="LfM-s4-aQH" id="oQ2-0L-l1B"/>
                                     <outlet property="friendName" destination="Umv-PL-mb8" id="fR0-HN-wbu"/>
-                                    <segue destination="b9u-Ki-0e9" kind="show" id="zhV-zg-QYC"/>
+                                    <segue destination="b9u-Ki-0e9" kind="show" identifier="showLibrary" id="zhV-zg-QYC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
