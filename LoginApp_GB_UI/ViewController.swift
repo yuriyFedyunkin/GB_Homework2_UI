@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     func checkLoginData() -> Bool {
         guard let login = loginInput.text, let password = passwordInput.text else { return false }
         
-        if login == "admin" && password == "12345" {
+        if login == "" && password == "" {
             return true
         } else {
             return false
