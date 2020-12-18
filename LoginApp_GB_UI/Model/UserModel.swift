@@ -9,7 +9,7 @@
 import UIKit
 
 struct User {
-    let userName: String?
+    let userName: String
     let userIcon: UIImage?
     var userPhotoLibrary = [UIImage]()
 }
