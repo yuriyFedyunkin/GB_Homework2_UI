@@ -10,96 +10,87 @@ import UIKit
 
 class FriendsListController: UITableViewController {
 
-    
     var friendsList = [
-        User(userName: "Frodo", userIcon: UIImage(named: "Frodo"), userPhotoLibrary: [UIImage(named: "testPhoto")!, UIImage(named: "Frodo")!]),
-        User(userName: "Aragorn", userIcon: UIImage(named: "Aragorn"), userPhotoLibrary: [UIImage(named: "Aragorn")!, UIImage(named: "testPhoto")!]),
-        User(userName: "Gendalf", userIcon: UIImage(named: "Gendalf"), userPhotoLibrary: [UIImage(named: "testPhoto")!, UIImage(named: "Gendalf")!])
+        User(userName: "Frodo", userIcon: UIImage(named: "Frodo")),
+        User(userName: "Aragorn", userIcon: UIImage(named: "Aragorn")),
+        User(userName: "Gendalf", userIcon: UIImage(named: "Gendalf")),
+        User(userName: "Bilbo", userIcon: UIImage(named: "Bilbo")),
+        User(userName: "Legolas", userIcon: UIImage(named: "Legolas")),
+        User(userName: "Gimli", userIcon: UIImage(named: "Gimli")),
+        User(userName: "Sam", userIcon: UIImage(named: "Sam"))
     ]
     
     // Словарь и массив для создания секций по первой букве имени User
-//    var friendsDict = [String: [String]]()
-//    var friendsSectionTitle = [String]()
-//
+    var friendsDict = [String: [User]]()
+    var friendsSectionTitle = [String]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
     //Создаем словаррь имен друзей
-        //createFriendsDict()
+        createFriendsDict()
     }
     
-    // Segue с передачей библиотеки фото юзера из массива в PhotoCollection
+    //Segue с передачей библиотеки фото юзера из массива в PhotoCollection
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showLibrary" {
             guard let destinationVC = segue.destination as? PhotoCollectionController else { return }
             if let indexPath = tableView.indexPathForSelectedRow {
-                let user = friendsList[indexPath.row]
-                destinationVC.photoLibrary.append(contentsOf: user.userPhotoLibrary)
+                let key = friendsSectionTitle[indexPath.section]
+                let friend = friendsDict[key]![indexPath.row]
+                destinationVC.photoLibrary.append(contentsOf: friend.userPhotoLibrary)
             }
         }
     }
     
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return friendsSectionTitle.count
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        //return friendsSectionTitle[section]
-//    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return friendsSectionTitle[section]
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return friendsList.count
-//        let nameKey = friendsSectionTitle[section]
-//        guard let nameValues = friendsDict[nameKey] else { return 0 }
-//
-//        return nameValues.count
+        let nameKey = friendsSectionTitle[section]
+        guard let nameValues = friendsDict[nameKey] else { return 0 }
+
+        return nameValues.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         
-//        let nameKey = friendsSectionTitle[indexPath.section]
-//        
-//        if let nameValues = friendsDict[nameKey] {
-//            cell.friendName.text = nameValues[indexPath.row]
-//            cell.friendIcon.image = UIImage(named: nameValues[indexPath.row])
-//        }
-        
-        let friend = friendsList[indexPath.row]
+        let nameKey = friendsSectionTitle[indexPath.section]
+        let friend = friendsDict[nameKey]![indexPath.row]
         
         cell.friendName.text = friend.userName
         cell.friendIcon.image = friend.userIcon
-
+        
         return cell
     }
     
-    //MARK: - Helper method
-//    func createFriendsDict() {
-//        var names = [String]()
-//        for user in friendsList {
-//            names.append(user.userName)
-//        }
-//
-//        for name in names {
-//            let firstLetterIndex = name.index(name.startIndex, offsetBy: 1)
-//            let nameKey = String(name [..<firstLetterIndex])
-//
-//            if var nameValue = friendsDict[nameKey] {
-//                nameValue.append(name)
-//                friendsDict[nameKey] = nameValue
-//            } else {
-//                friendsDict[nameKey] = [name]
-//            }
-//        }
-//        friendsSectionTitle = [String](friendsDict.keys)
-//        friendsSectionTitle = friendsSectionTitle.sorted(by: { $0 < $1 })
-//    }
+    // Боковая панель для поиска по первой букве имени
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return friendsSectionTitle
+    }
     
+    //MARK: - Helper method
+    // Сортировка друзей по первой букве в имени
+    func createFriendsDict() {
+        for friend in friendsList {
+            let firstLetterIndex = String(friend.userName.first!)
+            if friendsDict[firstLetterIndex] != nil {
+                friendsDict[firstLetterIndex]!.append(friend)
+            } else {
+                friendsDict[firstLetterIndex] = [friend]
+            }
+        }
+        friendsSectionTitle = friendsDict.keys.sorted(by: { $0 < $1 })
+    }
     
 }
