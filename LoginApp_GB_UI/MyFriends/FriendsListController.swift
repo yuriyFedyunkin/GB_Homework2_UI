@@ -27,9 +27,17 @@ class FriendsListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-    //Создаем словаррь имен друзей
+        
+        
+        //Создаем словаррь имен друзей
         createFriendsDict()
+        
+        //Градиенти для tableView
+        let gradient = GradientView()
+        gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
+        
+        gradient.alpha = 0.6
+        tableView.backgroundView = gradient
     }
     
     //Segue с передачей библиотеки фото юзера из массива в PhotoCollection
@@ -45,11 +53,19 @@ class FriendsListController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.backgroundView?.alpha = 0.3
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return friendsSectionTitle.count
     }
+    
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return friendsSectionTitle[section]

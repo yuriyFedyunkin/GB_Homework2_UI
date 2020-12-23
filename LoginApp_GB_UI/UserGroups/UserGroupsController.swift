@@ -17,6 +17,12 @@ class UserGroupsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let gradient = GradientView()
+        gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
+        
+        gradient.alpha = 0.6
+        tableView.backgroundView = gradient
     }
     
     @IBAction func addGroup(segue: UIStoryboardSegue){

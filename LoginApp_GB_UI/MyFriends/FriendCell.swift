@@ -24,16 +24,13 @@ class FriendCell: UITableViewCell {
             self.friendIcon.clipsToBounds = true
             self.friendIcon.layer.cornerRadius = self.friendIcon.frame.width / 2
             self.friendIcon.layer.borderWidth = 1.0
-            self.friendIcon.layer.borderColor = UIColor.black.cgColor
-
+            self.friendIcon.layer.borderColor = UIColor.lightGray.cgColor
         }
-        
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
