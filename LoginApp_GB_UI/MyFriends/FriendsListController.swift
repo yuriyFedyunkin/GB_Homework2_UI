@@ -37,7 +37,6 @@ class FriendsListController: UITableViewController {
         return searchController.isActive && !searchBarIsEmpty
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +52,8 @@ class FriendsListController: UITableViewController {
         //Настройка SearchController
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.searchTextField.backgroundColor = .white
+        searchController.searchBar.searchTextField.alpha = 0.3
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
