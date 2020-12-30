@@ -29,7 +29,49 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var scrollView: UIScrollView!
+
+    @IBOutlet weak var indicator1: LoadingIndicatorView!
+    @IBOutlet weak var indicator2: LoadingIndicatorView!
+    @IBOutlet weak var indicator3: LoadingIndicatorView!
     
+   
+    //MARK: - Индмкатор загрузки
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let indicatorsArray = [indicator1, indicator2, indicator3]
+        var delay: TimeInterval = 0
+        
+        for loadIndicator in indicatorsArray {
+            if let indicator = loadIndicator {
+                UIView.animate(withDuration: 0.3,
+                               delay: 0,
+                               options: [.repeat, .autoreverse],
+                               animations: {
+                                self.opacityLoadIndicator(indicator, delay: delay)
+                })
+            }
+            delay += 0.2
+        }
+        delay = 0
+    }
+    
+    private func opacityLoadIndicator(_ sender: UIView, delay: TimeInterval){
+        let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        animation.beginTime = CACurrentMediaTime() + delay
+        animation.fromValue = 1
+        animation.toValue = 0
+        animation.duration = 0.5
+        animation.autoreverses = true
+        animation.repeatCount = .infinity
+        sender.layer.add(animation, forKey: nil)
+        
+
+    }
+    
+    
+    
+  //MARK: - Keyboard settings
     // Когда клавиатура появляется
     @objc func keyboardWasShown(notification: Notification) {
         // Получаем размер клавиатуры
@@ -41,14 +83,16 @@ class ViewController: UIViewController {
         self.scrollView?.contentInset = contentInsets
         scrollView?.scrollIndicatorInsets = contentInsets
     }
-
+    
+    
+    // MARK: - Login data check and alert controller
     //Когда клавиатура исчезает
     @objc func keyboardWillBeHidden(notification: Notification) {
         // Устанавливаем отступ внизу UIScrollView, равный 0
         let contentInsets = UIEdgeInsets.zero
         scrollView?.contentInset = contentInsets
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
@@ -64,11 +108,13 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+   
+
     @objc func hideKeyboard() {
         self.scrollView?.endEditing(true)
     }
 
+  
     @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
         passwordInput.text = nil
     }
