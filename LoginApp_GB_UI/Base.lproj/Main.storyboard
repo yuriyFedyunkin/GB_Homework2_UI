@@ -471,7 +471,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="LfM-s4-aQH" firstAttribute="top" secondItem="jje-jQ-L7q" secondAttribute="top" id="65r-x1-3Ky"/>
                                                 <constraint firstItem="LfM-s4-aQH" firstAttribute="leading" secondItem="jje-jQ-L7q" secondAttribute="leading" id="ScX-1B-pkc"/>
