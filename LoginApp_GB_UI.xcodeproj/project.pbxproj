@@ -29,6 +29,7 @@
 		7960B4812578150200BC9D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4802578150200BC9D79 /* Assets.xcassets */; };
 		7960B4842578150200BC9D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4822578150200BC9D79 /* LaunchScreen.storyboard */; };
 		79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD0BBC258950AA008E977C /* ShadowView.swift */; };
+		79E7389A25A11C9D00A8D734 /* PhotoSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		7960B4832578150200BC9D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7960B4852578150200BC9D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79DD0BBC258950AA008E977C /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				7922314D2583C56D00AA7F60 /* FriendCell.swift */,
 				7922314F2583D40E00AA7F60 /* PhotoCollectionController.swift */,
 				792231532583D48000AA7F60 /* PhotoCollectionCell.swift */,
+				79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */,
 			);
 			path = MyFriends;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				7960B47C2578150100BC9D79 /* ViewController.swift in Sources */,
 				7922314C2583C4F400AA7F60 /* FriendsListController.swift in Sources */,
 				79259C8E2583DD700095DB95 /* GroupModel.swift in Sources */,
+				79E7389A25A11C9D00A8D734 /* PhotoSwipeController.swift in Sources */,
 				792CAA91259CDA1900109138 /* LoadingIndicatorView.swift in Sources */,
 				794564F42593C1F900536AA8 /* NewsController.swift in Sources */,
 				79259C8C2583DD5D0095DB95 /* UserModel.swift in Sources */,

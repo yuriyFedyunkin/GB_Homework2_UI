@@ -54,6 +54,16 @@ class PhotoCollectionController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let swipeVC = self.storyboard?.instantiateViewController(withIdentifier: "SwipeMode") as? PhotoSwipeController else { return }
+        
+        swipeVC.currentImage = indexPath.item
+        swipeVC.photoLibrary = self.photoLibrary
+        
+        present(swipeVC, animated: true, completion: nil)
+        
+    }
+    
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {

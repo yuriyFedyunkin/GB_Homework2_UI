@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +31,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="example@mail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HDQ-RM-1TK">
-                                        <rect key="frame" x="66" y="267" width="282.5" height="34"/>
+                                        <rect key="frame" x="66" y="267" width="282" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="0.195037411971831" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="430" id="Tc4-O9-7PW"/>
@@ -69,7 +71,7 @@
                                         </variation>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SwK-vZ-0xh">
-                                        <rect key="frame" x="66" y="321" width="282.5" height="34"/>
+                                        <rect key="frame" x="66" y="321" width="282" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="0.20007152288732394" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="270" id="acJ-GM-bQ8"/>
@@ -98,12 +100,12 @@
                                         </variation>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your login and password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="VTm-5L-oWj">
-                                        <rect key="frame" x="66" y="237.5" width="282.5" height="19.5"/>
+                                        <rect key="frame" x="66" y="237.5" width="282" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7d-bz-QHF">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7d-bz-QHF">
                                         <rect key="frame" x="132" y="395" width="150" height="38"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -153,7 +155,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHI-ok-eHs" customClass="LoadingIndicatorView" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="5A5-yr-LCe"/>
                                                     <constraint firstAttribute="height" constant="25" id="aVw-qI-rmD"/>
@@ -161,7 +163,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iW-L0-cee" customClass="LoadingIndicatorView" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                                 <rect key="frame" x="45" y="0.0" width="25" height="25"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="1V3-W9-amr"/>
                                                     <constraint firstAttribute="height" constant="25" id="dCX-gj-Jrx"/>
@@ -169,7 +171,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoI-vh-gGy" customClass="LoadingIndicatorView" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                                 <rect key="frame" x="90" y="0.0" width="25" height="25"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="X5a-au-Uwk"/>
                                                     <constraint firstAttribute="height" constant="25" id="uZE-yX-QnE"/>
@@ -330,12 +332,12 @@
                                         <include reference="vwy-Uu-cgc"/>
                                         <include reference="7ls-Qd-Vfh"/>
                                         <include reference="b17-SG-yGH"/>
-                                        <exclude reference="WpH-o5-v7g"/>
                                         <include reference="9B2-zW-eyr"/>
                                         <include reference="FMq-GT-5d8"/>
                                         <include reference="8PE-yn-U5r"/>
                                         <include reference="J6c-QK-2Qs"/>
                                         <include reference="NCX-ZB-uiw"/>
+                                        <exclude reference="WpH-o5-v7g"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular">
@@ -388,7 +390,8 @@
                                 </variation>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="27S-es-tTo" secondAttribute="trailing" id="Ifk-Pk-7qD"/>
                             <constraint firstAttribute="bottom" secondItem="pAG-0U-wAB" secondAttribute="bottom" id="J8p-aq-xJp"/>
@@ -399,7 +402,6 @@
                             <constraint firstAttribute="bottom" secondItem="27S-es-tTo" secondAttribute="bottom" id="rgh-vz-alp"/>
                             <constraint firstItem="27S-es-tTo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xYd-9f-Zn8"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="X0S-R2-Met"/>
                     <connections>
@@ -444,7 +446,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="paL-iv-uOB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="sectionIndexColor" red="0.13725798789999999" green="0.16323056" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="26" reuseIdentifier="FriendCell" id="3ND-Cs-8Ko" customClass="FriendCell" customModule="LoginApp_GB_UI" customModuleProvider="target">
@@ -550,14 +552,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Vd3-bz-sDF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="j8C-GY-sKJ" firstAttribute="top" secondItem="Vd3-bz-sDF" secondAttribute="top" id="3z3-ud-fPt"/>
                             <constraint firstItem="Vd3-bz-sDF" firstAttribute="bottom" secondItem="j8C-GY-sKJ" secondAttribute="bottom" id="LmL-Gn-H0f"/>
                             <constraint firstItem="j8C-GY-sKJ" firstAttribute="leading" secondItem="Vd3-bz-sDF" secondAttribute="leading" id="PhY-n6-xoe"/>
                             <constraint firstItem="Vd3-bz-sDF" firstAttribute="trailing" secondItem="j8C-GY-sKJ" secondAttribute="trailing" id="XXi-Ej-wxC"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Vd3-bz-sDF"/>
                     </view>
                     <navigationItem key="navigationItem" title="News" id="jFE-w4-1VJ">
                         <barButtonItem key="leftBarButtonItem" title="Log out" id="HFQ-WQ-VBo">
@@ -622,7 +624,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="y7h-Xq-sa0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="pgM-R9-nGi" customClass="UserGroupCell" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="58.5"/>
@@ -692,7 +694,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="L3Y-7D-TcT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGroupsCell" id="9mm-H7-BST" customClass="UserGroupCell" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="58.5"/>
@@ -752,7 +754,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rwt-u7-EzR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fln-PB-JWc">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -819,6 +821,38 @@
             </objects>
             <point key="canvasLocation" x="4384.057971014493" y="-160.04464285714286"/>
         </scene>
+        <!--Photo Swipe Controller-->
+        <scene sceneID="2oV-cm-i48">
+            <objects>
+                <viewController storyboardIdentifier="SwipeMode" id="8Mo-NY-DA4" customClass="PhotoSwipeController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wip-2s-Xm1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img2" translatesAutoresizingMaskIntoConstraints="NO" id="fdM-da-mGP">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hxU-Pl-W5A"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fdM-da-mGP" firstAttribute="leading" secondItem="hxU-Pl-W5A" secondAttribute="leading" id="6go-Y9-IcC"/>
+                            <constraint firstItem="fdM-da-mGP" firstAttribute="top" secondItem="hxU-Pl-W5A" secondAttribute="top" id="g4z-pc-yRr"/>
+                            <constraint firstItem="fdM-da-mGP" firstAttribute="centerX" secondItem="Wip-2s-Xm1" secondAttribute="centerX" id="gNk-2c-IZC"/>
+                            <constraint firstItem="fdM-da-mGP" firstAttribute="bottom" secondItem="hxU-Pl-W5A" secondAttribute="bottom" id="lVk-df-k20"/>
+                            <constraint firstItem="fdM-da-mGP" firstAttribute="trailing" secondItem="hxU-Pl-W5A" secondAttribute="trailing" id="uEW-HD-rxd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hqx-dg-Tdi"/>
+                    <connections>
+                        <outlet property="displayedImage" destination="fdM-da-mGP" id="frw-MI-XCy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOI-CX-OYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5256.521739130435" y="-160.04464285714286"/>
+        </scene>
         <!--News-->
         <scene sceneID="Bur-FX-hCP">
             <objects>
@@ -843,9 +877,13 @@
     </scenes>
     <resources>
         <image name="Night" width="375" height="667"/>
-        <image name="book.fill" catalog="system" width="128" height="100"/>
+        <image name="book.fill" catalog="system" width="128" height="102"/>
+        <image name="img2" width="333" height="208"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

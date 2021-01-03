@@ -79,12 +79,12 @@ class FriendsListController: UITableViewController {
     
     // MARK: - Table view data source
     
-    
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
-            header.backgroundView?.alpha = 0.3
+            header.alpha = 0.3
         }
     }
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if isFiltering {
