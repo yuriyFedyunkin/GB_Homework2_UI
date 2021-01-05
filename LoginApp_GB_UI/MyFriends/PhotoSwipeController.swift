@@ -20,51 +20,79 @@ class PhotoSwipeController: UIViewController {
         super.viewDidLoad()
         
         displayedImage.image = photoLibrary[currentImage]
+        
+        displayedImage.isUserInteractionEnabled = true
+        displayedImage.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(respondToPanGesture)))
+        
+//        setupLeftSwipeAction(view)
+//        setupRightSwipeAction(view)
+    
+    }
+    
+    //MARK: - Swipe and Pan Recognizer Logic
+    
+    @objc func respondToPanGesture(gesture: UIPanGestureRecognizer) {
 
-        setupLeftSwipeAction(view)
-        setupRightSwipeAction(view)
-    
-    }
-    
-    //MARK: - Swipe Recognizer Logic
-    
-    func setupLeftSwipeAction(_ sender: UIView) {
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
-        leftSwipe.direction = .left
-        sender.addGestureRecognizer(leftSwipe)
-    }
-    
-    func setupRightSwipeAction(_ sender: UIView) {
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
-        rightSwipe.direction = .right
-        sender.addGestureRecognizer(rightSwipe)
-    }
-    
-    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        guard let swipeGesture = gesture as? UISwipeGestureRecognizer else { return }
-        
-        switch swipeGesture.direction {
-        case .left:
-            if currentImage == photoLibrary.count - 1 {
-                currentImage = 0
-            } else {
-                currentImage += 1
-            }
-            leftSwipeAnimation()
+        if gesture.state == .changed {
             
-        case .right:
-            if currentImage == 0 {
-                currentImage = photoLibrary.count - 1
-            } else {
-                currentImage -= 1
-            }
-            rightSwipeAnimation()
+            let translation = gesture.translation(in: view)
+            displayedImage.transform = CGAffineTransform(translationX: translation.x, y: 0)
             
-        default:
-            break
+        } else if gesture.state == .ended {
+            
+            if displayedImage.frame.maxX <= view.frame.maxX * 0.65 {
+                currentImage == photoLibrary.count - 1 ? currentImage = 0 : (currentImage += 1)
+                leftSwipeAnimation()
+                
+            } else if displayedImage.frame.minX >= view.frame.maxX * 0.35 {
+                currentImage == 0 ? (currentImage = photoLibrary.count - 1) : (currentImage -= 1)
+                rightSwipeAnimation()
+                
+            } else {
+                UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+                    self.displayedImage.transform = .identity
+                }, completion: nil)
+            }
         }
-        
     }
+    
+//    func setupLeftSwipeAction(_ sender: UIView) {
+//        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
+//        leftSwipe.direction = .left
+//        sender.addGestureRecognizer(leftSwipe)
+//    }
+//
+//    func setupRightSwipeAction(_ sender: UIView) {
+//        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
+//        rightSwipe.direction = .right
+//        sender.addGestureRecognizer(rightSwipe)
+//    }
+//
+//    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
+//        guard let swipeGesture = gesture as? UISwipeGestureRecognizer else { return }
+//
+//        switch swipeGesture.direction {
+//        case .left:
+//            if currentImage == photoLibrary.count - 1 {
+//                currentImage = 0
+//            } else {
+//                currentImage += 1
+//            }
+//            leftSwipeAnimation()
+//
+//        case .right:
+//            if currentImage == 0 {
+//                currentImage = photoLibrary.count - 1
+//            } else {
+//                currentImage -= 1
+//            }
+//            rightSwipeAnimation()
+//
+//        default:
+//            break
+//        }
+//
+//    }
     
     
     //MARK: - Swipe Animation Functions
