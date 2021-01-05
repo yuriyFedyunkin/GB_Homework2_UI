@@ -60,7 +60,7 @@ class PhotoCollectionController: UICollectionViewController {
         swipeVC.currentImage = indexPath.item
         swipeVC.photoLibrary = self.photoLibrary
         
-        present(swipeVC, animated: true, completion: nil)
+        navigationController?.pushViewController(swipeVC, animated: true)
         
     }
     

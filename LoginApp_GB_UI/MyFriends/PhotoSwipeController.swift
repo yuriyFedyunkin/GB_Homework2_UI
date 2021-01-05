@@ -26,6 +26,8 @@ class PhotoSwipeController: UIViewController {
     
     }
     
+    //MARK: - Swipe Recognizer Logic
+    
     func setupLeftSwipeAction(_ sender: UIView) {
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
         leftSwipe.direction = .left
@@ -48,7 +50,7 @@ class PhotoSwipeController: UIViewController {
             } else {
                 currentImage += 1
             }
-            displayedImage.image = photoLibrary[currentImage]
+            leftSwipeAnimation()
             
         case .right:
             if currentImage == 0 {
@@ -56,12 +58,54 @@ class PhotoSwipeController: UIViewController {
             } else {
                 currentImage -= 1
             }
-            displayedImage.image = photoLibrary[currentImage]
+            rightSwipeAnimation()
             
         default:
             break
         }
         
     }
- 
+    
+    
+    //MARK: - Swipe Animation Functions
+    
+    func leftSwipeAnimation() {
+        UIView.animate(withDuration: 0.3) {
+            self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: -self.view.frame.maxX, dy: 0)
+            self.displayedImage.layer.opacity = 0.0
+            self.displayedImage.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.01) {
+                self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: +self.view.frame.maxX, dy: 0)
+            } completion: { _ in
+                UIView.animate(withDuration: 0.3) {
+                    self.displayedImage.image = self.photoLibrary[self.currentImage]
+                    self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                    
+                    self.displayedImage.layer.opacity = 1.0
+                }
+            }
+        }
+    }
+    
+    func rightSwipeAnimation() {
+        UIView.animate(withDuration: 0.3) {
+            self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: +self.view.frame.maxX, dy: 0)
+            self.displayedImage.layer.opacity = 0.0
+            self.displayedImage.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.01) {
+                self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: -self.view.frame.maxX, dy: 0)
+            } completion: { _ in
+                UIView.animate(withDuration: 0.3) {
+                    self.displayedImage.image = self.photoLibrary[self.currentImage]
+                    self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                    
+                    self.displayedImage.layer.opacity = 1.0
+                }
+            }
+        }
+    }
+    
+    
 }
