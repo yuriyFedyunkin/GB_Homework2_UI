@@ -210,7 +210,7 @@
                                     <constraint firstItem="s7d-bz-QHF" firstAttribute="top" secondItem="SwK-vZ-0xh" secondAttribute="bottom" constant="20" id="NCX-ZB-uiw"/>
                                     <constraint firstItem="SwK-vZ-0xh" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="OK5-PS-LQT"/>
                                     <constraint firstAttribute="trailing" secondItem="qcG-bo-XWk" secondAttribute="trailing" constant="85" id="PNl-yC-RnO">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="70"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                     </constraint>
                                     <constraint firstItem="HDQ-RM-1TK" firstAttribute="top" secondItem="VTm-5L-oWj" secondAttribute="bottom" constant="45" id="QmG-7i-j2k"/>
                                     <constraint firstAttribute="trailing" secondItem="qcG-bo-XWk" secondAttribute="trailing" constant="295.5" id="RPy-wS-5mc"/>
@@ -581,7 +581,7 @@
         <!--Groups-->
         <scene sceneID="MkN-09-UMf">
             <objects>
-                <navigationController id="hca-WG-e3n" sceneMemberID="viewController">
+                <navigationController id="hca-WG-e3n" customClass="CustomNavigationController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Groups" image="person.3.fill" catalog="system" id="LSJ-Sz-Chq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KUX-v5-ha9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -600,7 +600,7 @@
         <!--Friends-->
         <scene sceneID="pVN-oJ-Nzu">
             <objects>
-                <navigationController id="9EE-GX-803" sceneMemberID="viewController">
+                <navigationController id="9EE-GX-803" customClass="CustomNavigationController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="person.fill" catalog="system" id="pbE-3J-zOh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H3Q-yi-NAs">
@@ -856,7 +856,7 @@
         <!--News-->
         <scene sceneID="Bur-FX-hCP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eHS-to-uHC" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eHS-to-uHC" customClass="CustomNavigationController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="News" image="book.fill" catalog="system" id="TAK-7B-cvX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PkR-uD-Sqx">

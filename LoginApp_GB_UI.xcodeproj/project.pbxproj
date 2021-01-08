@@ -28,7 +28,9 @@
 		7960B47F2578150100BC9D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7960B47D2578150100BC9D79 /* Main.storyboard */; };
 		7960B4812578150200BC9D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4802578150200BC9D79 /* Assets.xcassets */; };
 		7960B4842578150200BC9D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4822578150200BC9D79 /* LaunchScreen.storyboard */; };
+		798C781025A89983006EE4D1 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */; };
 		79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD0BBC258950AA008E977C /* ShadowView.swift */; };
+		79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */; };
 		79E7389A25A11C9D00A8D734 /* PhotoSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +58,9 @@
 		7960B4802578150200BC9D79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7960B4832578150200BC9D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7960B4852578150200BC9D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		79DD0BBC258950AA008E977C /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +113,8 @@
 				79DD0BBC258950AA008E977C /* ShadowView.swift */,
 				794564EE25939F3900536AA8 /* Gradient View.swift */,
 				792CAA90259CDA1900109138 /* LoadingIndicatorView.swift */,
+				79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */,
+				798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */,
 			);
 			path = "Custom UI elements";
 			sourceTree = "<group>";
@@ -185,7 +191,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Yuriy Fedyunkin";
 				TargetAttributes = {
 					7960B4732578150100BC9D79 = {
@@ -232,6 +238,7 @@
 			files = (
 				7960B47C2578150100BC9D79 /* ViewController.swift in Sources */,
 				7922314C2583C4F400AA7F60 /* FriendsListController.swift in Sources */,
+				798C781025A89983006EE4D1 /* CustomInteractiveTransition.swift in Sources */,
 				79259C8E2583DD700095DB95 /* GroupModel.swift in Sources */,
 				79E7389A25A11C9D00A8D734 /* PhotoSwipeController.swift in Sources */,
 				792CAA91259CDA1900109138 /* LoadingIndicatorView.swift in Sources */,
@@ -246,6 +253,7 @@
 				794564FE2593D10900536AA8 /* NewsModel.swift in Sources */,
 				792231502583D40E00AA7F60 /* PhotoCollectionController.swift in Sources */,
 				79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */,
+				79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */,
 				794564EF25939F3900536AA8 /* Gradient View.swift in Sources */,
 				7922314E2583C56D00AA7F60 /* FriendCell.swift in Sources */,
 				792231542583D48000AA7F60 /* PhotoCollectionCell.swift in Sources */,
@@ -300,6 +308,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -360,6 +369,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
