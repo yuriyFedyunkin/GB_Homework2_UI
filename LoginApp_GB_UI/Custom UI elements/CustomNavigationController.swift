@@ -27,8 +27,6 @@ final class CustomPushAnimator: NSObject, UIViewControllerAnimatedTransitioning 
         destination.view.transform = CGAffineTransform(rotationAngle: -90)
         transitionContext.containerView.addSubview(destination.view)
         
-        
-        
         UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext),
                                 delay: 0,
                                 options: .calculationModePaced) {
