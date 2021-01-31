@@ -29,6 +29,8 @@
 		7960B4812578150200BC9D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4802578150200BC9D79 /* Assets.xcassets */; };
 		7960B4842578150200BC9D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4822578150200BC9D79 /* LaunchScreen.storyboard */; };
 		7976A0E925C5548B00B5E749 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976A0E825C5548B00B5E749 /* Session.swift */; };
+		7983DA1125C7139600F17AD5 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7983DA1025C7139600F17AD5 /* VKLoginViewController.swift */; };
+		7983DA1625C713CF00F17AD5 /* ActionsOnVKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7983DA1525C713CF00F17AD5 /* ActionsOnVKController.swift */; };
 		798C781025A89983006EE4D1 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */; };
 		79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD0BBC258950AA008E977C /* ShadowView.swift */; };
 		79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */; };
@@ -60,6 +62,8 @@
 		7960B4832578150200BC9D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7960B4852578150200BC9D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7976A0E825C5548B00B5E749 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		7983DA1025C7139600F17AD5 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		7983DA1525C713CF00F17AD5 /* ActionsOnVKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsOnVKController.swift; sourceTree = "<group>"; };
 		798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		79DD0BBC258950AA008E977C /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -135,18 +139,28 @@
 		7960B4762578150100BC9D79 /* LoginApp_GB_UI */ = {
 			isa = PBXGroup;
 			children = (
+				7983DA0F25C7130000F17AD5 /* Services */,
 				79FD1C1325B4602400B879D9 /* Views */,
 				79FD1C1225B4601900B879D9 /* Controllers */,
 				79259C892583DCF10095DB95 /* Models */,
 				794564ED25939F1E00536AA8 /* Custom UI elements */,
 				7960B4772578150100BC9D79 /* AppDelegate.swift */,
 				7960B4792578150100BC9D79 /* SceneDelegate.swift */,
+				7983DA1025C7139600F17AD5 /* VKLoginViewController.swift */,
+				7983DA1525C713CF00F17AD5 /* ActionsOnVKController.swift */,
 				7960B47D2578150100BC9D79 /* Main.storyboard */,
 				7960B4802578150200BC9D79 /* Assets.xcassets */,
 				7960B4822578150200BC9D79 /* LaunchScreen.storyboard */,
 				7960B4852578150200BC9D79 /* Info.plist */,
 			);
 			path = LoginApp_GB_UI;
+			sourceTree = "<group>";
+		};
+		7983DA0F25C7130000F17AD5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		79FD1C1225B4601900B879D9 /* Controllers */ = {
@@ -257,6 +271,7 @@
 			files = (
 				7960B47C2578150100BC9D79 /* LoginViewController.swift in Sources */,
 				7922314C2583C4F400AA7F60 /* FriendsListController.swift in Sources */,
+				7983DA1125C7139600F17AD5 /* VKLoginViewController.swift in Sources */,
 				798C781025A89983006EE4D1 /* CustomInteractiveTransition.swift in Sources */,
 				79259C8E2583DD700095DB95 /* GroupModel.swift in Sources */,
 				79E7389A25A11C9D00A8D734 /* PhotoSwipeController.swift in Sources */,
@@ -271,6 +286,7 @@
 				79259C922583DDFC0095DB95 /* UserGroupCell.swift in Sources */,
 				794564FE2593D10900536AA8 /* NewsModel.swift in Sources */,
 				792231502583D40E00AA7F60 /* PhotoCollectionController.swift in Sources */,
+				7983DA1625C713CF00F17AD5 /* ActionsOnVKController.swift in Sources */,
 				79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */,
 				79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */,
 				7976A0E925C5548B00B5E749 /* Session.swift in Sources */,
