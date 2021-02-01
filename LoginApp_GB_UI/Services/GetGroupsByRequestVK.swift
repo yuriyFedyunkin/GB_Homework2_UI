@@ -1,16 +1,16 @@
 //
-//  GetPhotosVK.swift
+//  GetGroupsByRequestVK.swift
 //  LoginApp_GB_UI
 //
-//  Created by Yuriy Fedyunkin on 31.01.2021.
+//  Created by Yuriy Fedyunkin on 01.02.2021.
 //  Copyright © 2021 Yuriy Fedyunkin. All rights reserved.
 //
 
 import Foundation
 
-class GetPhotosVK {
+class GetGroupsByRequestVK {
     
-    static func sendRequest() {
+    func searchGroup(query: String) {
         
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
@@ -19,16 +19,15 @@ class GetPhotosVK {
         var urlConstructor = URLComponents()
         urlConstructor.scheme = "https"
         urlConstructor.host = ApiData.baseUrl
-        urlConstructor.path = "/method/photos.getAll"
+        urlConstructor.path = "/method/groups.search"
         
         // параметры запроса
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "user_id", value: String(Session.shared.userId)),
             URLQueryItem(name: "access_token", value: Session.shared.token),
-            URLQueryItem(name: "v", value: ApiData.versionAPI),
-            URLQueryItem(name: "photo_sizes", value: "1"),
-            URLQueryItem(name: "no_service_albums", value: "0")
+            URLQueryItem(name: "q", value: query),
+            URLQueryItem(name: "v", value: ApiData.versionAPI)
         ]
         
         guard let url = urlConstructor.url else { return }
@@ -38,6 +37,7 @@ class GetPhotosVK {
             print(json as Any)
         }
         task.resume()
+        
     }
     
 }
