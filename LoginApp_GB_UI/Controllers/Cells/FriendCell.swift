@@ -33,6 +33,16 @@ class FriendCell: UITableViewCell {
         
         setupGestureRecognizer(friendIcon)
     }
+    
+    
+    func configure(withUser user: User) {
+        friendName.text = user.firstName + " " + user.lastName
+        
+        guard let url = user.avatar else { return }
+        if let data = try? Data(contentsOf: url) {
+            friendIcon.image = UIImage(data: data)
+        }
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" id="02i-DY-oCY"/>
                     <connections>
                         <outlet property="webView" destination="7ZC-aR-UAK" id="Vzm-zd-c6a"/>
-                        <segue destination="1pp-q2-vEr" kind="show" identifier="VKLogin" id="MnQ-2y-Y6X"/>
+                        <segue destination="BxP-ef-Emx" kind="show" identifier="VKLogin" id="rUp-CK-euK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPn-jT-36h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -660,11 +660,11 @@
             <objects>
                 <viewController id="X6N-c5-bUT" customClass="NewsController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V3f-zX-GyP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j8C-GY-sKJ">
-                                <rect key="frame" x="0.0" y="56" width="375" height="542"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -700,7 +700,7 @@
                 <navigationController id="hca-WG-e3n" customClass="CustomNavigationController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Groups" image="person.3.fill" catalog="system" id="LSJ-Sz-Chq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KUX-v5-ha9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.28095051650000002" green="0.30067002770000001" blue="0.56865847110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -738,7 +738,7 @@
             <objects>
                 <tableViewController id="cbV-iB-jeh" customClass="UserGroupsController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="y7h-Xq-sa0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -808,7 +808,7 @@
             <objects>
                 <tableViewController id="tJC-zk-bRj" customClass="SearchGroupsController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="L3Y-7D-TcT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -976,7 +976,7 @@
                     <tabBarItem key="tabBarItem" title="News" image="book.fill" catalog="system" id="TAK-7B-cvX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PkR-uD-Sqx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.28095051650000002" green="0.30067002770000001" blue="0.56865847110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1009,6 +1009,9 @@
             <point key="canvasLocation" x="-42.028985507246382" y="-749.33035714285711"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rUp-CK-euK"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Night" width="375" height="667"/>
         <image name="book.fill" catalog="system" width="128" height="102"/>
