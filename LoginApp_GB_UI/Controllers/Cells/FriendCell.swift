@@ -34,7 +34,7 @@ class FriendCell: UITableViewCell {
         setupGestureRecognizer(friendIcon)
     }
     
-    
+    // Функция конфигурации ячейки пользователя из списка друзей
     func configure(withUser user: User) {
         friendName.text = user.firstName + " " + user.lastName
         

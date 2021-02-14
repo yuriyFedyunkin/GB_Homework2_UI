@@ -13,18 +13,28 @@ class PhotoCollectionCell: UICollectionViewCell {
     @IBOutlet weak var friendPhoto: UIImageView!
     @IBOutlet weak var likeImageView: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
-        
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        likeLabel.text = String(likes)
-        likeImageView.image = UIImage(named: "notLiked")
-        setupGestureRecognizer(likeImageView)
-        
-    }
     
     var likes = 0
     var isLiked = false
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        likeImageView.image = UIImage(named: "notLiked")
+        setupGestureRecognizer(likeImageView)
+    }
+    
+    // Конфигурация ячейки с фото
+    func configure(withPhoto photo: Photo) {
+        likes = photo.likes
+        likeLabel.text = String(likes)
+        
+        guard let url = URL(string: photo.url) else { return }
+        if let data = try? Data(contentsOf: url) {
+            friendPhoto.image = UIImage(data: data)
+        }
+    }
+    
+    // Логика нажатия кнопки "Like"
     func setupGestureRecognizer(_ localSender: UIImageView) {
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(likeAction(sender:)))
         localSender.isUserInteractionEnabled = true

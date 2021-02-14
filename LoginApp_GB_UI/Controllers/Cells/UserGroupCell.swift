@@ -20,6 +20,7 @@ class UserGroupCell: UITableViewCell {
         setupGestureRecognizer(groupIcon)
     }
     
+    // Функция конфигурации ячейки с группой
     func configure(withGroup group: Group) {
         groupNameText.text = group.name
         

@@ -79,8 +79,8 @@ class FriendsListController: UITableViewController {
                     let key = friendsSectionTitle[indexPath.section]
                     friend = friendsDict[key]![indexPath.row]
                 }
-//                destinationVC.photoLibrary.append(contentsOf: friend.userPhotoLibrary)
-//                destinationVC.navigationItem.title = "\(friend.userName) photos"
+                destinationVC.navigationItem.title = "\(friend.firstName) \(friend.lastName) photos"
+                destinationVC.currentUser = friend
             }
         }
     }
