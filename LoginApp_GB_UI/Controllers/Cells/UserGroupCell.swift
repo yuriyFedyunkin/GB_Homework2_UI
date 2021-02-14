@@ -19,11 +19,18 @@ class UserGroupCell: UITableViewCell {
         
         setupGestureRecognizer(groupIcon)
     }
+    
+    func configure(withGroup group: Group) {
+        groupNameText.text = group.name
+        
+        guard let url = group.avatar else { return }
+        if let data = try? Data(contentsOf: url) {
+            groupIcon.image = UIImage(data: data)
+        }
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     // MARK: - Avatar animation

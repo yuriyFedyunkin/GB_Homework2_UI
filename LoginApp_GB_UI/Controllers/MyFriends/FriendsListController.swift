@@ -40,7 +40,7 @@ class FriendsListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkManager.shared.getFriends() { [weak self] users in
+        NetworkManager.shared.getFriendsVK() { [weak self] users in
             DispatchQueue.main.async {
                 self?.friendsList = users
                 self?.createFriendsDict()

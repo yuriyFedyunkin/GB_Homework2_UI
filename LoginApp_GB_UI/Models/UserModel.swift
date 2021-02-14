@@ -34,12 +34,12 @@ class User: Decodable {
         case firstName = "first_name"
         case lastName = "last_name"
         case id
-        case avatar = "photo_200_orig"
+        case avatar = "photo_50"
     }
     
 }
 
-class UsersList: Decodable {
+struct UsersList: Decodable {
     let items: [User]
 }
 

@@ -10,15 +10,17 @@ import UIKit
 
 class SearchGroupsController: UITableViewController {
     
-    var availableGroups = [
-        Group(groupName: "Harry Potter", groupIcon: UIImage(named: "hpIcon")),
-        Group(groupName: "The Game Of Thrones", groupIcon: UIImage(named: "gotIcon")),
-        Group(groupName: "Lord Of The Rings", groupIcon: UIImage(named: "lorIcon")),
-        Group(groupName: "Hobbit", groupIcon: UIImage(named: "hobbitIcon"))
-    ]
+    var availableGroups = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkManager.shared.getGroupsVK() { [weak self] userGroups in
+            DispatchQueue.main.async {
+                self?.availableGroups = userGroups
+                self?.tableView.reloadData()
+            }
+        }
         
         let gradient = GradientView()
         gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
@@ -43,8 +45,7 @@ class SearchGroupsController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AvailableGroupsCell", for: indexPath) as! UserGroupCell
         let group = availableGroups[indexPath.row]
         
-        cell.groupNameText.text = group.groupName
-        cell.groupIcon.image = group.groupIcon
+        cell.configure(withGroup: group)
 
         return cell
     }
