@@ -19,21 +19,26 @@ class PhotoSwipeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        displayedImage.image = photoLibrary[currentImage]
         getImage()
         displayedImage.isUserInteractionEnabled = true
         displayedImage.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(respondToPanGesture)))
         
         //        setupLeftSwipeAction(view)
         //        setupRightSwipeAction(view)
-        
     }
     
     // Метод получения UIImage из URL по инедксу изображения в массиве photoLibrary
     private func getImage() {
-        guard let url = URL(string: photoLibrary[currentImage]!.url) else { return }
-        if let data = try? Data(contentsOf: url) {
-            displayedImage.image = UIImage(data: data)
+        
+        guard let currentPhoto = photoLibrary[currentImage] else {return}
+        for size in currentPhoto.sizes {
+            let url: URL
+            if size.type == "z" || size.type == "y" {
+                url = size.url
+                if let data = try? Data(contentsOf: url) {
+                    displayedImage.image = UIImage(data: data)
+                }
+            }
         }
     }
     

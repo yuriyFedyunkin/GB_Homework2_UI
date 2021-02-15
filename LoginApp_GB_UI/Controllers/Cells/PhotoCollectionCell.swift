@@ -28,9 +28,14 @@ class PhotoCollectionCell: UICollectionViewCell {
         likes = photo.likes
         likeLabel.text = String(likes)
         
-        guard let url = URL(string: photo.url) else { return }
-        if let data = try? Data(contentsOf: url) {
-            friendPhoto.image = UIImage(data: data)
+        for size in photo.sizes {
+            let url: URL
+            if size.type == "x" || size.type == "m" {
+                url = size.url
+                if let data = try? Data(contentsOf: url) {
+                    friendPhoto.image = UIImage(data: data)
+                }
+            }
         }
     }
     

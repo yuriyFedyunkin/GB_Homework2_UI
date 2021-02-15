@@ -61,10 +61,7 @@ class FriendsListController: UITableViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
-        
-        
-        
+ 
     }
     
     //Segue с передачей библиотеки фото юзера из массива в PhotoCollection
