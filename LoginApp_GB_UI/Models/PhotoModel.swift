@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Photo: Decodable {
-    var likes = 0
-    var sizes = [Sizes]()     //Массив доступный размеров фото через VK API
+class Photo: Object, Decodable {
+    @objc dynamic var likes = 0
+    var sizes = List<Sizes>()     //Массив доступный размеров фото через VK API
     
     enum CodingKeys: String, CodingKey {
         case sizes
@@ -35,7 +36,7 @@ class Photo: Decodable {
         self.likes = (try likesValues.decode(Int.self, forKey: .count)) + (try likesValues.decode(Int.self, forKey: .userLikes))
         
         var sizesValue = try values.nestedUnkeyedContainer(forKey: .sizes)
-        var sizes: [Sizes] = []
+//        var sizes: [Sizes] = []
         
         while !sizesValue.isAtEnd {
             let size = try sizesValue.decode(Sizes.self)
@@ -49,9 +50,9 @@ class Photo: Decodable {
     }
 }
 
-struct Sizes: Decodable {
-    let type: String
-    let url: URL
+class Sizes: Object, Decodable {
+    @objc dynamic var type: String = ""
+    @objc dynamic var url: String = ""
 }
 
 struct UserPhotoesList: Decodable {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62DEEF28F791617ECF8C22A9 /* Pods_LoginApp_GB_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521914C2911CA9EC255BB701 /* Pods_LoginApp_GB_UI.framework */; };
 		790F59DF2583E76D0056A63E /* SearchGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790F59DE2583E76D0056A63E /* SearchGroupsController.swift */; };
 		7914A17525D6EA37009DEDE4 /* NetwokManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914A17425D6EA37009DEDE4 /* NetwokManager.swift */; };
 		7914A17D25D95C23009DEDE4 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914A17C25D95C23009DEDE4 /* PhotoModel.swift */; };
@@ -45,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		366E43F07399D70DFDF4CC12 /* Pods-LoginApp_GB_UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApp_GB_UI.debug.xcconfig"; path = "Target Support Files/Pods-LoginApp_GB_UI/Pods-LoginApp_GB_UI.debug.xcconfig"; sourceTree = "<group>"; };
+		521914C2911CA9EC255BB701 /* Pods_LoginApp_GB_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginApp_GB_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7710FCFF80B45E0409686422 /* Pods-LoginApp_GB_UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApp_GB_UI.release.xcconfig"; path = "Target Support Files/Pods-LoginApp_GB_UI/Pods-LoginApp_GB_UI.release.xcconfig"; sourceTree = "<group>"; };
 		790F59DE2583E76D0056A63E /* SearchGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupsController.swift; sourceTree = "<group>"; };
 		7914A17425D6EA37009DEDE4 /* NetwokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwokManager.swift; sourceTree = "<group>"; };
 		7914A17C25D95C23009DEDE4 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62DEEF28F791617ECF8C22A9 /* Pods_LoginApp_GB_UI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +146,8 @@
 			children = (
 				7960B4762578150100BC9D79 /* LoginApp_GB_UI */,
 				7960B4752578150100BC9D79 /* Products */,
+				EA9778ED7458DE1054E75890 /* Pods */,
+				BCE5386B8F4E7CE728E339BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +225,24 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		BCE5386B8F4E7CE728E339BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				521914C2911CA9EC255BB701 /* Pods_LoginApp_GB_UI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA9778ED7458DE1054E75890 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				366E43F07399D70DFDF4CC12 /* Pods-LoginApp_GB_UI.debug.xcconfig */,
+				7710FCFF80B45E0409686422 /* Pods-LoginApp_GB_UI.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,9 +250,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7960B4882578150200BC9D79 /* Build configuration list for PBXNativeTarget "LoginApp_GB_UI" */;
 			buildPhases = (
+				29113667EE9B56FE6C825A21 /* [CP] Check Pods Manifest.lock */,
 				7960B4702578150100BC9D79 /* Sources */,
 				7960B4712578150100BC9D79 /* Frameworks */,
 				7960B4722578150100BC9D79 /* Resources */,
+				DEB7FF6D5AAC3A620EB83CF3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,6 +311,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29113667EE9B56FE6C825A21 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LoginApp_GB_UI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEB7FF6D5AAC3A620EB83CF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LoginApp_GB_UI/Pods-LoginApp_GB_UI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LoginApp_GB_UI/Pods-LoginApp_GB_UI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LoginApp_GB_UI/Pods-LoginApp_GB_UI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7960B4702578150100BC9D79 /* Sources */ = {
@@ -464,6 +533,7 @@
 		};
 		7960B4892578150200BC9D79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 366E43F07399D70DFDF4CC12 /* Pods-LoginApp_GB_UI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +552,7 @@
 		};
 		7960B48A2578150200BC9D79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7710FCFF80B45E0409686422 /* Pods-LoginApp_GB_UI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
