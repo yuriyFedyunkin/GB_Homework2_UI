@@ -12,13 +12,15 @@ class SearchGroupsController: UITableViewController {
     
     var availableGroups = [Group]()
     
+    private var groupsRealm = GroupsDB()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NetworkManager.shared.getGroupsVK() { [weak self] userGroups in
             DispatchQueue.main.async {
-                self?.availableGroups = userGroups
-                self?.tableView.reloadData()
+                self?.groupsRealm.write(userGroups)
+                self?.readGroupsRealm()
             }
         }
         
@@ -27,6 +29,17 @@ class SearchGroupsController: UITableViewController {
         
         gradient.alpha = 0.6
         tableView.backgroundView = gradient
+    }
+    
+    // MARK: - Методы добавления групп в Realm и закрузка из Realm
+    
+    private func addToGroupsRealm(groups: [Group]) {
+        groupsRealm.write(groups)
+    }
+    
+    private func readGroupsRealm() {
+        groupsRealm.read()?.forEach{availableGroups.append($0)}
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source

@@ -11,9 +11,16 @@ import RealmSwift
 
 class Photo: Object, Decodable {
     @objc dynamic var likes = 0
-    var sizes = List<Sizes>()     //Массив доступный размеров фото через VK API
+    @objc dynamic var id = 0
+    @objc dynamic var url = ""
+    
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     enum CodingKeys: String, CodingKey {
+        case id
         case sizes
         case likes
     }
@@ -28,31 +35,33 @@ class Photo: Object, Decodable {
         case userLikes = "user_likes"
     }
     
+    
     convenience required init(from decoder: Decoder) throws {
         self.init()
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = try values.decode(Int.self, forKey: .id)
+        
         let likesValues = try values.nestedContainer(keyedBy: LikesKeys.self, forKey: .likes)
         self.likes = (try likesValues.decode(Int.self, forKey: .count)) + (try likesValues.decode(Int.self, forKey: .userLikes))
         
+        
         var sizesValue = try values.nestedUnkeyedContainer(forKey: .sizes)
-//        var sizes: [Sizes] = []
         
         while !sizesValue.isAtEnd {
             let size = try sizesValue.decode(Sizes.self)
-            sizes.append(size)
+            if size.type == "z" || size.type == "y" || size.type == "x" {
+                url = size.url
+            }
         }
-        self.sizes = sizes
-        
-//        let firstPhotoSize = try sizesValue.nestedContainer(keyedBy: SizesKeys.self)
-//        self.url = try firstPhotoSize.decode(String.self, forKey: .url)
-
     }
 }
 
 class Sizes: Object, Decodable {
     @objc dynamic var type: String = ""
     @objc dynamic var url: String = ""
+    
 }
 
 struct UserPhotoesList: Decodable {

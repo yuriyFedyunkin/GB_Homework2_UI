@@ -70,7 +70,9 @@ extension VKLoginViewController: WKNavigationDelegate {
         
         performSegue(withIdentifier: "VKLogin", sender: nil)
         
+        
         decisionHandler(.cancel)
         
     }
+    
 }

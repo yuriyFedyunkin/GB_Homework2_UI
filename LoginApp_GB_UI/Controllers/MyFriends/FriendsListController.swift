@@ -11,14 +11,6 @@ import UIKit
 class FriendsListController: UITableViewController {
 
     private var friendsList = [User]()
-//        User(userName: "Frodo", userIcon: UIImage(named: "Frodo")),
-//        User(userName: "Aragorn", userIcon: UIImage(named: "Aragorn")),
-//        User(userName: "Gendalf", userIcon: UIImage(named: "Gendalf")),
-//        User(userName: "Bilbo", userIcon: UIImage(named: "Bilbo")),
-//        User(userName: "Legolas", userIcon: UIImage(named: "Legolas")),
-//        User(userName: "Gimli", userIcon: UIImage(named: "Gimli")),
-//        User(userName: "Sam", userIcon: UIImage(named: "Sam"))
-   
     
     // Словарь и массив для создания секций по первой букве имени User
     private var friendsDict = [String: [User]]()
@@ -36,15 +28,14 @@ class FriendsListController: UITableViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NetworkManager.shared.getFriendsVK() { [weak self] users in
             DispatchQueue.main.async {
-                self?.friendsList = users
-                self?.createFriendsDict()
-                self?.tableView.reloadData()
+                self?.addToUsersRealm(users: users)
+                self?.readUsersRealm()
             }
         }
         
@@ -61,10 +52,22 @@ class FriendsListController: UITableViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
- 
     }
     
-    //Segue с передачей библиотеки фото юзера из массива в PhotoCollection
+    // MARK: - Методы добавления друзей в Realm и закрузка из Realm
+    
+    private func addToUsersRealm(users: [User]) {
+        UsersDB.shared.write(users)
+    }
+    
+    private func readUsersRealm() {
+        UsersDB.shared.read()?.forEach{friendsList.append($0)}
+        createFriendsDict()
+        tableView.reloadData()
+    }
+    
+    
+    //MARK: - Segue с передачей библиотеки фото юзера из массива в PhotoCollection
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showLibrary" {
             guard let destinationVC = segue.destination as? PhotoCollectionController else { return }

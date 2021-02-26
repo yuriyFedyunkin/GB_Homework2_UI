@@ -28,15 +28,15 @@ class PhotoCollectionCell: UICollectionViewCell {
         likes = photo.likes
         likeLabel.text = String(likes)
         
-        for size in photo.sizes {
-            if size.type == "x" || size.type == "m" {
-                guard let url = URL(string: size.url) else { return }
+//        for size in photo.sizes {
+//            if size.type == "x" || size.type == "m" {
+                guard let url = URL(string: photo.url) else { return }
                 if let data = try? Data(contentsOf: url) {
                     friendPhoto.image = UIImage(data: data)
                 }
             }
-        }
-    }
+//        }
+//    }
     
     // Логика нажатия кнопки "Like"
     func setupGestureRecognizer(_ localSender: UIImageView) {
