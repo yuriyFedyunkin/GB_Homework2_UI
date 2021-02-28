@@ -13,8 +13,7 @@ class Photo: Object, Decodable {
     @objc dynamic var likes = 0
     @objc dynamic var id = 0
     @objc dynamic var url = ""
-    
-    
+        
     override class func primaryKey() -> String? {
         return "id"
     }

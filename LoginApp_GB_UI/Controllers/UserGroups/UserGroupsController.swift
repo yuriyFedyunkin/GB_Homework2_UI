@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 class UserGroupsController: UITableViewController {
 
-    var userGroups = [Group]()
+    var userGroupss = [Group]()
+    var userGroups: Results<Group>?
+    private var groupsRealm = GroupsDB()
+    var token: NotificationToken?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pairTableAndRealm()
         
         let gradient = GradientView()
         gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
@@ -27,14 +34,31 @@ class UserGroupsController: UITableViewController {
             guard let searchGroupsController = segue.source as? SearchGroupsController else { return }
             if let indexPath = searchGroupsController.tableView.indexPathForSelectedRow {
                 let group = searchGroupsController.availableGroups[indexPath.row]
-                if !userGroups.contains(group) {
-                    userGroups.append(group)
-                    tableView.reloadData()
+                groupsRealm.write(group)  // записываем выбранную группу в Realm
                 }
             }
         }
 
+    // MARK: - Обработка групп из Reakm + отслеживание изменений
+    func pairTableAndRealm() {
+        userGroups = groupsRealm.read()
+        token = userGroups?.observe({ [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
     }
+    
 
     // MARK: - Table view data source
 
@@ -44,34 +68,26 @@ class UserGroupsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return userGroups.count
+        guard let groups = userGroups else { return 0 }
+        return groups.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! UserGroupCell
-        let group = userGroups[indexPath.row]
         
-        cell.configure(withGroup: group)
-
+        if let group = userGroups?[indexPath.row] {
+            cell.configure(withGroup: group)
+        }
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    // Override to support editing the table view.
+    
+    // удаление группы из Realm и с TableView
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let group = userGroups?[indexPath.row] else { return }
         if editingStyle == .delete {
-            userGroups.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            groupsRealm.delete(group)
         }
     }
-
 }
+

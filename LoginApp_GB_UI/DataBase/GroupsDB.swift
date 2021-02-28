@@ -17,20 +17,32 @@ class GroupsDB {
         db = try? Realm()
     }
     
-    func write(_ groups: [Group]) {
+    func write(_ group: Group) {
         do {
+            print(db?.configuration.fileURL)
             db?.beginWrite()
-            db?.add(groups, update: .all)
+            db?.add(group, update: .all)
             try db?.commitWrite()
         } catch {
             print(error)
         }
     }
     
-    func read() -> [Group]? {
+    func read() -> Results<Group>? {
         if let groups = db?.objects(Group.self) {
-            return Array(groups)
+            return groups
         }
         return nil
     }
+    
+    func delete(_ group: Group) {
+        do {
+            db?.beginWrite()
+            db?.delete(group)
+            try db?.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
 }
+

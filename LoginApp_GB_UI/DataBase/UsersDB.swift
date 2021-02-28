@@ -13,11 +13,9 @@ class UsersDB {
     
     static var shared = UsersDB()
     
-    private var db: Realm?
+    private var db = try? Realm()
     
-    init() {
-        db = try! Realm()
-    }
+    private init() {}
     
     func write(_ users: [User]) {
         do {
@@ -32,6 +30,16 @@ class UsersDB {
     
     func writePhotos(_ photos: [Photo], user: User) {
         do {
+      
+            db?.beginWrite()
+            for photo in photos {
+                if !user.photos.contains(photo) {
+                    user.photos.append(photo)
+                }
+            }
+            db?.add(user, update: .modified)
+            try db?.commitWrite()
+            
             // TODO: преобразования фото в Data
             /* var imagesData = [Data]()
              
@@ -45,10 +53,7 @@ class UsersDB {
              }
              }
              */
-            db?.beginWrite()
-            user.photos.append(objectsIn: photos)
-            db?.add(user, update: .all)
-            try db?.commitWrite()
+            
         } catch {
             print(error)
         }
