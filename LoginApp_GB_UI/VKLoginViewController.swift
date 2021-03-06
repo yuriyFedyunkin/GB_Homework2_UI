@@ -8,8 +8,10 @@
 
 import UIKit
 import WebKit
+import FirebaseAuth
 
 class VKLoginViewController: UIViewController {
+    
     
     @IBOutlet weak var webView: WKWebView! {
         didSet { webView.navigationDelegate = self }
@@ -68,11 +70,22 @@ extension VKLoginViewController: WKNavigationDelegate {
         Session.shared.token = token
         Session.shared.userId = userId
         
+        Auth.auth().signInAnonymously { (authResult, error) in
+            if let error = error {
+                print(error)
+            } else {
+                guard let authResult = authResult else { return }
+                let user = authResult.user
+                let isAnonymous = user.isAnonymous
+                let uid = user.uid
+                print(uid)
+                print(isAnonymous)
+            }
+        }
+   
         performSegue(withIdentifier: "VKLogin", sender: nil)
-        
-        
         decisionHandler(.cancel)
-        
+
     }
     
 }

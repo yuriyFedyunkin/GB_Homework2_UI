@@ -27,6 +27,10 @@ class Group: Object, Decodable {
         case isMember = "is_member"
     }
     
+    func toFirebaseGroup() -> FirebaseGroup {
+        return FirebaseGroup(id: self.id, name: self.name)
+    }
+    
 //    static func == (lhs: Group, rhs: Group) -> Bool {
 //        lhs.id == rhs.id
 //    }
