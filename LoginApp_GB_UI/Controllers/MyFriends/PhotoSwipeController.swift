@@ -31,15 +31,11 @@ class PhotoSwipeController: UIViewController {
     private func getImage() {
         
         guard let currentPhoto = photoLibrary[currentImage] else {return}
-//        for size in currentPhoto.sizes {
-//            if size.type == "z" || size.type == "y" {
-                guard let url = URL(string: currentPhoto.url) else { return }
-                if let data = try? Data(contentsOf: url) {
-                    displayedImage.image = UIImage(data: data)
-                }
-            }
-//        }
-//    }
+        guard let url = URL(string: currentPhoto.url) else { return }
+        if let data = try? Data(contentsOf: url) {
+            displayedImage.image = UIImage(data: data)
+        }
+    }
     
     //MARK: - Swipe and Pan Recognizer Logic
     
@@ -64,6 +60,44 @@ class PhotoSwipeController: UIViewController {
                 UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
                     self.displayedImage.transform = .identity
                 }, completion: nil)
+            }
+        }
+    }
+    
+    //MARK: - Swipe Animation Functions
+    
+    func leftSwipeAnimation() {
+        UIView.animate(withDuration: 0.3) {
+            self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: -self.view.frame.maxX, dy: 0)
+            self.displayedImage.layer.opacity = 0.0
+            self.displayedImage.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.01) {
+                self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: +self.view.frame.maxX, dy: 0)
+            } completion: { _ in
+                UIView.animate(withDuration: 0.3) {
+                    self.getImage()
+                    self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                    self.displayedImage.layer.opacity = 1.0
+                }
+            }
+        }
+    }
+    
+    func rightSwipeAnimation() {
+        UIView.animate(withDuration: 0.3) {
+            self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: +self.view.frame.maxX, dy: 0)
+            self.displayedImage.layer.opacity = 0.0
+            self.displayedImage.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.01) {
+                self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: -self.view.frame.maxX, dy: 0)
+            } completion: { _ in
+                UIView.animate(withDuration: 0.3) {
+                    self.getImage()
+                    self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)                
+                    self.displayedImage.layer.opacity = 1.0
+                }
             }
         }
     }
@@ -105,49 +139,5 @@ class PhotoSwipeController: UIViewController {
 //        }
 //
 //    }
-    
-    
-    //MARK: - Swipe Animation Functions
-    
-    func leftSwipeAnimation() {
-        UIView.animate(withDuration: 0.3) {
-            self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: -self.view.frame.maxX, dy: 0)
-            self.displayedImage.layer.opacity = 0.0
-            self.displayedImage.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
-        } completion: { _ in
-            UIView.animate(withDuration: 0.01) {
-                self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: +self.view.frame.maxX, dy: 0)
-            } completion: { _ in
-                UIView.animate(withDuration: 0.3) {
-                    self.getImage()
-//                    self.displayedImage.image = self.photoLibrary[self.currentImage]
-                    self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                    
-                    self.displayedImage.layer.opacity = 1.0
-                }
-            }
-        }
-    }
-    
-    func rightSwipeAnimation() {
-        UIView.animate(withDuration: 0.3) {
-            self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: +self.view.frame.maxX, dy: 0)
-            self.displayedImage.layer.opacity = 0.0
-            self.displayedImage.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
-        } completion: { _ in
-            UIView.animate(withDuration: 0.01) {
-                self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: -self.view.frame.maxX, dy: 0)
-            } completion: { _ in
-                UIView.animate(withDuration: 0.3) {
-                    self.getImage()
-//                    self.displayedImage.image = self.photoLibrary[self.currentImage]
-                    self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                    
-                    self.displayedImage.layer.opacity = 1.0
-                }
-            }
-        }
-    }
-    
-    
+   
 }

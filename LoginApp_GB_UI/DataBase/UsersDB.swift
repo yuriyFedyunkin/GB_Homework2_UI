@@ -30,14 +30,13 @@ class UsersDB {
     
     func writePhotos(_ photos: [Photo], user: User) {
         do {
-      
             db?.beginWrite()
-            for photo in photos {
-                if !user.photos.contains(photo) {
-                    user.photos.append(photo)
-                }
-            }
-            db?.add(user, update: .modified)
+            
+            let photoList = List<Photo>()
+            photoList.append(objectsIn: photos)
+            user.photos = photoList
+            
+            db?.add(user, update: .all)
             try db?.commitWrite()
             
             // TODO: преобразования фото в Data
