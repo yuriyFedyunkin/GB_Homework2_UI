@@ -12,7 +12,7 @@ struct ApiData {
     
  
     static let baseUrl: String = "api.vk.com"
-    static let versionAPI: String = "5.126"
+    static let versionAPI: String = "5.130"
     
     
 }
