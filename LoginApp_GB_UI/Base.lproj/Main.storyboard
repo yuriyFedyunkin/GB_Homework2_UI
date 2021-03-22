@@ -694,16 +694,16 @@
             </objects>
             <point key="canvasLocation" x="2724" y="1960"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Feed-->
         <scene sceneID="bm5-U6-kT5">
             <objects>
-                <tableViewController id="EqO-YE-2OW" sceneMemberID="viewController">
+                <tableViewController id="EqO-YE-2OW" customClass="NewsFeedController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bmq-Yc-pM1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="300" id="JU7-7o-vTT">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostFeedCell" rowHeight="300" id="JU7-7o-vTT" customClass="PostFeedCell" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JU7-7o-vTT" id="ae0-Yv-Z02">
@@ -733,7 +733,7 @@
                                                 </stackView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="247" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bf9-8R-rvm">
                                                     <rect key="frame" x="0.0" y="45" width="343" height="173"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -810,8 +810,9 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zh9-Oa-Xga">
                                                     <rect key="frame" x="0.0" y="258" width="343" height="20"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WEp-hg-f5p">
-                                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WEp-hg-f5p">
+                                                            <rect key="frame" x="0.0" y="1.5" width="20" height="16.5"/>
+                                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="Eqh-08-3sp"/>
                                                                 <constraint firstAttribute="width" constant="20" id="hDc-AN-HLr"/>
@@ -820,7 +821,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2s-IY-Ds2">
                                                             <rect key="frame" x="25" y="0.0" width="318" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -835,6 +836,19 @@
                                         <constraint firstItem="T5s-zf-Sro" firstAttribute="leading" secondItem="ae0-Yv-Z02" secondAttribute="leadingMargin" id="W5d-X8-Eta"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="authorAvatarImage" destination="fTv-dO-VPS" id="wEb-DG-YG8"/>
+                                    <outlet property="authorNameLabel" destination="you-zu-SGn" id="6Bf-CQ-4gd"/>
+                                    <outlet property="commentImage" destination="s1b-G5-171" id="OMg-x3-FbH"/>
+                                    <outlet property="commentLabel" destination="scK-lX-NHj" id="RL0-Y8-cdy"/>
+                                    <outlet property="likeImage" destination="tys-CN-ihO" id="XBc-jj-Nnv"/>
+                                    <outlet property="likeLabel" destination="8RA-fQ-b7q" id="Lc0-M0-SlM"/>
+                                    <outlet property="postTextView" destination="bf9-8R-rvm" id="gUo-YJ-cOJ"/>
+                                    <outlet property="shareImage" destination="GLr-nA-wRu" id="qwo-aJ-FhF"/>
+                                    <outlet property="shareLabel" destination="lCf-8t-rTO" id="uXC-h6-neT"/>
+                                    <outlet property="viewsLabel" destination="o2s-IY-Ds2" id="pgY-Up-WN7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -842,9 +856,16 @@
                             <outlet property="delegate" destination="EqO-YE-2OW" id="a4t-ym-HGI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="T2O-s3-6je"/>
+                    <navigationItem key="navigationItem" title="Feed" id="T2O-s3-6je">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="7jU-O5-cNg">
+                            <connections>
+                                <segue destination="tGy-42-7gX" kind="unwind" unwindAction="myUnwindActionWithUnwindSegue:" id="LeU-8X-BaH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qb1-SA-bOL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="tGy-42-7gX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2724" y="1251"/>
         </scene>
@@ -1164,6 +1185,7 @@
         <image name="Night" width="375" height="667"/>
         <image name="book.fill" catalog="system" width="128" height="102"/>
         <image name="comment" width="64" height="64"/>
+        <image name="eye" catalog="system" width="128" height="81"/>
         <image name="img2" width="333" height="208"/>
         <image name="notLiked" width="30" height="30"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
