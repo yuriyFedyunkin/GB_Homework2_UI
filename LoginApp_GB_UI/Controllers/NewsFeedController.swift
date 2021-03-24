@@ -47,14 +47,23 @@ class NewsFeedController: UITableViewController {
         return postFeedList.count
     }
 
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostFeedCell", for: indexPath) as! PostFeedCell
-        
-        cell.configure(postFeedList[indexPath.row], source)
-        cell.selectionStyle = .none
-
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+                for post in postFeedList {
+                    if post.type == "post" {
+                        let postCell = tableView.dequeueReusableCell(withIdentifier: "PostFeedCell", for: indexPath) as! PostFeedCell
+                        postCell.configure(postFeedList[indexPath.row], source)
+                        postCell.selectionStyle = .none
+                        return postCell
+                    } else if post.type == "photo" {
+                        let photoCell = tableView.dequeueReusableCell(withIdentifier: "PhotoFeedCell", for: indexPath) as! PhotoFeedCell
+                        photoCell.configure(postFeedList[indexPath.row], source)
+                        photoCell.selectionStyle = .none
+                        return photoCell
+                    }
+                }
+       return cell
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

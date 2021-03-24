@@ -53,7 +53,6 @@ class PostFeedCell: UITableViewCell {
     }
     
     // Конфигурация ячейки
-    
     func configure(_ post: NewsfeedPost, _ source: [Group]) {
         self.likes = post.likes
         self.likeLabel.text = String(self.likes)

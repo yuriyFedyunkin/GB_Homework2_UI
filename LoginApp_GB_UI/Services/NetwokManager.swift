@@ -31,7 +31,7 @@ class NetworkManager {
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: ApiData.versionAPI),
             URLQueryItem(name: "fields", value: "first_name,last_name,name"),
-            URLQueryItem(name: "filters", value: "post"),
+            URLQueryItem(name: "filters", value: "post,photo"),
             URLQueryItem(name: "source_ids", value: "groups")
         ]
         
