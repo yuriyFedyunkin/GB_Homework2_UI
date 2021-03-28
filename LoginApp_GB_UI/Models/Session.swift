@@ -13,7 +13,7 @@ struct Session {
     static var shared = Session()
     
     var token: String = ""
-    var userId: Int?
+    var userId: Int = 0
     
     private init() {}
     
