@@ -10,15 +10,15 @@ import UIKit
 
 class FriendsListController: UITableViewController {
 
-    private var friendsList = [
-        User(userName: "Frodo", userIcon: UIImage(named: "Frodo")),
-        User(userName: "Aragorn", userIcon: UIImage(named: "Aragorn")),
-        User(userName: "Gendalf", userIcon: UIImage(named: "Gendalf")),
-        User(userName: "Bilbo", userIcon: UIImage(named: "Bilbo")),
-        User(userName: "Legolas", userIcon: UIImage(named: "Legolas")),
-        User(userName: "Gimli", userIcon: UIImage(named: "Gimli")),
-        User(userName: "Sam", userIcon: UIImage(named: "Sam"))
-    ]
+    private var friendsList = [User]()
+//        User(userName: "Frodo", userIcon: UIImage(named: "Frodo")),
+//        User(userName: "Aragorn", userIcon: UIImage(named: "Aragorn")),
+//        User(userName: "Gendalf", userIcon: UIImage(named: "Gendalf")),
+//        User(userName: "Bilbo", userIcon: UIImage(named: "Bilbo")),
+//        User(userName: "Legolas", userIcon: UIImage(named: "Legolas")),
+//        User(userName: "Gimli", userIcon: UIImage(named: "Gimli")),
+//        User(userName: "Sam", userIcon: UIImage(named: "Sam"))
+   
     
     // Словарь и массив для создания секций по первой букве имени User
     private var friendsDict = [String: [User]]()
@@ -32,16 +32,21 @@ class FriendsListController: UITableViewController {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
     }
-    
+   
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Создаем словаррь имен друзей
-        createFriendsDict()
+        NetworkManager.shared.getFriendsVK() { [weak self] users in
+            DispatchQueue.main.async {
+                self?.friendsList = users
+                self?.createFriendsDict()
+                self?.tableView.reloadData()
+            }
+        }
         
         //Градиенти для tableView
         let gradient = GradientView()
@@ -56,6 +61,7 @@ class FriendsListController: UITableViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+ 
     }
     
     //Segue с передачей библиотеки фото юзера из массива в PhotoCollection
@@ -70,8 +76,8 @@ class FriendsListController: UITableViewController {
                     let key = friendsSectionTitle[indexPath.section]
                     friend = friendsDict[key]![indexPath.row]
                 }
-                destinationVC.photoLibrary.append(contentsOf: friend.userPhotoLibrary)
-                destinationVC.navigationItem.title = "\(friend.userName) photos"
+                destinationVC.navigationItem.title = "\(friend.firstName) \(friend.lastName) photos"
+                destinationVC.currentUser = friend
             }
         }
     }
@@ -90,6 +96,7 @@ class FriendsListController: UITableViewController {
             return 1
         }
         return friendsSectionTitle.count
+
     }
     
     
@@ -101,7 +108,6 @@ class FriendsListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if isFiltering {
             return filtredFriends.count
         }
@@ -114,17 +120,15 @@ class FriendsListController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
-        
+
         if isFiltering {
             let friend = filtredFriends[indexPath.row]
-            cell.friendName.text = friend.userName
-            cell.friendIcon.image = friend.userIcon
+            cell.configure(withUser: friend)
+
         } else {
             let nameKey = friendsSectionTitle[indexPath.section]
             let friend = friendsDict[nameKey]![indexPath.row]
-            
-            cell.friendName.text = friend.userName
-            cell.friendIcon.image = friend.userIcon
+            cell.configure(withUser: friend)
         }
         
         return cell
@@ -139,7 +143,7 @@ class FriendsListController: UITableViewController {
     // Сортировка друзей по первой букве в имени
     func createFriendsDict() {
         for friend in friendsList {
-            let firstLetterIndex = String(friend.userName.first!)
+            let firstLetterIndex = String(friend.firstName.first!)
             if friendsDict[firstLetterIndex] != nil {
                 friendsDict[firstLetterIndex]!.append(friend)
             } else {
@@ -161,7 +165,8 @@ extension FriendsListController: UISearchResultsUpdating {
 
     func filterForSearchedText(_ searchText: String) {
         filtredFriends = friendsList.filter({ (friend: User) -> Bool in
-            return friend.userName.lowercased().contains(searchText.lowercased())
+            let name = "\(friend.firstName) \(friend.lastName)"
+            return name.lowercased().contains(searchText.lowercased())
         })
         tableView.reloadData()
     }

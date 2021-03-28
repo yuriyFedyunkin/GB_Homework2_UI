@@ -28,7 +28,7 @@ class GetFriendsVK {
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: ApiData.versionAPI),
             URLQueryItem(name: "order", value: "name"),
-            URLQueryItem(name: "fields", value: "nickname, online, status")
+            URLQueryItem(name: "fields", value: "nickname, photo_200_orig")
         ]
         
         guard let url = urlConstructor.url else { return }
@@ -38,6 +38,10 @@ class GetFriendsVK {
             print(json as Any)
         }
         task.resume()
+        print(String(Session.shared.userId))
+        print(Session.shared.token)
     }
+    
+
     
 }

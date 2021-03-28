@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Poe-oq-cgy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nf0-Ju-k6K">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,13 +13,13 @@
         <!--Login View Controller-->
         <scene sceneID="irL-Sz-PjU">
             <objects>
-                <viewController id="nf0-Ju-k6K" customClass="VKLoginViewController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="nf0-Ju-k6K" customClass="VKLoginViewController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sei-C6-wS4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZC-aR-UAK">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -39,12 +39,12 @@
                     <navigationItem key="navigationItem" id="02i-DY-oCY"/>
                     <connections>
                         <outlet property="webView" destination="7ZC-aR-UAK" id="Vzm-zd-c6a"/>
-                        <segue destination="1pp-q2-vEr" kind="show" identifier="VKLogin" id="MnQ-2y-Y6X"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="VKLogin" id="46q-F7-6HJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPn-jT-36h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868.11594202898561" y="-749.33035714285711"/>
+            <point key="canvasLocation" x="23" y="112"/>
         </scene>
         <!--Actions OnVK Controller-->
         <scene sceneID="fst-8I-v3D">
@@ -129,7 +129,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +263,7 @@
                                         </variation>
                                         <connections>
                                             <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PEb-u2-sGJ"/>
-                                            <segue destination="BxP-ef-Emx" kind="show" id="9dw-wY-i4w"/>
+                                            <segue destination="BxP-ef-Emx" kind="show" id="YiA-GU-JTK"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hum-m1-F0v">
@@ -532,7 +532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850.39999999999998" y="111.99400299850076"/>
+            <point key="canvasLocation" x="966" y="112"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sAg-f5-9rv">
@@ -788,7 +788,7 @@
                     <navigationItem key="navigationItem" title="Groups" id="Gmp-7N-EFk">
                         <barButtonItem key="leftBarButtonItem" title="Log out" id="XwU-cu-JPW">
                             <connections>
-                                <segue destination="TIA-kH-vLS" kind="unwind" unwindAction="myUnwindActionWithUnwindSegue:" id="e9V-Yo-ozX"/>
+                                <segue destination="TIA-kH-vLS" kind="unwind" unwindAction="myUnwindActionWithSUnwindegue:" id="e9V-Yo-ozX"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="cmL-V2-khN">
@@ -993,20 +993,17 @@
         <!--Navigation Controller-->
         <scene sceneID="c64-RG-pz3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Poe-oq-cgy" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Poe-oq-cgy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ebX-PL-HhJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nf0-Ju-k6K" kind="relationship" relationship="rootViewController" id="8rH-5H-L4y"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tqp-Tw-oUx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42.028985507246382" y="-749.33035714285711"/>
+            <point key="canvasLocation" x="966" y="-751"/>
         </scene>
     </scenes>
     <resources>

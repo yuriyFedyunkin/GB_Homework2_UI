@@ -10,7 +10,7 @@ import UIKit
 
 class PhotoSwipeController: UIViewController {
 
-    var photoLibrary = [UIImage?]()
+    var photoLibrary = [Photo?]()
     
     var currentImage = 0
     
@@ -19,14 +19,27 @@ class PhotoSwipeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        displayedImage.image = photoLibrary[currentImage]
-        
+        getImage()
         displayedImage.isUserInteractionEnabled = true
         displayedImage.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(respondToPanGesture)))
         
-//        setupLeftSwipeAction(view)
-//        setupRightSwipeAction(view)
+        //        setupLeftSwipeAction(view)
+        //        setupRightSwipeAction(view)
+    }
     
+    // Метод получения UIImage из URL по инедксу изображения в массиве photoLibrary
+    private func getImage() {
+        
+        guard let currentPhoto = photoLibrary[currentImage] else {return}
+        for size in currentPhoto.sizes {
+            let url: URL
+            if size.type == "z" || size.type == "y" {
+                url = size.url
+                if let data = try? Data(contentsOf: url) {
+                    displayedImage.image = UIImage(data: data)
+                }
+            }
+        }
     }
     
     //MARK: - Swipe and Pan Recognizer Logic
@@ -107,7 +120,8 @@ class PhotoSwipeController: UIViewController {
                 self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: +self.view.frame.maxX, dy: 0)
             } completion: { _ in
                 UIView.animate(withDuration: 0.3) {
-                    self.displayedImage.image = self.photoLibrary[self.currentImage]
+                    self.getImage()
+//                    self.displayedImage.image = self.photoLibrary[self.currentImage]
                     self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                     
                     self.displayedImage.layer.opacity = 1.0
@@ -126,7 +140,8 @@ class PhotoSwipeController: UIViewController {
                 self.displayedImage.frame = self.displayedImage.frame.offsetBy(dx: -self.view.frame.maxX, dy: 0)
             } completion: { _ in
                 UIView.animate(withDuration: 0.3) {
-                    self.displayedImage.image = self.photoLibrary[self.currentImage]
+                    self.getImage()
+//                    self.displayedImage.image = self.photoLibrary[self.currentImage]
                     self.displayedImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                     
                     self.displayedImage.layer.opacity = 1.0

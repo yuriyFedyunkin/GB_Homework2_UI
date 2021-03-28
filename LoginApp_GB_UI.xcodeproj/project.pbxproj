@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		790F59DF2583E76D0056A63E /* SearchGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790F59DE2583E76D0056A63E /* SearchGroupsController.swift */; };
+		7914A17525D6EA37009DEDE4 /* NetwokManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914A17425D6EA37009DEDE4 /* NetwokManager.swift */; };
+		7914A17D25D95C23009DEDE4 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914A17C25D95C23009DEDE4 /* PhotoModel.swift */; };
 		7922314C2583C4F400AA7F60 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922314B2583C4F400AA7F60 /* FriendsListController.swift */; };
 		7922314E2583C56D00AA7F60 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922314D2583C56D00AA7F60 /* FriendCell.swift */; };
 		792231502583D40E00AA7F60 /* PhotoCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922314F2583D40E00AA7F60 /* PhotoCollectionController.swift */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		790F59DE2583E76D0056A63E /* SearchGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupsController.swift; sourceTree = "<group>"; };
+		7914A17425D6EA37009DEDE4 /* NetwokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwokManager.swift; sourceTree = "<group>"; };
+		7914A17C25D95C23009DEDE4 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		7922314B2583C4F400AA7F60 /* FriendsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
 		7922314D2583C56D00AA7F60 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		7922314F2583D40E00AA7F60 /* PhotoCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				79259C8B2583DD5D0095DB95 /* UserModel.swift */,
+				7914A17C25D95C23009DEDE4 /* PhotoModel.swift */,
 				79259C8D2583DD700095DB95 /* GroupModel.swift */,
 				794564FD2593D10900536AA8 /* NewsModel.swift */,
 				7976A0E825C5548B00B5E749 /* Session.swift */,
@@ -174,6 +179,7 @@
 				7983DA1F25C72A5800F17AD5 /* GetPhotosVK.swift */,
 				7983DA2225C72BD300F17AD5 /* GetGroupsVK.swift */,
 				795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */,
+				7914A17425D6EA37009DEDE4 /* NetwokManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -308,7 +314,9 @@
 				7983DA1625C713CF00F17AD5 /* ActionsOnVKController.swift in Sources */,
 				79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */,
 				7983DA1A25C71DA000F17AD5 /* GetFriendsVK.swift in Sources */,
+				7914A17D25D95C23009DEDE4 /* PhotoModel.swift in Sources */,
 				79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */,
+				7914A17525D6EA37009DEDE4 /* NetwokManager.swift in Sources */,
 				7976A0E925C5548B00B5E749 /* Session.swift in Sources */,
 				794564EF25939F3900536AA8 /* Gradient View.swift in Sources */,
 				7922314E2583C56D00AA7F60 /* FriendCell.swift in Sources */,

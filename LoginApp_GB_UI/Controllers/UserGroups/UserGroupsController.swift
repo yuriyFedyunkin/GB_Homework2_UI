@@ -10,10 +10,7 @@ import UIKit
 
 class UserGroupsController: UITableViewController {
 
-    var userGroups = [
-        Group(groupName: "Lord Of The Rings", groupIcon: UIImage(named: "lorIcon")),
-        Group(groupName: "Hobbit", groupIcon: UIImage(named: "hobbitIcon"))
-    ]
+    var userGroups = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +33,7 @@ class UserGroupsController: UITableViewController {
                 }
             }
         }
-        
+
     }
 
     // MARK: - Table view data source
@@ -56,8 +53,7 @@ class UserGroupsController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! UserGroupCell
         let group = userGroups[indexPath.row]
         
-        cell.groupNameText.text = group.groupName
-        cell.groupIcon.image = group.groupIcon
+        cell.configure(withGroup: group)
 
         return cell
     }
