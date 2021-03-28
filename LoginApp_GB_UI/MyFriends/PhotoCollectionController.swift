@@ -10,7 +10,7 @@ import UIKit
 
 class PhotoCollectionController: UICollectionViewController {
 
-    var photoLibrary = [UIImage]()
+    var photoLibrary = [UIImage?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
