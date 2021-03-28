@@ -24,7 +24,7 @@ class UserGroupCell: UITableViewCell {
     func configure(withGroup group: Group) {
         groupNameText.text = group.name
         
-        guard let url = group.avatar else { return }
+        guard let url = URL(string: group.avatar) else { return }
         if let data = try? Data(contentsOf: url) {
             groupIcon.image = UIImage(data: data)
         }

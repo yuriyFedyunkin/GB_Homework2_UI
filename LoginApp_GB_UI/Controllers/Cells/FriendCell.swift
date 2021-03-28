@@ -38,7 +38,7 @@ class FriendCell: UITableViewCell {
     func configure(withUser user: User) {
         friendName.text = user.firstName + " " + user.lastName
         
-        guard let url = user.avatar else { return }
+        guard let url = URL(string: user.avatar) else { return }
         if let data = try? Data(contentsOf: url) {
             friendIcon.image = UIImage(data: data)
         }

@@ -32,9 +32,8 @@ class PhotoSwipeController: UIViewController {
         
         guard let currentPhoto = photoLibrary[currentImage] else {return}
         for size in currentPhoto.sizes {
-            let url: URL
             if size.type == "z" || size.type == "y" {
-                url = size.url
+                guard let url = URL(string: size.url) else { return }
                 if let data = try? Data(contentsOf: url) {
                     displayedImage.image = UIImage(data: data)
                 }

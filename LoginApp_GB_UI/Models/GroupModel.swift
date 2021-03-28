@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
-class Group: Decodable, Equatable {
+class Group: Object, Decodable {
  
-    var name = ""
-    var id = 0
-    var avatar: URL?
-    var isMember = 0
+    @objc dynamic var name = ""
+    @objc dynamic var id = 0
+    @objc dynamic var avatar = ""
+    @objc dynamic var isMember = 0
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -22,9 +23,9 @@ class Group: Decodable, Equatable {
         case isMember = "is_member"
     }
     
-    static func == (lhs: Group, rhs: Group) -> Bool {
-        lhs.id == rhs.id
-    }
+//    static func == (lhs: Group, rhs: Group) -> Bool {
+//        lhs.id == rhs.id
+//    }
 }
 
 struct UserGroupsList: Decodable {

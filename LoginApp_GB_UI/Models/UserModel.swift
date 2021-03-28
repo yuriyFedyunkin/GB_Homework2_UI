@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
-class User: Decodable {
+class User: Object, Decodable {
     
-    var firstName = ""
-    var lastName = ""
-    var id = 0
-    var avatar: URL?
+    @objc dynamic var firstName = ""
+    @objc dynamic var lastName = ""
+    @objc dynamic var id = 0
+    @objc dynamic var avatar = ""
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
