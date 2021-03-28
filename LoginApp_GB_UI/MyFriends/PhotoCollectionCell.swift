@@ -19,6 +19,7 @@ class PhotoCollectionCell: UICollectionViewCell {
         likeLabel.text = String(likes)
         likeImageView.image = UIImage(named: "notLiked")
         setupGestureRecognizer(likeImageView)
+        
     }
     
     var likes = 0

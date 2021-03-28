@@ -384,10 +384,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mLv-5S-iHn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.39389482139999998" green="0.3516335189" blue="0.63140517470000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="9EE-GX-803" kind="relationship" relationship="viewControllers" id="sub-vz-g2J"/>
                         <segue destination="hca-WG-e3n" kind="relationship" relationship="viewControllers" id="67F-Ll-0Fx"/>
+                        <segue destination="eHS-to-uHC" kind="relationship" relationship="viewControllers" id="UKa-dS-afp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hN7-wY-deS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -402,6 +405,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexColor" red="0.13725798789999999" green="0.16323056" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="26" reuseIdentifier="FriendCell" id="3ND-Cs-8Ko" customClass="FriendCell" customModule="LoginApp_GB_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="62.5"/>
@@ -465,6 +469,7 @@
                                         <constraint firstItem="jje-jQ-L7q" firstAttribute="top" secondItem="XvO-BR-jee" secondAttribute="top" constant="6" id="vFf-z6-WaS"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="friendIcon" destination="LfM-s4-aQH" id="oQ2-0L-l1B"/>
                                     <outlet property="friendName" destination="Umv-PL-mb8" id="fR0-HN-wbu"/>
@@ -492,6 +497,45 @@
             </objects>
             <point key="canvasLocation" x="3589.8550724637685" y="-160.04464285714286"/>
         </scene>
+        <!--News-->
+        <scene sceneID="bNU-ks-p4G">
+            <objects>
+                <viewController id="X6N-c5-bUT" customClass="NewsController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V3f-zX-GyP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j8C-GY-sKJ">
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="j8C-GY-sKJ" firstAttribute="top" secondItem="Vd3-bz-sDF" secondAttribute="top" id="3z3-ud-fPt"/>
+                            <constraint firstItem="Vd3-bz-sDF" firstAttribute="bottom" secondItem="j8C-GY-sKJ" secondAttribute="bottom" id="LmL-Gn-H0f"/>
+                            <constraint firstItem="j8C-GY-sKJ" firstAttribute="leading" secondItem="Vd3-bz-sDF" secondAttribute="leading" id="PhY-n6-xoe"/>
+                            <constraint firstItem="Vd3-bz-sDF" firstAttribute="trailing" secondItem="j8C-GY-sKJ" secondAttribute="trailing" id="XXi-Ej-wxC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vd3-bz-sDF"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="News" id="jFE-w4-1VJ">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="HFQ-WQ-VBo">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="c04-cM-Gl8" kind="unwind" unwindAction="myUnwindActionWithUnwindSegue:" id="ZXV-Ns-ahd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="newsTable" destination="j8C-GY-sKJ" id="mdK-w9-zmj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ur-gF-Aa0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="c04-cM-Gl8" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2671" y="1251"/>
+        </scene>
         <!--Groups-->
         <scene sceneID="MkN-09-UMf">
             <objects>
@@ -500,6 +544,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KUX-v5-ha9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.28095051650000002" green="0.30067002770000001" blue="0.56865847110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <connections>
                         <segue destination="cbV-iB-jeh" kind="relationship" relationship="rootViewController" id="1e3-aG-ddD"/>
@@ -507,17 +553,19 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npt-4N-vwC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2652.1739130434785" y="557.8125"/>
+            <point key="canvasLocation" x="2671" y="558"/>
         </scene>
         <!--Friends-->
         <scene sceneID="pVN-oJ-Nzu">
             <objects>
                 <navigationController id="9EE-GX-803" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="book" catalog="system" id="pbE-3J-zOh"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="person.fill" catalog="system" id="pbE-3J-zOh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H3Q-yi-NAs">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.28095051650000002" green="0.30067002770000001" blue="0.56865847110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <connections>
                         <segue destination="S2k-ja-kYM" kind="relationship" relationship="rootViewController" id="SRn-BJ-nXh"/>
@@ -567,6 +615,7 @@
                                         <constraint firstItem="oEw-66-yPh" firstAttribute="top" secondItem="7kt-w0-cEE" secondAttribute="top" constant="8" id="ngS-uM-PhN"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="groupIcon" destination="hLd-Jc-4Qd" id="p63-7b-PXl"/>
                                     <outlet property="groupNameText" destination="oEw-66-yPh" id="9cG-JY-MP4"/>
@@ -594,7 +643,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iyJ-BY-b0x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="TIA-kH-vLS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3460.8695652173915" y="557.8125"/>
+            <point key="canvasLocation" x="3590" y="558"/>
         </scene>
         <!--Available Groups-->
         <scene sceneID="cR6-Qb-aiO">
@@ -636,6 +685,7 @@
                                         <constraint firstItem="LBn-gV-rlI" firstAttribute="top" secondItem="5So-a5-dru" secondAttribute="top" constant="8" id="vSz-yB-lXC"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="groupIcon" destination="R3K-He-npV" id="ve5-Op-WpB"/>
                                     <outlet property="groupNameText" destination="LBn-gV-rlI" id="mPF-ab-cNg"/>
@@ -653,7 +703,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DxE-y8-E8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="XP1-Tu-VC1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4273.913043478261" y="557.8125"/>
+            <point key="canvasLocation" x="4557" y="558"/>
         </scene>
         <!--Photo-->
         <scene sceneID="PSn-yR-Jba">
@@ -729,11 +779,33 @@
             </objects>
             <point key="canvasLocation" x="4384.057971014493" y="-160.04464285714286"/>
         </scene>
+        <!--News-->
+        <scene sceneID="Bur-FX-hCP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eHS-to-uHC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="News" image="book.fill" catalog="system" id="TAK-7B-cvX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PkR-uD-Sqx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.28095051650000002" green="0.30067002770000001" blue="0.56865847110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="X6N-c5-bUT" kind="relationship" relationship="rootViewController" id="Lqc-Vu-8nh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdC-sw-xNh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="1251"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Night" width="375" height="667"/>
-        <image name="book" catalog="system" width="128" height="101"/>
+        <image name="book.fill" catalog="system" width="128" height="100"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>
