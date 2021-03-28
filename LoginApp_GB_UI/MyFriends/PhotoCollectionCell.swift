@@ -36,13 +36,24 @@ class PhotoCollectionCell: UICollectionViewCell {
         if !isLiked {
             likes += 1
             isLiked = true
-            likeImageView.image = UIImage(named: "liked")
             likeLabel.text = String(likes)
+            UIView.transition(with: likeImageView,
+                              duration: 0.3,
+                              options: .transitionFlipFromLeft,
+                              animations: {
+                                self.likeImageView.image = UIImage(named: "liked")
+            })
+            
         } else {
             likes -= 1
             isLiked = false
-            likeImageView.image = UIImage(named: "notLiked")
             likeLabel.text = String(likes)
+            UIView.transition(with: likeImageView,
+                              duration: 0.3,
+                              options: .transitionFlipFromLeft,
+                              animations: {
+                                self.likeImageView.image = UIImage(named: "notLiked")
+            })
         }
     }
     

@@ -66,13 +66,24 @@ class NewsCell: UITableViewCell {
             if !isLiked {
                 likes += 1
                 isLiked = true
-                likeImage.image = UIImage(named: "liked")
                 likeLabel.text = String(likes)
+                UIView.transition(with: likeImage,
+                                  duration: 0.3,
+                                  options: .transitionFlipFromLeft,
+                                  animations: {
+                                    self.likeImage.image = UIImage(named: "liked")
+                })
+                
             } else {
                 likes -= 1
                 isLiked = false
-                likeImage.image = UIImage(named: "notLiked")
                 likeLabel.text = String(likes)
+                UIView.transition(with: likeImage,
+                                  duration: 0.3,
+                                  options: .transitionFlipFromLeft,
+                                  animations: {
+                                    self.likeImage.image = UIImage(named: "notLiked")
+                })
             }
         case commentImage:
             comments += 1

@@ -148,6 +148,35 @@
                                             <segue destination="BxP-ef-Emx" kind="show" id="9dw-wY-i4w"/>
                                         </connections>
                                     </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hum-m1-F0v">
+                                        <rect key="frame" x="149.5" y="448" width="115" height="25"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHI-ok-eHs" customClass="LoadingIndicatorView" customModule="LoginApp_GB_UI" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="5A5-yr-LCe"/>
+                                                    <constraint firstAttribute="height" constant="25" id="aVw-qI-rmD"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iW-L0-cee" customClass="LoadingIndicatorView" customModule="LoginApp_GB_UI" customModuleProvider="target">
+                                                <rect key="frame" x="45" y="0.0" width="25" height="25"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="1V3-W9-amr"/>
+                                                    <constraint firstAttribute="height" constant="25" id="dCX-gj-Jrx"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoI-vh-gGy" customClass="LoadingIndicatorView" customModule="LoginApp_GB_UI" customModuleProvider="target">
+                                                <rect key="frame" x="90" y="0.0" width="25" height="25"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="X5a-au-Uwk"/>
+                                                    <constraint firstAttribute="height" constant="25" id="uZE-yX-QnE"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="qcG-bo-XWk" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="24a-3S-b7a"/>
@@ -173,6 +202,7 @@
                                     <constraint firstItem="HDQ-RM-1TK" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="Had-fe-kCO"/>
                                     <constraint firstItem="SwK-vZ-0xh" firstAttribute="top" secondItem="HDQ-RM-1TK" secondAttribute="bottom" constant="20" id="Hp5-j6-Wp0"/>
                                     <constraint firstItem="s7d-bz-QHF" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="J6c-QK-2Qs"/>
+                                    <constraint firstItem="VTm-5L-oWj" firstAttribute="top" secondItem="hum-m1-F0v" secondAttribute="bottom" constant="2" id="JAr-Q9-URP"/>
                                     <constraint firstItem="SwK-vZ-0xh" firstAttribute="width" secondItem="HDQ-RM-1TK" secondAttribute="width" id="Jfg-Pl-IHd"/>
                                     <constraint firstItem="s7d-bz-QHF" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="MdA-qs-FkM"/>
                                     <constraint firstItem="s7d-bz-QHF" firstAttribute="top" secondItem="SwK-vZ-0xh" secondAttribute="bottom" constant="20" id="NCX-ZB-uiw"/>
@@ -187,7 +217,9 @@
                                     <constraint firstItem="VTm-5L-oWj" firstAttribute="top" secondItem="qcG-bo-XWk" secondAttribute="bottom" constant="100" id="WKo-ro-ggt"/>
                                     <constraint firstItem="VTm-5L-oWj" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="WNn-jI-DXd"/>
                                     <constraint firstItem="s7d-bz-QHF" firstAttribute="top" secondItem="SwK-vZ-0xh" secondAttribute="bottom" constant="40" id="WWg-P9-hOs"/>
+                                    <constraint firstItem="hum-m1-F0v" firstAttribute="top" secondItem="s7d-bz-QHF" secondAttribute="bottom" constant="15" id="WpH-o5-v7g"/>
                                     <constraint firstItem="SwK-vZ-0xh" firstAttribute="top" secondItem="HDQ-RM-1TK" secondAttribute="bottom" constant="20" id="Wpm-mr-D44"/>
+                                    <constraint firstItem="hum-m1-F0v" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="X95-ol-bbs"/>
                                     <constraint firstItem="s7d-bz-QHF" firstAttribute="top" secondItem="SwK-vZ-0xh" secondAttribute="bottom" constant="70" id="ZWf-NW-0UO"/>
                                     <constraint firstItem="VTm-5L-oWj" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="Zzh-pz-cPf"/>
                                     <constraint firstItem="HDQ-RM-1TK" firstAttribute="top" secondItem="VTm-5L-oWj" secondAttribute="bottom" constant="10" id="aW4-Mf-oaH"/>
@@ -209,7 +241,9 @@
                                     <constraint firstAttribute="bottom" secondItem="s7d-bz-QHF" secondAttribute="bottom" constant="20" id="lz6-nv-gWn">
                                         <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                                     </constraint>
-                                    <constraint firstItem="qcG-bo-XWk" firstAttribute="top" secondItem="27S-es-tTo" secondAttribute="top" constant="45" id="oVJ-yo-ehT"/>
+                                    <constraint firstItem="qcG-bo-XWk" firstAttribute="top" secondItem="27S-es-tTo" secondAttribute="top" constant="45" id="oVJ-yo-ehT">
+                                        <variation key="heightClass=compact-widthClass=regular" constant="15"/>
+                                    </constraint>
                                     <constraint firstItem="SwK-vZ-0xh" firstAttribute="top" secondItem="HDQ-RM-1TK" secondAttribute="bottom" constant="30" id="uX0-BD-5NS"/>
                                     <constraint firstItem="qcG-bo-XWk" firstAttribute="centerX" secondItem="27S-es-tTo" secondAttribute="centerX" id="v8p-uv-Vgf"/>
                                     <constraint firstItem="VTm-5L-oWj" firstAttribute="top" secondItem="qcG-bo-XWk" secondAttribute="bottom" constant="30" id="vwy-Uu-cgc">
@@ -234,6 +268,7 @@
                                         <exclude reference="5Zp-zb-Fib"/>
                                         <exclude reference="7po-CP-VYB"/>
                                         <exclude reference="9IN-Rc-9ak"/>
+                                        <exclude reference="JAr-Q9-URP"/>
                                         <exclude reference="WKo-ro-ggt"/>
                                         <exclude reference="WNn-jI-DXd"/>
                                         <exclude reference="Zzh-pz-cPf"/>
@@ -290,10 +325,12 @@
                                         <include reference="DZq-Lp-flE"/>
                                         <include reference="fbp-0z-aLg"/>
                                         <include reference="v8p-uv-Vgf"/>
+                                        <include reference="JAr-Q9-URP"/>
                                         <include reference="WNn-jI-DXd"/>
                                         <include reference="vwy-Uu-cgc"/>
                                         <include reference="7ls-Qd-Vfh"/>
                                         <include reference="b17-SG-yGH"/>
+                                        <exclude reference="WpH-o5-v7g"/>
                                         <include reference="9B2-zW-eyr"/>
                                         <include reference="FMq-GT-5d8"/>
                                         <include reference="8PE-yn-U5r"/>
@@ -366,6 +403,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="X0S-R2-Met"/>
                     <connections>
+                        <outlet property="indicator1" destination="qHI-ok-eHs" id="kBq-om-fqf"/>
+                        <outlet property="indicator2" destination="9iW-L0-cee" id="Z1L-9G-yCG"/>
+                        <outlet property="indicator3" destination="UoI-vh-gGy" id="Tq2-eh-Nol"/>
                         <outlet property="loginInput" destination="HDQ-RM-1TK" id="ata-9d-NF1"/>
                         <outlet property="passwordInput" destination="SwK-vZ-0xh" id="JWU-1s-HM9"/>
                         <outlet property="scrollView" destination="27S-es-tTo" id="4QV-Qz-exh"/>
@@ -374,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850.72463768115949" y="112.5"/>
+            <point key="canvasLocation" x="850.39999999999998" y="111.99400299850076"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sAg-f5-9rv">
@@ -431,7 +471,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="LfM-s4-aQH" firstAttribute="top" secondItem="jje-jQ-L7q" secondAttribute="top" id="65r-x1-3Ky"/>
                                                 <constraint firstItem="LfM-s4-aQH" firstAttribute="leading" secondItem="jje-jQ-L7q" secondAttribute="leading" id="ScX-1B-pkc"/>
