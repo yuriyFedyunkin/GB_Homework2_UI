@@ -6,6 +6,10 @@ target 'LoginApp_GB_UI' do
   use_frameworks!
 
 pod 'RealmSwift'
+pod 'Firebase/Analytics'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/Firestore'
 
   # Pods for LoginApp_GB_UI
 

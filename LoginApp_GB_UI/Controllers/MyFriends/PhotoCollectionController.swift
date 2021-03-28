@@ -12,9 +12,7 @@ class PhotoCollectionController: UICollectionViewController {
     
     var photoLibrary = [Photo]()
     var currentUser: User?
-    
-//    private var photosRealm = PhotosDB()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

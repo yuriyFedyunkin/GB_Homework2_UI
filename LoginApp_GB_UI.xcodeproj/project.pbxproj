@@ -35,6 +35,8 @@
 		7960B4812578150200BC9D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4802578150200BC9D79 /* Assets.xcassets */; };
 		7960B4842578150200BC9D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7960B4822578150200BC9D79 /* LaunchScreen.storyboard */; };
 		7976A0E925C5548B00B5E749 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976A0E825C5548B00B5E749 /* Session.swift */; };
+		797A230F25F3E1F50023F051 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 797A230E25F3E1F50023F051 /* GoogleService-Info.plist */; };
+		797A231225F3E6A60023F051 /* FirebaseGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A231125F3E6A60023F051 /* FirebaseGroup.swift */; };
 		7983DA1125C7139600F17AD5 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7983DA1025C7139600F17AD5 /* VKLoginViewController.swift */; };
 		7983DA1625C713CF00F17AD5 /* ActionsOnVKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7983DA1525C713CF00F17AD5 /* ActionsOnVKController.swift */; };
 		7983DA1A25C71DA000F17AD5 /* GetFriendsVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7983DA1925C71DA000F17AD5 /* GetFriendsVK.swift */; };
@@ -80,6 +82,8 @@
 		7960B4832578150200BC9D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7960B4852578150200BC9D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7976A0E825C5548B00B5E749 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		797A230E25F3E1F50023F051 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		797A231125F3E6A60023F051 /* FirebaseGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseGroup.swift; sourceTree = "<group>"; };
 		7983DA1025C7139600F17AD5 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		7983DA1525C713CF00F17AD5 /* ActionsOnVKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsOnVKController.swift; sourceTree = "<group>"; };
 		7983DA1925C71DA000F17AD5 /* GetFriendsVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFriendsVK.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				794564FD2593D10900536AA8 /* NewsModel.swift */,
 				7976A0E825C5548B00B5E749 /* Session.swift */,
 				7983DA1C25C7211A00F17AD5 /* Constants.swift */,
+				797A231125F3E6A60023F051 /* FirebaseGroup.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				7960B47D2578150100BC9D79 /* Main.storyboard */,
 				7960B4802578150200BC9D79 /* Assets.xcassets */,
 				7960B4822578150200BC9D79 /* LaunchScreen.storyboard */,
+				797A230E25F3E1F50023F051 /* GoogleService-Info.plist */,
 				7960B4852578150200BC9D79 /* Info.plist */,
 			);
 			path = LoginApp_GB_UI;
@@ -318,6 +324,7 @@
 			files = (
 				7960B4842578150200BC9D79 /* LaunchScreen.storyboard in Resources */,
 				7960B4812578150200BC9D79 /* Assets.xcassets in Resources */,
+				797A230F25F3E1F50023F051 /* GoogleService-Info.plist in Resources */,
 				79456500259618C600536AA8 /* NewsCell.xib in Resources */,
 				7960B47F2578150100BC9D79 /* Main.storyboard in Resources */,
 			);
@@ -396,6 +403,7 @@
 				792231502583D40E00AA7F60 /* PhotoCollectionController.swift in Sources */,
 				7983DA1625C713CF00F17AD5 /* ActionsOnVKController.swift in Sources */,
 				79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */,
+				797A231225F3E6A60023F051 /* FirebaseGroup.swift in Sources */,
 				7983DA1A25C71DA000F17AD5 /* GetFriendsVK.swift in Sources */,
 				7914A17D25D95C23009DEDE4 /* PhotoModel.swift in Sources */,
 				79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */,

@@ -8,10 +8,13 @@
 
 import UIKit
 import RealmSwift
+import Firebase
 
 class UserGroupsController: UITableViewController {
 
-    var userGroupss = [Group]()
+    private var firebaseGroups = [FirebaseGroup]()
+    private let ref = Database.database().reference(withPath: String(Session.shared.userId))
+    
     var userGroups: Results<Group>?
     private var groupsRealm = GroupsDB()
     var token: NotificationToken?
@@ -20,6 +23,7 @@ class UserGroupsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        firebaseGroupsHandler()
         pairTableAndRealm()
         
         let gradient = GradientView()
@@ -35,11 +39,16 @@ class UserGroupsController: UITableViewController {
             if let indexPath = searchGroupsController.tableView.indexPathForSelectedRow {
                 let group = searchGroupsController.availableGroups[indexPath.row]
                 groupsRealm.write(group)  // записываем выбранную группу в Realm
+                
+                // Записываем группу в Firebase
+                let groupFB = group.toFirebaseGroup()
+                let groupRef = self.ref.child(String(groupFB.id))
+                groupRef.setValue(groupFB.toAnyObject())
                 }
             }
         }
 
-    // MARK: - Обработка групп из Reakm + отслеживание изменений
+    // MARK: - Обработка групп из Realm + отслеживание изменений
     func pairTableAndRealm() {
         userGroups = groupsRealm.read()
         token = userGroups?.observe({ [weak self] (changes: RealmCollectionChange) in
@@ -57,6 +66,21 @@ class UserGroupsController: UITableViewController {
                 fatalError("\(error)")
             }
         })
+    }
+    
+    // MARK: - Обработка групп из Firebase
+    
+    func firebaseGroupsHandler() {
+        ref.observe(.value) { (snapshot) in
+            var groups: [FirebaseGroup] = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                   let group = FirebaseGroup(snapshot: snapshot) {
+                    groups.append(group)
+                }
+            }
+            self.firebaseGroups = groups
+        }
     }
     
 
@@ -86,6 +110,14 @@ class UserGroupsController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let group = userGroups?[indexPath.row] else { return }
         if editingStyle == .delete {
+            
+            // Удаляем гуппу из Firebase
+            for groupFB in firebaseGroups {
+                if group.id == groupFB.id {
+                    groupFB.ref?.removeValue()
+                }
+            }
+            // Удаляем группу из Realm
             groupsRealm.delete(group)
         }
     }
