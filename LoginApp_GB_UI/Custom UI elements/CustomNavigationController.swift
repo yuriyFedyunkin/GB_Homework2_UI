@@ -19,23 +19,22 @@ final class CustomPushAnimator: NSObject, UIViewControllerAnimatedTransitioning 
               let destination = transitionContext.viewController(forKey: .to)
         else { return }
         
-        source.view.layer.anchorPoint = CGPoint(x: 1.0, y: 0.0)
         destination.view.layer.anchorPoint = CGPoint(x: 1.0, y: 0.0)
-
         
         destination.view.frame = source.view.frame
         destination.view.transform = CGAffineTransform(rotationAngle: -90)
         transitionContext.containerView.addSubview(destination.view)
         
+       
         UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext),
                                 delay: 0,
                                 options: .calculationModePaced) {
             UIView.addKeyframe(withRelativeStartTime: 0,
                                relativeDuration: 0.5) {
-                let translation = CGAffineTransform(rotationAngle: 90)
+                source.view.layer.anchorPoint = CGPoint(x: 1.0, y: 0.0)
                 
-                
-                source.view.transform = translation
+                let rotation = CGAffineTransform(rotationAngle: 90)
+                source.view.transform = rotation
             }
                                     UIView.addKeyframe(withRelativeStartTime: 0.5,
                                                        relativeDuration: 0.5) {
@@ -70,12 +69,11 @@ final class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         source.view.layer.anchorPoint = CGPoint(x: 1.0, y: 0.0)
         destination.view.layer.anchorPoint = CGPoint(x: 1.0, y: 0.0)
-
-        
+    
         destination.view.frame = source.view.frame
         
-        let translation = CGAffineTransform(rotationAngle: 90)
-        destination.view.transform = translation
+        let rotation = CGAffineTransform(rotationAngle: 90)
+        destination.view.transform = rotation
         
         UIView.animateKeyframes(withDuration: self.transitionDuration(using: transitionContext),
                                 delay: 0,
@@ -84,8 +82,8 @@ final class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                                     UIView.addKeyframe(withRelativeStartTime: 0.0,
                                                        relativeDuration: 0.5,
                                                        animations: {
-                                                        let translation = CGAffineTransform(rotationAngle: -90)
-                                                        source.view.transform = translation
+                                                        let rotation = CGAffineTransform(rotationAngle: -90)
+                                                        source.view.transform = rotation
                                                        })
                                  
                                     UIView.addKeyframe(withRelativeStartTime: 0.5,

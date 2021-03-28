@@ -40,6 +40,8 @@ class NewsController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.newsTitle.text = newsTexts[indexPath.row]
         cell.newsImage.image = UIImage(named: newsImages[indexPath.row])
         
+        cell.selectionStyle = .none
+        
         return cell
     }
     
