@@ -31,8 +31,6 @@ class PhotoFeedCell: UITableViewCell {
     @IBOutlet weak var shareImage: UIImageView!
     @IBOutlet weak var shareLabel: UILabel!
     
-    @IBOutlet weak var viewsLabel: UILabel!
-    
     private var isLiked = false
     private var likes = 0
     private var comments = 0
@@ -54,7 +52,7 @@ class PhotoFeedCell: UITableViewCell {
     }
     
     // Конфигурация ячейки
-    func configure(_ post: NewsfeedPost, _ source: [Group]) {
+    func configure(_ post: NewsfeedPost) {
         self.likes = post.likes
         self.likeLabel.text = String(self.likes)
         
@@ -64,24 +62,17 @@ class PhotoFeedCell: UITableViewCell {
         self.shares = post.reposts
         self.shareLabel.text = String(self.shares)
         
-        self.viewsLabel.text = String(post.views)
-        
         guard let photoUrl = URL(string: post.photoUrl) else {  return }
         if let data = try? Data(contentsOf: photoUrl) {
             self.photoPostImage.image = UIImage(data: data)
         }
         
-        for group in source {
-            if post.sourceId == -group.id {
-                authorNameLabel.text = group.name
-                guard let url = URL(string: group.avatar) else { return }
-                if let data = try? Data(contentsOf: url) {
-                    authorAvatarImage.image = UIImage(data: data)
-                }
-            }
+        authorNameLabel.text = post.authorName
+        guard let url = URL(string: post.avatar) else { return }
+        if let data = try? Data(contentsOf: url) {
+            authorAvatarImage.image = UIImage(data: data)
         }
     }
-   
     // Конфигурация нажатия кнопок like/comment/share
     func setupGestureRecognizer(_ localSender: UIImageView) {
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))

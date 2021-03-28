@@ -20,7 +20,7 @@ class NetworkManager {
  
     // MARK: - Метод запроса к VK API для получения  ленты новостей
     
-    func getNewsfeedVK(completion1: @escaping ([NewsfeedPost]) -> Void, completion2: @escaping ([Group]) -> Void) {
+    func getNewsfeedVK(completion1: @escaping ([NewsfeedPost]) -> Void) {
         let session = URLSession(configuration: configuration)
         urlConstructor.scheme = "https"
         urlConstructor.host = ApiData.baseUrl
@@ -30,19 +30,38 @@ class NetworkManager {
             URLQueryItem(name: "user_id", value: String(Session.shared.userId)),
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: ApiData.versionAPI),
-            URLQueryItem(name: "fields", value: "first_name,last_name,name"),
+            URLQueryItem(name: "fields", value: "first_name,last_name,name,photo_50"),
             URLQueryItem(name: "filters", value: "post,photo"),
-            URLQueryItem(name: "source_ids", value: "groups")
+            URLQueryItem(name: "source_ids", value: "friends,groups")
         ]
         
         guard let url = urlConstructor.url else { return }
-
+        
         let task = session.dataTask(with: url) { (data, response, error) in
             do {
                 if data != nil {
                     let feed = try JSONDecoder().decode(VKNewsfeedResponse.self, from: data!).response
-                    completion1(feed.items)
-                    completion2(feed.groups)
+                    var posts = feed.items
+                    let dispatchGroup = DispatchGroup()
+                    DispatchQueue.global().async(group: dispatchGroup) {
+                    for item in posts.enumerated() {
+                        
+                            let sourceId = item.element.sourceId
+                            
+                            if sourceId < 0 {
+                                guard let group = feed.groups.first(where: { $0.id == -sourceId }) else { return }
+                                posts[item.offset].authorName = group.name
+                                posts[item.offset].avatar = group.avatar
+                            } else if sourceId > 0 {
+                                guard let user = feed.profiles.first(where: { $0.id == sourceId }) else { return }
+                                posts[item.offset].authorName = user.firstName + " " + user.lastName
+                                posts[item.offset].avatar = user.avatar
+                            }
+                        }
+                    }
+                    dispatchGroup.notify(queue: DispatchQueue.global(qos: .userInitiated)) {
+                        completion1(posts)
+                    }
                 }
             } catch {
                 print(error)

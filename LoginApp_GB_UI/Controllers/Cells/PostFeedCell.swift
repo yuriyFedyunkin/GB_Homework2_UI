@@ -53,7 +53,7 @@ class PostFeedCell: UITableViewCell {
     }
     
     // Конфигурация ячейки
-    func configure(_ post: NewsfeedPost, _ source: [Group]) {
+    func configure(_ post: NewsfeedPost) {
         self.likes = post.likes
         self.likeLabel.text = String(self.likes)
         
@@ -66,14 +66,11 @@ class PostFeedCell: UITableViewCell {
         self.viewsLabel.text = String(post.views)
         self.postTextView.text = post.text
         
-        for group in source {
-            if post.sourceId == -group.id {
-                authorNameLabel.text = group.name
-                guard let url = URL(string: group.avatar) else { return }
-                if let data = try? Data(contentsOf: url) {
-                    authorAvatarImage.image = UIImage(data: data)
-                }
-            }
+        authorNameLabel.text = post.authorName
+        guard let url = URL(string: post.avatar) else { return }
+        if let data = try? Data(contentsOf: url) {
+            authorAvatarImage.image = UIImage(data: data)
+  
         }
     }
    
