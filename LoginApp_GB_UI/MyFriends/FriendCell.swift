@@ -11,7 +11,24 @@ import UIKit
 class FriendCell: UITableViewCell {
 
     @IBOutlet weak var friendName: UILabel!
-    @IBOutlet weak var friendIcon: UIImageView!
+    
+    // к даннаому view подключен class ShadowView для настройки в interface builder
+    @IBOutlet weak var shadowView: UIView! {
+        didSet {
+            self.shadowView.layer.cornerRadius = self.shadowView.frame.width / 2
+        }
+    }
+    // автарка с эффектом загругления
+    @IBOutlet weak var friendIcon: UIImageView! {
+        didSet {
+            self.friendIcon.clipsToBounds = true
+            self.friendIcon.layer.cornerRadius = self.friendIcon.frame.width / 2
+            self.friendIcon.layer.borderWidth = 1.0
+            self.friendIcon.layer.borderColor = UIColor.black.cgColor
+
+        }
+        
+    }
     
     
     override func awakeFromNib() {

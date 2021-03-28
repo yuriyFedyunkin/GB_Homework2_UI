@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        signInButton.layer.cornerRadius = 18
+        
         // Жест нажатия
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         // Присваиваем его UIScrollVIew
@@ -22,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     
+    @IBOutlet weak var signInButton: UIButton!
     @IBAction func loginButtonPressed(_ sender: Any) {
     }
     
@@ -82,7 +85,7 @@ class ViewController: UIViewController {
     func checkLoginData() -> Bool {
         guard let login = loginInput.text, let password = passwordInput.text else { return false }
         
-        if login == "admin" && password == "12345" {
+        if login == "" && password == "" {
             return true
         } else {
             return false
