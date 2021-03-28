@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,8 @@
 		794564FE2593D10900536AA8 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794564FD2593D10900536AA8 /* NewsModel.swift */; };
 		79456500259618C600536AA8 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 794564FF259618C600536AA8 /* NewsCell.xib */; };
 		795111CC25C85FC600CD2933 /* GetGroupsByRequestVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */; };
+		795E700225E3F208003CA563 /* UsersDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E700125E3F208003CA563 /* UsersDB.swift */; };
+		795E700A25E4163A003CA563 /* GroupsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E700925E4163A003CA563 /* GroupsDB.swift */; };
 		7960B4782578150100BC9D79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960B4772578150100BC9D79 /* AppDelegate.swift */; };
 		7960B47A2578150100BC9D79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960B4792578150100BC9D79 /* SceneDelegate.swift */; };
 		7960B47C2578150100BC9D79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960B47B2578150100BC9D79 /* LoginViewController.swift */; };
@@ -67,6 +69,8 @@
 		794564FD2593D10900536AA8 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		794564FF259618C600536AA8 /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupsByRequestVK.swift; sourceTree = "<group>"; };
+		795E700125E3F208003CA563 /* UsersDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDB.swift; sourceTree = "<group>"; };
+		795E700925E4163A003CA563 /* GroupsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDB.swift; sourceTree = "<group>"; };
 		7960B4742578150100BC9D79 /* LoginApp_GB_UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginApp_GB_UI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7960B4772578150100BC9D79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7960B4792578150100BC9D79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +145,15 @@
 			path = "Custom UI elements";
 			sourceTree = "<group>";
 		};
+		795E700025E3F1AC003CA563 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				795E700125E3F208003CA563 /* UsersDB.swift */,
+				795E700925E4163A003CA563 /* GroupsDB.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		7960B46B2578150100BC9D79 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 		7960B4762578150100BC9D79 /* LoginApp_GB_UI */ = {
 			isa = PBXGroup;
 			children = (
+				795E700025E3F1AC003CA563 /* DataBase */,
 				7983DA0F25C7130000F17AD5 /* Services */,
 				79FD1C1325B4602400B879D9 /* Views */,
 				79FD1C1225B4601900B879D9 /* Controllers */,
@@ -239,7 +253,6 @@
 				366E43F07399D70DFDF4CC12 /* Pods-LoginApp_GB_UI.debug.xcconfig */,
 				7710FCFF80B45E0409686422 /* Pods-LoginApp_GB_UI.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -359,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795E700225E3F208003CA563 /* UsersDB.swift in Sources */,
 				7960B47C2578150100BC9D79 /* LoginViewController.swift in Sources */,
 				7922314C2583C4F400AA7F60 /* FriendsListController.swift in Sources */,
 				795111CC25C85FC600CD2933 /* GetGroupsByRequestVK.swift in Sources */,
@@ -386,6 +400,7 @@
 				7914A17D25D95C23009DEDE4 /* PhotoModel.swift in Sources */,
 				79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */,
 				7914A17525D6EA37009DEDE4 /* NetwokManager.swift in Sources */,
+				795E700A25E4163A003CA563 /* GroupsDB.swift in Sources */,
 				7976A0E925C5548B00B5E749 /* Session.swift in Sources */,
 				794564EF25939F3900536AA8 /* Gradient View.swift in Sources */,
 				7922314E2583C56D00AA7F60 /* FriendCell.swift in Sources */,

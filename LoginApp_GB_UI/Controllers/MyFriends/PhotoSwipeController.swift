@@ -31,15 +31,15 @@ class PhotoSwipeController: UIViewController {
     private func getImage() {
         
         guard let currentPhoto = photoLibrary[currentImage] else {return}
-        for size in currentPhoto.sizes {
-            if size.type == "z" || size.type == "y" {
-                guard let url = URL(string: size.url) else { return }
+//        for size in currentPhoto.sizes {
+//            if size.type == "z" || size.type == "y" {
+                guard let url = URL(string: currentPhoto.url) else { return }
                 if let data = try? Data(contentsOf: url) {
                     displayedImage.image = UIImage(data: data)
                 }
             }
-        }
-    }
+//        }
+//    }
     
     //MARK: - Swipe and Pan Recognizer Logic
     

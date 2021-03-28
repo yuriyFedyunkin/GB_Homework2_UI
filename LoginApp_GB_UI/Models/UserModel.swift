@@ -15,6 +15,11 @@ class User: Object, Decodable {
     @objc dynamic var lastName = ""
     @objc dynamic var id = 0
     @objc dynamic var avatar = ""
+    var photos = List<Photo>()
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"

@@ -16,6 +16,10 @@ class Group: Object, Decodable {
     @objc dynamic var avatar = ""
     @objc dynamic var isMember = 0
     
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name
         case id
