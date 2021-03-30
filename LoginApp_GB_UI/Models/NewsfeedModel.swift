@@ -33,6 +33,8 @@ struct NewsfeedPost: Decodable {
         case photos
     }
     
+    init() {}
+    
     init(from decoder: Decoder) throws {
         // Парсим оснвоной контейнер JSON c массивом постов "items"
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -11,10 +11,11 @@ import UIKit
 class NewsFeedController: UITableViewController {
 
     private var postFeedList = [NewsfeedPost]()
+    private let parser = NewsParser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         newsfeedNetworkReqeust()
         
         //Градиенти для tableView
@@ -26,11 +27,9 @@ class NewsFeedController: UITableViewController {
     
     // Newsfeed network request
     private func newsfeedNetworkReqeust() {
-        NetworkManager.shared.getNewsfeedVK { [weak self] posts in
+        parser.parseNews { [weak self] posts in
             self?.postFeedList = posts
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
+            self?.tableView.reloadData()
         }
     }
 
