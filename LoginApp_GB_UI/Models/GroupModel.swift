@@ -14,7 +14,6 @@ class Group: Object, Decodable {
     @objc dynamic var name = ""
     @objc dynamic var id = 0
     @objc dynamic var avatar = ""
-    @objc dynamic var isMember = 0
     
     override class func primaryKey() -> String? {
         return "id"
@@ -24,7 +23,6 @@ class Group: Object, Decodable {
         case name
         case id
         case avatar = "photo_50"
-        case isMember = "is_member"
     }
     
     func toFirebaseGroup() -> FirebaseGroup {

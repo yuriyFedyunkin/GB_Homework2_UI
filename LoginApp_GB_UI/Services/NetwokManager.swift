@@ -17,40 +17,6 @@ class NetworkManager {
     
     private init () {}
     
- 
-    // MARK: - Метод запроса к VK API для получения  ленты новостей
-    
-    func getNewsfeedVK(completion1: @escaping ([NewsfeedPost]) -> Void, completion2: @escaping ([Group]) -> Void) {
-        let session = URLSession(configuration: configuration)
-        urlConstructor.scheme = "https"
-        urlConstructor.host = ApiData.baseUrl
-        urlConstructor.path = "/method/newsfeed.get"
-        
-        urlConstructor.queryItems = [
-            URLQueryItem(name: "user_id", value: String(Session.shared.userId)),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
-            URLQueryItem(name: "v", value: ApiData.versionAPI),
-            URLQueryItem(name: "fields", value: "first_name,last_name,name"),
-            URLQueryItem(name: "filters", value: "post"),
-            URLQueryItem(name: "source_ids", value: "groups")
-        ]
-        
-        guard let url = urlConstructor.url else { return }
-
-        let task = session.dataTask(with: url) { (data, response, error) in
-            do {
-                if data != nil {
-                    let feed = try JSONDecoder().decode(VKNewsfeedResponse.self, from: data!).response
-                    completion1(feed.items)
-                    completion2(feed.groups)
-                }
-            } catch {
-                print(error)
-            }
-        }
-        task.resume()
-    }
-    
     //MARK: - Метод запроса к VK API для получения данных о друзьях пользователя
     
     func getFriendsVK(completion: @escaping ([User]) -> Void) {

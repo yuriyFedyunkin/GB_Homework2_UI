@@ -11,11 +11,11 @@ import UIKit
 class NewsFeedController: UITableViewController {
 
     private var postFeedList = [NewsfeedPost]()
-    private var source = [Group]()
+    private let parser = NewsParser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         newsfeedNetworkReqeust()
         
         //Градиенти для tableView
@@ -27,13 +27,9 @@ class NewsFeedController: UITableViewController {
     
     // Newsfeed network request
     private func newsfeedNetworkReqeust() {
-        NetworkManager.shared.getNewsfeedVK { [weak self] posts in
-            DispatchQueue.main.async {
-                self?.postFeedList = posts
-                self?.tableView.reloadData()
-            }
-        } completion2: { [weak self] source in
-            self?.source = source
+        parser.parseNews { [weak self] posts in
+            self?.postFeedList = posts
+            self?.tableView.reloadData()
         }
     }
 
@@ -47,18 +43,27 @@ class NewsFeedController: UITableViewController {
         return postFeedList.count
     }
 
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostFeedCell", for: indexPath) as! PostFeedCell
-        
-        cell.configure(postFeedList[indexPath.row], source)
-        cell.selectionStyle = .none
-
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostFeedCell")
+                for post in postFeedList {
+                    if post.type == "post" {
+                        let postCell = tableView.dequeueReusableCell(withIdentifier: "PostFeedCell", for: indexPath) as! PostFeedCell
+                        postCell.configure(postFeedList[indexPath.row])
+                        postCell.selectionStyle = .none
+                        return postCell
+                    } else if post.type == "photo" {
+                        let photoCell = tableView.dequeueReusableCell(withIdentifier: "PhotoFeedCell", for: indexPath) as! PhotoFeedCell
+                        photoCell.configure(postFeedList[indexPath.row])
+                        photoCell.selectionStyle = .none
+                        return photoCell
+                    }
+                }
+       return cell!
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 300
     }
 
 }
