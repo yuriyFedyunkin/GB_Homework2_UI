@@ -11,6 +11,7 @@ import UIKit
 class FriendsListController: UITableViewController {
 
     private var friendsList = [User]()
+    let friendsOperationQueue = OperationQueue()
     
     // Словарь и массив для создания секций по первой букве имени User
     private var friendsDict = [String: [User]]()
@@ -32,12 +33,14 @@ class FriendsListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NetworkManager.shared.getFriendsVK() { [weak self] users in
-            DispatchQueue.main.async {
-                self?.addToUsersRealm(users: users)
-                self?.readUsersRealm()
-            }
-        }
+        getFriendsOperations()
+        
+//        NetworkManager.shared.getFriendsVK() { [weak self] users in
+//            DispatchQueue.main.async {
+//                self?.addToUsersRealm(users: users)
+//                self?.readUsersRealm()
+//            }
+//        }
         
         //Градиенти для tableView
         let gradient = GradientView()
@@ -54,13 +57,28 @@ class FriendsListController: UITableViewController {
         definesPresentationContext = true
     }
     
+    // MARK: - Функция для Opeartion Queue
+    
+    func getFriendsOperations() {
+        let getFrinedsDataOperation = GetFriendsDataOperation()
+        friendsOperationQueue.addOperation(getFrinedsDataOperation)
+        
+        let parseFriendsOpearation = ParseFriendsDataOperation()
+        parseFriendsOpearation.addDependency(getFrinedsDataOperation)
+        friendsOperationQueue.addOperation(parseFriendsOpearation)
+        
+        let reloadControllerOpearaion = ReloadFriendsListController(controller: self)
+        reloadControllerOpearaion.addDependency(parseFriendsOpearation)
+        OperationQueue.main.addOperation(reloadControllerOpearaion)
+    }
+    
     // MARK: - Методы добавления друзей в Realm и закрузка из Realm
     
-    private func addToUsersRealm(users: [User]) {
+    func addToUsersRealm(users: [User]) {
         UsersDB.shared.write(users)
     }
     
-    private func readUsersRealm() {
+    func readUsersRealm() {
         UsersDB.shared.read()?.forEach{friendsList.append($0)}
         createFriendsDict()
         tableView.reloadData()
