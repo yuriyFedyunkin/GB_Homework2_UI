@@ -105,7 +105,7 @@ class PostsStore {
     
     func getPost(at index: Int) -> NewsfeedPost {
         var post: NewsfeedPost!
-        syncQueue.sync(flags: .barrier) {
+        syncQueue.sync {
             post = postsStorage[index]
         }
         return post

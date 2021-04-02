@@ -944,6 +944,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="8yv-0l-HSm" secondAttribute="bottom" id="eEa-aQ-awJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="authorAvatarImage" destination="esI-dU-OX7" id="YbK-O3-o4L"/>
                                     <outlet property="authorNameLabel" destination="bNi-H2-wQE" id="P9V-Il-W3g"/>

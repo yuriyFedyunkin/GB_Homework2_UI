@@ -32,8 +32,7 @@ struct NewsfeedPost: Decodable {
         case type
         case photos
     }
-    
-    init() {}
+
     
     init(from decoder: Decoder) throws {
         // Парсим оснвоной контейнер JSON c массивом постов "items"
