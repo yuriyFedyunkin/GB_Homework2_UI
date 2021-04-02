@@ -49,7 +49,7 @@
 		798AF23226092BAC00D0B815 /* PostFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798AF23126092BAC00D0B815 /* PostFeedCell.swift */; };
 		798AF236260BA98B00D0B815 /* PhotoFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798AF235260BA98B00D0B815 /* PhotoFeedCell.swift */; };
 		798C781025A89983006EE4D1 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */; };
-		79BFCE10261786DB002058ED /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BFCE0F261786DB002058ED /* File.swift */; };
+		79BFCE10261786DB002058ED /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BFCE0F261786DB002058ED /* Operations.swift */; };
 		79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD0BBC258950AA008E977C /* ShadowView.swift */; };
 		79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */; };
 		79E7389A25A11C9D00A8D734 /* PhotoSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */; };
@@ -102,7 +102,7 @@
 		798AF23126092BAC00D0B815 /* PostFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFeedCell.swift; sourceTree = "<group>"; };
 		798AF235260BA98B00D0B815 /* PhotoFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFeedCell.swift; sourceTree = "<group>"; };
 		798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
-		79BFCE0F261786DB002058ED /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		79BFCE0F261786DB002058ED /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
 		79DD0BBC258950AA008E977C /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeController.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */,
 				7914A17425D6EA37009DEDE4 /* NetwokManager.swift */,
 				7954BCCB26123E3400E3BD37 /* NewsParser.swift */,
-				79BFCE0F261786DB002058ED /* File.swift */,
+				79BFCE0F261786DB002058ED /* Operations.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -402,7 +402,7 @@
 				7960B47C2578150100BC9D79 /* LoginViewController.swift in Sources */,
 				7922314C2583C4F400AA7F60 /* FriendsListController.swift in Sources */,
 				795111CC25C85FC600CD2933 /* GetGroupsByRequestVK.swift in Sources */,
-				79BFCE10261786DB002058ED /* File.swift in Sources */,
+				79BFCE10261786DB002058ED /* Operations.swift in Sources */,
 				7983DA1125C7139600F17AD5 /* VKLoginViewController.swift in Sources */,
 				798C781025A89983006EE4D1 /* CustomInteractiveTransition.swift in Sources */,
 				79259C8E2583DD700095DB95 /* GroupModel.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Operations.swift
 //  LoginApp_GB_UI
 //
 //  Created by Yuriy Fedyunkin on 02.04.2021.
@@ -33,6 +33,7 @@ class ParseFriendsDataOperation: AsyncOperation {
         do {
             let users = try JSONDecoder().decode(VKFriendsResponse.self, from: data).response.items
             outputData = users
+            self.state = .finished
         } catch {
             print(error)
         }
