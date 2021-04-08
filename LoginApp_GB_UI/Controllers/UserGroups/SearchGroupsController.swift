@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class SearchGroupsController: UITableViewController {
     
@@ -15,18 +16,42 @@ class SearchGroupsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkManager.shared.getGroupsVK() { [weak self] userGroups in
-            DispatchQueue.main.async {
-                self?.availableGroups = userGroups
-                self?.tableView.reloadData()
-            }
+        firstly {
+            NetworkManager.shared.getGroupsPromise()
+        }.then { (data) in
+            self.groupsPromiseParser(data)
+        }.done(on: .main) { (groups) in
+            self.availableGroups = groups
+            self.tableView.reloadData()
+        }.catch { (error) in
+            print(error.localizedDescription)
         }
+        
+//        NetworkManager.shared.getGroupsVK() { [weak self] userGroups in
+//            DispatchQueue.main.async {
+//                self?.availableGroups = userGroups
+//                self?.tableView.reloadData()
+//            }
+//        }
         
         let gradient = GradientView()
         gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
         
         gradient.alpha = 0.6
         tableView.backgroundView = gradient
+    }
+    
+    private func groupsPromiseParser(_ data: Data) -> Promise<[Group]> {
+        let promise = Promise<[Group]> { resolver in
+            do {
+                let groups = try JSONDecoder().decode(VKUserGroupsResponse.self, from: data).response.items
+                resolver.fulfill(groups)
+            } catch {
+                print(error.localizedDescription)
+                resolver.reject(error)
+            }
+        }
+        return promise
     }
 
 

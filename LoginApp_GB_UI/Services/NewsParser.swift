@@ -18,7 +18,7 @@ class NewsParser {
         let session = URLSession(configuration: configuration)
         urlConstructor.scheme = "https"
         urlConstructor.host = ApiData.baseUrl
-        urlConstructor.path = "/method/newsfeed.get"
+        urlConstructor.path = ApiData.newsfeedGetMethod
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "user_id", value: String(Session.shared.userId)),

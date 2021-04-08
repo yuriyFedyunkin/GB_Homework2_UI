@@ -64,7 +64,7 @@ class GetFriendsDataOperation: AsyncOperation {
         var urlConstructor = URLComponents()
         urlConstructor.scheme = "https"
         urlConstructor.host = ApiData.baseUrl
-        urlConstructor.path = "/method/friends.get"
+        urlConstructor.path = ApiData.friendsGetMethod
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "user_id", value: String(Session.shared.userId)),

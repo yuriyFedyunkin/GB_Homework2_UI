@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 class NetworkManager {
     
@@ -17,13 +18,42 @@ class NetworkManager {
     
     private init () {}
     
+    // MARK: - Метод запроса к VK API для получения Data групп через PromiseKit
+    
+    func getGroupsPromise() -> Promise<Data> {
+        
+        urlConstructor.scheme = "https"
+        urlConstructor.host = ApiData.baseUrl
+        urlConstructor.path = ApiData.groupsGetMethod
+        
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "user_id", value: String(Session.shared.userId)),
+            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "v", value: ApiData.versionAPI),
+            URLQueryItem(name: "extended", value: "1"),
+        ]
+        
+        let promise = Promise<Data> { resolver in
+
+            if let url = urlConstructor.url {
+                URLSession.shared.dataTask(with: url) { (data, _, _) in
+   
+                    guard let data = data else { return }
+                    resolver.fulfill(data)
+                }.resume()
+            }
+        }
+        return promise
+    }
+    
+    
     //MARK: - Метод запроса к VK API для получения данных о друзьях пользователя
     
     func getFriendsVK(completion: @escaping ([User]) -> Void) {
         let session = URLSession(configuration: configuration)
         urlConstructor.scheme = "https"
         urlConstructor.host = ApiData.baseUrl
-        urlConstructor.path = "/method/friends.get"
+        urlConstructor.path = ApiData.friendsGetMethod
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "user_id", value: String(Session.shared.userId)),
@@ -54,7 +84,7 @@ class NetworkManager {
         let session = URLSession(configuration: configuration)
         urlConstructor.scheme = "https"
         urlConstructor.host = ApiData.baseUrl
-        urlConstructor.path = "/method/groups.get"
+        urlConstructor.path = ApiData.groupsGetMethod
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "user_id", value: String(Session.shared.userId)),
@@ -82,7 +112,7 @@ class NetworkManager {
         let session = URLSession(configuration: configuration)
         urlConstructor.scheme = "https"
         urlConstructor.host = ApiData.baseUrl
-        urlConstructor.path = "/method/photos.getAll"
+        urlConstructor.path = ApiData.photoGetMethod
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "owner_id", value: String(owener.id)),
