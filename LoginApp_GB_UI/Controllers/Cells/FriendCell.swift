@@ -37,17 +37,15 @@ class FriendCell: UITableViewCell {
     // Функция конфигурации ячейки пользователя из списка друзей
     func configure(withUser user: User) {
         friendName.text = user.firstName + " " + user.lastName
-        
-        guard let url = URL(string: user.avatar) else { return }
-        if let data = try? Data(contentsOf: url) {
-            friendIcon.image = UIImage(data: data)
-        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        friendIcon.image = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     // MARK: - Avatar animation

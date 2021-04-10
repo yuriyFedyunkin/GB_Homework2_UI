@@ -50,6 +50,7 @@
 		798AF236260BA98B00D0B815 /* PhotoFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798AF235260BA98B00D0B815 /* PhotoFeedCell.swift */; };
 		798C781025A89983006EE4D1 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */; };
 		79BFCE10261786DB002058ED /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BFCE0F261786DB002058ED /* Operations.swift */; };
+		79C6E7C2262222730072A2DC /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C6E7C1262222730072A2DC /* PhotoService.swift */; };
 		79DD0BBD258950AA008E977C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD0BBC258950AA008E977C /* ShadowView.swift */; };
 		79E24C7B25A7A09C00655D73 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */; };
 		79E7389A25A11C9D00A8D734 /* PhotoSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */; };
@@ -103,6 +104,7 @@
 		798AF235260BA98B00D0B815 /* PhotoFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFeedCell.swift; sourceTree = "<group>"; };
 		798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		79BFCE0F261786DB002058ED /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		79C6E7C1262222730072A2DC /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		79DD0BBC258950AA008E977C /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		79E7389925A11C9D00A8D734 /* PhotoSwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				7914A17425D6EA37009DEDE4 /* NetwokManager.swift */,
 				7954BCCB26123E3400E3BD37 /* NewsParser.swift */,
 				79BFCE0F261786DB002058ED /* Operations.swift */,
+				79C6E7C1262222730072A2DC /* PhotoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				792CAA91259CDA1900109138 /* LoadingIndicatorView.swift in Sources */,
 				798AF236260BA98B00D0B815 /* PhotoFeedCell.swift in Sources */,
 				7983DA1D25C7211A00F17AD5 /* Constants.swift in Sources */,
+				79C6E7C2262222730072A2DC /* PhotoService.swift in Sources */,
 				794564F42593C1F900536AA8 /* NewsController.swift in Sources */,
 				79259C8C2583DD5D0095DB95 /* UserModel.swift in Sources */,
 				79259C902583DDC50095DB95 /* UserGroupsController.swift in Sources */,

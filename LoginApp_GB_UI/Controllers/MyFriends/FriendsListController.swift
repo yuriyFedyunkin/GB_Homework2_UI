@@ -13,6 +13,9 @@ class FriendsListController: UITableViewController {
     private var friendsList = [User]()
     let friendsOperationQueue = OperationQueue()
     
+    // Фото сервис для настройки работы Cache
+    var photoService: PhotoService?
+    
     // Словарь и массив для создания секций по первой букве имени User
     private var friendsDict = [String: [User]]()
     private var friendsSectionTitle = [String]()
@@ -33,15 +36,9 @@ class FriendsListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        photoService = PhotoService(container: tableView)
         getFriendsOperations()
-        
-//        NetworkManager.shared.getFriendsVK() { [weak self] users in
-//            DispatchQueue.main.async {
-//                self?.addToUsersRealm(users: users)
-//                self?.readUsersRealm()
-//            }
-//        }
-        
+ 
         //Градиенти для tableView
         let gradient = GradientView()
         gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
@@ -145,11 +142,13 @@ class FriendsListController: UITableViewController {
         if isFiltering {
             let friend = filtredFriends[indexPath.row]
             cell.configure(withUser: friend)
+            cell.friendIcon.image = photoService?.photo(atIndexpath: indexPath, byUrl: friend.avatar)
 
         } else {
             let nameKey = friendsSectionTitle[indexPath.section]
             let friend = friendsDict[nameKey]![indexPath.row]
             cell.configure(withUser: friend)
+            cell.friendIcon.image = photoService?.photo(atIndexpath: indexPath, byUrl: friend.avatar)
         }
         
         return cell
