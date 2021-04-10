@@ -69,10 +69,15 @@ class PhotoFeedCell: UITableViewCell {
         
         authorNameLabel.text = post.authorName
         guard let url = URL(string: post.avatar) else { return }
-        if let data = try? Data(contentsOf: url) {
-            authorAvatarImage.image = UIImage(data: data)
-        }
+        authorAvatarImage.kf.setImage(with: url)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        authorAvatarImage.kf.cancelDownloadTask()
+        authorAvatarImage.image = nil
+    }
+    
     // Конфигурация нажатия кнопок like/comment/share
     func setupGestureRecognizer(_ localSender: UIImageView) {
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))

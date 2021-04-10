@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostFeedCell: UITableViewCell {
 
@@ -68,10 +69,12 @@ class PostFeedCell: UITableViewCell {
         
         authorNameLabel.text = post.authorName
         guard let url = URL(string: post.avatar) else { return }
-        if let data = try? Data(contentsOf: url) {
-            authorAvatarImage.image = UIImage(data: data)
-  
-        }
+        authorAvatarImage.kf.setImage(with: url)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        authorAvatarImage.image = nil
     }
    
     // Конфигурация нажатия кнопок like/comment/share
