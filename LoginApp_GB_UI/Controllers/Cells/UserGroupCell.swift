@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserGroupCell: UITableViewCell {
 
@@ -25,9 +26,13 @@ class UserGroupCell: UITableViewCell {
         groupNameText.text = group.name
         
         guard let url = URL(string: group.avatar) else { return }
-        if let data = try? Data(contentsOf: url) {
-            groupIcon.image = UIImage(data: data)
-        }
+        groupIcon.kf.setImage(with: url)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        groupIcon.kf.cancelDownloadTask()
+        groupIcon.image = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
