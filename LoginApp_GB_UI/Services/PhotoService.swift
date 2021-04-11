@@ -11,7 +11,7 @@ import Alamofire
 
 class PhotoService {
     
-    private let cacheLifeTime: TimeInterval = 5 * 24 * 60 * 60
+    private static let cacheLifeTime: TimeInterval = 5 * 24 * 60 * 60
     private static let pathName: String = {
         
         let pathName = "images"
@@ -40,26 +40,29 @@ class PhotoService {
         FileManager.default.createFile(atPath: fileName, contents: data, attributes: nil)
     }
     
-    private func getImageFromCache(url: String) -> UIImage? {
+    private class func isFileOld(path: String) -> Bool {
         guard
-            let fileName = getFilePath(url: url),
-            let info = try? FileManager.default.attributesOfItem(atPath: fileName),
+            let info = try? FileManager.default.attributesOfItem(atPath: path),
             let modificationDate = info[FileAttributeKey.modificationDate] as? Date
-            else { return nil }
+        else { return true }
         
         let lifeTime = Date().timeIntervalSince(modificationDate)
         
+        return lifeTime > cacheLifeTime
+    }
+    
+    private func getImageFromCache(url: String) -> UIImage? {
         guard
-            lifeTime <= cacheLifeTime,
+            let fileName = getFilePath(url: url),
+            !PhotoService.isFileOld(path: url),
             let image = UIImage(contentsOfFile: fileName) else { return nil }
-
+        
         DispatchQueue.main.async { [weak self] in
             self?.images[url] = image
         }
         return image
     }
 
-    
     private var images = [String: UIImage]()
     
     private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String) {
@@ -89,6 +92,22 @@ class PhotoService {
             loadPhoto(atIndexpath: indexPath, byUrl: url)
         }
         return image
+    }
+    
+    private class func getImageFolderPath() -> String? {
+        guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return nil }
+        return cachesDirectory.appendingPathComponent(PhotoService.pathName).path
+    }
+    
+    class func clearOldCache() throws {
+        guard let imageFolderPath = getImageFolderPath() else { return }
+        let cachedImages = try FileManager.default.contentsOfDirectory(atPath: imageFolderPath)
+        for cachedImagePath in cachedImages {
+            let imagePath = imageFolderPath + "/" + cachedImagePath
+            if isFileOld(path: imagePath) {
+                try FileManager.default.removeItem(atPath: imagePath)
+            }
+        }
     }
     
     private let container: DataReloadable

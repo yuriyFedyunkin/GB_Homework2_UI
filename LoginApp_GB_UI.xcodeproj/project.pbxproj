@@ -199,17 +199,12 @@
 				7983DA0F25C7130000F17AD5 /* Services */,
 				79FD1C1325B4602400B879D9 /* Views */,
 				79FD1C1225B4601900B879D9 /* Controllers */,
+				79FD1C1425B461BB00B879D9 /* Cells */,
 				79259C892583DCF10095DB95 /* Models */,
 				794564ED25939F1E00536AA8 /* Custom UI elements */,
-				7960B4772578150100BC9D79 /* AppDelegate.swift */,
-				7960B4792578150100BC9D79 /* SceneDelegate.swift */,
-				7983DA1025C7139600F17AD5 /* VKLoginViewController.swift */,
-				7983DA1525C713CF00F17AD5 /* ActionsOnVKController.swift */,
-				7960B47D2578150100BC9D79 /* Main.storyboard */,
-				7960B4802578150200BC9D79 /* Assets.xcassets */,
-				7960B4822578150200BC9D79 /* LaunchScreen.storyboard */,
-				797A230E25F3E1F50023F051 /* GoogleService-Info.plist */,
-				7960B4852578150200BC9D79 /* Info.plist */,
+				79C6E7E0262356BC0072A2DC /* Storyboards */,
+				79C6E7E2262357410072A2DC /* Common files */,
+				79C6E7E1262356E40072A2DC /* Old stuff */,
 			);
 			path = LoginApp_GB_UI;
 			sourceTree = "<group>";
@@ -217,10 +212,6 @@
 		7983DA0F25C7130000F17AD5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				7983DA1925C71DA000F17AD5 /* GetFriendsVK.swift */,
-				7983DA1F25C72A5800F17AD5 /* GetPhotosVK.swift */,
-				7983DA2225C72BD300F17AD5 /* GetGroupsVK.swift */,
-				795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */,
 				7914A17425D6EA37009DEDE4 /* NetwokManager.swift */,
 				7954BCCB26123E3400E3BD37 /* NewsParser.swift */,
 				79BFCE0F261786DB002058ED /* Operations.swift */,
@@ -229,15 +220,50 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		79C6E7E0262356BC0072A2DC /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7960B47D2578150100BC9D79 /* Main.storyboard */,
+				7960B4822578150200BC9D79 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		79C6E7E1262356E40072A2DC /* Old stuff */ = {
+			isa = PBXGroup;
+			children = (
+				794564F52593C99B00536AA8 /* NewsCell.swift */,
+				794564FF259618C600536AA8 /* NewsCell.xib */,
+				794564F32593C1F900536AA8 /* NewsController.swift */,
+				7983DA1925C71DA000F17AD5 /* GetFriendsVK.swift */,
+				7983DA1F25C72A5800F17AD5 /* GetPhotosVK.swift */,
+				7983DA2225C72BD300F17AD5 /* GetGroupsVK.swift */,
+				795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */,
+				7983DA1525C713CF00F17AD5 /* ActionsOnVKController.swift */,
+			);
+			path = "Old stuff";
+			sourceTree = "<group>";
+		};
+		79C6E7E2262357410072A2DC /* Common files */ = {
+			isa = PBXGroup;
+			children = (
+				7960B4772578150100BC9D79 /* AppDelegate.swift */,
+				7960B4792578150100BC9D79 /* SceneDelegate.swift */,
+				7960B4802578150200BC9D79 /* Assets.xcassets */,
+				797A230E25F3E1F50023F051 /* GoogleService-Info.plist */,
+				7960B4852578150200BC9D79 /* Info.plist */,
+			);
+			path = "Common files";
+			sourceTree = "<group>";
+		};
 		79FD1C1225B4601900B879D9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				7960B47B2578150100BC9D79 /* LoginViewController.swift */,
+				7983DA1025C7139600F17AD5 /* VKLoginViewController.swift */,
 				798AF22E26092B5000D0B815 /* NewsFeedController.swift */,
-				794564F32593C1F900536AA8 /* NewsController.swift */,
 				7922314A2583C45F00AA7F60 /* MyFriends */,
 				79259C8A2583DD040095DB95 /* UserGroups */,
-				79FD1C1425B461BB00B879D9 /* Cells */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -260,8 +286,6 @@
 				79259C912583DDFC0095DB95 /* UserGroupCell.swift */,
 				798AF23126092BAC00D0B815 /* PostFeedCell.swift */,
 				798AF235260BA98B00D0B815 /* PhotoFeedCell.swift */,
-				794564F52593C99B00536AA8 /* NewsCell.swift */,
-				794564FF259618C600536AA8 /* NewsCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -589,7 +613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YPX74RZ95A;
-				INFOPLIST_FILE = LoginApp_GB_UI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LoginApp_GB_UI/Common files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -608,7 +632,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YPX74RZ95A;
-				INFOPLIST_FILE = LoginApp_GB_UI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LoginApp_GB_UI/Common files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
