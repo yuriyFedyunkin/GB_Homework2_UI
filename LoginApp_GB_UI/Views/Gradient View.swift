@@ -63,6 +63,20 @@ import UIKit
         self.startPoint = startPoint
         self.endPoint = endPoint
     }
+    
+    //MARK: -  Методы для общего градиента в приложении
+    
+    func setupGeneralGradientView(for tableView: UITableView) {
+        setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
+        alpha = 0.6
+        tableView.backgroundView = self
+    }
+    
+    func setupGeneralGradientView(for collectionView: UICollectionView) {
+        setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
+        alpha = 0.6
+        collectionView.backgroundView = self
+    }
 }
 
 

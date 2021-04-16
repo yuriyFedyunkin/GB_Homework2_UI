@@ -11,6 +11,7 @@ import PromiseKit
 
 class SearchGroupsController: UITableViewController {
     
+    private let gradient = GradientView()
     var availableGroups = [Group]()
     
     override func viewDidLoad() {
@@ -26,19 +27,8 @@ class SearchGroupsController: UITableViewController {
         }.catch { (error) in
             print(error.localizedDescription)
         }
-        
-//        NetworkManager.shared.getGroupsVK() { [weak self] userGroups in
-//            DispatchQueue.main.async {
-//                self?.availableGroups = userGroups
-//                self?.tableView.reloadData()
-//            }
-//        }
-        
-        let gradient = GradientView()
-        gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
-        
-        gradient.alpha = 0.6
-        tableView.backgroundView = gradient
+
+        gradient.setupGeneralGradientView(for: self.tableView)
     }
     
     private func groupsPromiseParser(_ data: Data) -> Promise<[Group]> {
