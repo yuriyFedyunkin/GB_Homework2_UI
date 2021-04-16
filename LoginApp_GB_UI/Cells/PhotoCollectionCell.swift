@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PhotoCollectionCell: UICollectionViewCell {
     
@@ -28,15 +29,17 @@ class PhotoCollectionCell: UICollectionViewCell {
         likes = photo.likes
         likeLabel.text = String(likes)
         
-//        for size in photo.sizes {
-//            if size.type == "x" || size.type == "m" {
-                guard let url = URL(string: photo.url) else { return }
-                if let data = try? Data(contentsOf: url) {
-                    friendPhoto.image = UIImage(data: data)
-                }
-            }
-//        }
-//    }
+        guard let url = URL(string: photo.url) else { return }
+        friendPhoto.kf.setImage(with: url)
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        friendPhoto.kf.cancelDownloadTask()
+        friendPhoto.image = nil
+    }
+
     
     // Логика нажатия кнопки "Like"
     func setupGestureRecognizer(_ localSender: UIImageView) {

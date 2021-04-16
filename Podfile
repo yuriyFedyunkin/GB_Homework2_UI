@@ -11,6 +11,8 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Firestore'
 pod "PromiseKit", "~> 6.8"
+pod 'Alamofire', '~> 5.2'
+pod 'Kingfisher'
 
   # Pods for LoginApp_GB_UI
 

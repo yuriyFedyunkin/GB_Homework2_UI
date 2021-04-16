@@ -1,14 +1,15 @@
 //
-//  PostFeedCell.swift
+//  PhotoFeedCell.swift
 //  LoginApp_GB_UI
 //
-//  Created by Yuriy Fedyunkin on 21.03.2021.
+//  Created by Yuriy Fedyunkin on 24.03.2021.
 //  Copyright © 2021 Yuriy Fedyunkin. All rights reserved.
 //
 
+
 import UIKit
 
-class PostFeedCell: UITableViewCell {
+class PhotoFeedCell: UITableViewCell {
 
     @IBOutlet weak var authorAvatarImage: UIImageView! {
         didSet {
@@ -19,7 +20,7 @@ class PostFeedCell: UITableViewCell {
         }
     }
     @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var postTextView: UITextView!
+    @IBOutlet weak var photoPostImage: UIImageView!
     
     @IBOutlet weak var likeImage: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
@@ -29,8 +30,6 @@ class PostFeedCell: UITableViewCell {
     
     @IBOutlet weak var shareImage: UIImageView!
     @IBOutlet weak var shareLabel: UILabel!
-    
-    @IBOutlet weak var viewsLabel: UILabel!
     
     private var isLiked = false
     private var likes = 0
@@ -63,17 +62,22 @@ class PostFeedCell: UITableViewCell {
         self.shares = post.reposts
         self.shareLabel.text = String(self.shares)
         
-        self.viewsLabel.text = String(post.views)
-        self.postTextView.text = post.text
+        guard let photoUrl = URL(string: post.photoUrl) else {  return }
+        if let data = try? Data(contentsOf: photoUrl) {
+            self.photoPostImage.image = UIImage(data: data)
+        }
         
         authorNameLabel.text = post.authorName
         guard let url = URL(string: post.avatar) else { return }
-        if let data = try? Data(contentsOf: url) {
-            authorAvatarImage.image = UIImage(data: data)
-  
-        }
+        authorAvatarImage.kf.setImage(with: url)
     }
-   
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        authorAvatarImage.kf.cancelDownloadTask()
+        authorAvatarImage.image = nil
+    }
+    
     // Конфигурация нажатия кнопок like/comment/share
     func setupGestureRecognizer(_ localSender: UIImageView) {
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
@@ -121,4 +125,6 @@ class PostFeedCell: UITableViewCell {
         
     }
 
+
 }
+
