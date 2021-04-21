@@ -20,6 +20,7 @@ struct NewsfeedPost: Decodable {
     var avatar: String = ""
     var photoUrl: String = ""
     var type: String = ""
+    var date: TimeInterval = 0
     
     enum CodingKeys: String, CodingKey {
         case sourceId = "source_id"
@@ -31,6 +32,7 @@ struct NewsfeedPost: Decodable {
         case count
         case type
         case photos
+        case date
     }
 
     
@@ -38,6 +40,7 @@ struct NewsfeedPost: Decodable {
         // Парсим оснвоной контейнер JSON c массивом постов "items"
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.sourceId = try container.decode(Int.self, forKey: .sourceId)
+        self.date = try container.decode(TimeInterval.self, forKey: .date)
         
         self.type = try container.decode(String.self, forKey: .type)
         
@@ -75,6 +78,14 @@ struct NewsfeedDetails: Decodable {
     let items: [NewsfeedPost]
     let groups: [Group]
     let profiles: [User]
+    var nextFrom: String = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case items
+        case groups
+        case profiles
+        case nextFrom = "next_from"
+    }
 }
 
 struct VKNewsfeedResponse: Decodable {

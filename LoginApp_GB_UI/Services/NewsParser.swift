@@ -11,7 +11,9 @@ import Foundation
 class NewsParser {
     
     
-    func parseNews(completion: @escaping ([NewsfeedPost]) -> Void) {
+    func parseNews(startFrom: String = "",
+                   startTime: Double? = nil,
+                   completion: @escaping ([NewsfeedPost], String) -> Void) {
         
         let configuration = URLSessionConfiguration.default
         var urlConstructor = URLComponents()
@@ -26,8 +28,13 @@ class NewsParser {
             URLQueryItem(name: "v", value: ApiData.versionAPI),
             URLQueryItem(name: "fields", value: "first_name,last_name,name,photo_50"),
             URLQueryItem(name: "filters", value: "post,photo"),
+            URLQueryItem(name: "start_from", value: startFrom),
             URLQueryItem(name: "source_ids", value: "friends,groups")
         ]
+        
+//        if let startTime = startTime {
+//            urlConstructor.queryItems?.append(URLQueryItem(name: "start_time", value: String(startTime)))
+//        }
         
         guard let url = urlConstructor.url else { return }
         
@@ -35,7 +42,7 @@ class NewsParser {
             do {
                 if data != nil {
                     let feed = try JSONDecoder().decode(VKNewsfeedResponse.self, from: data!).response
-                    let postsStorage = PostsStore(posts: feed.items, groups: feed.groups, users: feed.profiles)
+                    let postsStorage = PostsStore(posts: feed.items, groups: feed.groups, users: feed.profiles, nextFrom: feed.nextFrom)
                     postsStorage.mergePostsWithAuthors(completion: completion)
                 }
             } catch {
@@ -50,15 +57,17 @@ class PostsStore {
     private var postsStorage: [NewsfeedPost]
     private var groupsStorage: [Group]
     private var profileStorage: [User]
+    private var nextFrom = ""
     private let syncQueue = DispatchQueue(label: "NewsStoreQueue", attributes: .concurrent)
     
-    init(posts: [NewsfeedPost], groups: [Group], users: [User]) {
+    init(posts: [NewsfeedPost], groups: [Group], users: [User], nextFrom: String) {
         self.postsStorage = posts
         self.groupsStorage = groups
         self.profileStorage = users
+        self.nextFrom = nextFrom
     }
     
-    func mergePostsWithAuthors(completion: @escaping ([NewsfeedPost]) -> ()) {
+    func mergePostsWithAuthors(completion: @escaping ([NewsfeedPost], String) -> ()) {
         let dispatchGroup = DispatchGroup()
         
         for index in 0..<postsStorage.count {
@@ -77,7 +86,7 @@ class PostsStore {
             }
         }
         dispatchGroup.notify(queue: DispatchQueue.main) {
-            completion(self.getPosts())
+            completion(self.getPosts(), self.nextFrom)
         }
     }
     
