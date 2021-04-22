@@ -64,7 +64,7 @@ class PostFeedCell: UITableViewCell {
         self.shares = post.reposts
         self.shareLabel.text = String(self.shares)
         
-        self.viewsLabel.text = String(post.views)
+        self.viewsLabel.text = String(post.views ?? 0)
         self.postTextView.text = post.text
         
         authorNameLabel.text = post.authorName
