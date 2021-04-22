@@ -13,7 +13,7 @@ class NewsParser {
     
     func parseNews(startFrom: String = "",
                    startTime: Double? = nil,
-                   completion: @escaping ([NewsfeedPost], String) -> Void) {
+                   completion: @escaping ([NewsfeedPost], String?) -> Void) {
         
         let configuration = URLSessionConfiguration.default
         var urlConstructor = URLComponents()
@@ -32,9 +32,9 @@ class NewsParser {
             URLQueryItem(name: "source_ids", value: "friends,groups")
         ]
         
-//        if let startTime = startTime {
-//            urlConstructor.queryItems?.append(URLQueryItem(name: "start_time", value: String(startTime)))
-//        }
+        if let startTime = startTime {
+            urlConstructor.queryItems?.append(URLQueryItem(name: "start_time", value: String(startTime)))
+        }
         
         guard let url = urlConstructor.url else { return }
         
@@ -57,17 +57,17 @@ class PostsStore {
     private var postsStorage: [NewsfeedPost]
     private var groupsStorage: [Group]
     private var profileStorage: [User]
-    private var nextFrom = ""
+    private var nextFrom: String?
     private let syncQueue = DispatchQueue(label: "NewsStoreQueue", attributes: .concurrent)
     
-    init(posts: [NewsfeedPost], groups: [Group], users: [User], nextFrom: String) {
+    init(posts: [NewsfeedPost], groups: [Group], users: [User], nextFrom: String?) {
         self.postsStorage = posts
         self.groupsStorage = groups
         self.profileStorage = users
         self.nextFrom = nextFrom
     }
     
-    func mergePostsWithAuthors(completion: @escaping ([NewsfeedPost], String) -> ()) {
+    func mergePostsWithAuthors(completion: @escaping ([NewsfeedPost], String?) -> ()) {
         let dispatchGroup = DispatchGroup()
         
         for index in 0..<postsStorage.count {

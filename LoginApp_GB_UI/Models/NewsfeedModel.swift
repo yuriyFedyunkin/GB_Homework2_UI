@@ -57,8 +57,9 @@ struct NewsfeedPost: Decodable {
             let repostsContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .reposts)
             self.reposts = try repostsContainer.decode(Int.self, forKey: .count)
             // Парсим контейнер с количеством просмотров
-            let viewsContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .views)
-            self.views = try viewsContainer.decode(Int.self, forKey: .count)
+            if let viewsContainer = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .views) {
+                self.views = try viewsContainer.decode(Int.self, forKey: .count)
+            }
             
             
         } else if self.type == "photo" {
@@ -78,7 +79,7 @@ struct NewsfeedDetails: Decodable {
     let items: [NewsfeedPost]
     let groups: [Group]
     let profiles: [User]
-    var nextFrom: String = ""
+    var nextFrom: String?
     
     enum CodingKeys: String, CodingKey {
         case items
