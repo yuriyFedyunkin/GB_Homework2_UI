@@ -98,6 +98,7 @@ class NewsFeedController: UITableViewController {
         let newsItem = postFeedList[indexPath.section]
         if indexPath.row == 0 {
             let postCell = tableView.dequeueReusableCell(withIdentifier: "PostFeedCell", for: indexPath) as! PostFeedCell
+            postCell.delegate = self
             postCell.configure(newsItem)
             postCell.selectionStyle = .none
             return postCell
@@ -139,6 +140,14 @@ class NewsFeedController: UITableViewController {
         }
     }
 
+}
+
+extension NewsFeedController: PostFeedCellDelegate {
+    func showTextButtonPressed() {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
 }
 
 extension NewsFeedController: UITableViewDataSourcePrefetching {
