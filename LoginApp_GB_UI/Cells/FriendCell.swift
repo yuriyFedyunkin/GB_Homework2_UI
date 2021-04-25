@@ -10,22 +10,90 @@ import UIKit
 
 class FriendCell: UITableViewCell {
 
-    @IBOutlet weak var friendName: UILabel!
+    @IBOutlet weak var friendName: UILabel! {
+        didSet {
+            friendName.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
     
     // к даннаому view подключен class ShadowView для настройки в interface builder
     @IBOutlet weak var shadowView: UIView! {
         didSet {
-            self.shadowView.layer.cornerRadius = self.shadowView.frame.width / 2
+            shadowView.layer.cornerRadius = self.shadowView.frame.width / 2
+            shadowView.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     // автарка с эффектом загругления
     @IBOutlet weak var friendIcon: UIImageView! {
         didSet {
-            self.friendIcon.clipsToBounds = true
-            self.friendIcon.layer.cornerRadius = self.friendIcon.frame.width / 2
-            self.friendIcon.layer.borderWidth = 1.0
-            self.friendIcon.layer.borderColor = UIColor.lightGray.cgColor
+            friendIcon.clipsToBounds = true
+            friendIcon.layer.cornerRadius = friendIcon.frame.width / 2
+            friendIcon.layer.borderWidth = 1.0
+            friendIcon.layer.borderColor = UIColor.lightGray.cgColor
+            friendIcon.translatesAutoresizingMaskIntoConstraints = false
         }
+    }
+    
+    let insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+    
+    override var intrinsicContentSize: CGSize {
+        return getCellSize(maxWidth: .greatestFiniteMagnitude)
+    }
+    
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        super.sizeThatFits(size)
+        return getCellSize(maxWidth: size.width)
+    }
+    
+    private func friendIconViewSize() -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
+    
+    private func getCellSize(maxWidth: CGFloat) -> CGSize {
+        let iconSize = friendIconViewSize()
+        let nameLabelSize = getNameLabelSize(text: friendName.text!, font: friendName.font!, maxWidth: maxWidth)
+        let totalWidth = nameLabelSize.width + iconSize.width + insets.left + insets.right
+        let totalHeigth = iconSize.height + insets.top + insets.bottom
+        let totalSize = CGSize(width: totalWidth, height: totalHeigth)
+        
+        return totalSize
+    }
+    
+    func getNameLabelSize(text: String, font: UIFont, maxWidth: CGFloat) -> CGSize {
+        let maxWidth = maxWidth - insets.right - insets.left - friendIcon.frame.maxX
+        let textBlock = CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude)
+        let rect = text.boundingRect(with: textBlock, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        
+        let width = Double(rect.size.width)
+        let height = Double(rect.size.height)
+        let size =  CGSize(width: ceil(width), height: ceil(height))
+
+        return size
+    }
+    
+    private func layoutShadowAndIconView() {
+        let iconAndshadowSize = friendIconViewSize()
+        let shadowOrigin = CGPoint(x: insets.left, y: insets.top)
+        shadowView.frame = CGRect(origin: shadowOrigin, size: iconAndshadowSize)
+        
+        let iconOrigin = CGPoint(x: 0, y: 0)
+        friendIcon.frame = CGRect(origin: iconOrigin, size: iconAndshadowSize)
+        shadowView.addSubview(friendIcon)
+    }
+    
+    private func layoutNameLabel() {
+        let nameLabelSize = getNameLabelSize(text: friendName.text!, font: friendName.font!, maxWidth: bounds.width)
+        let nameLabelOrigin = CGPoint(
+            x: insets.left + shadowView.frame.maxX,
+            y: insets.top + friendName.frame.height/2)
+        friendName.frame = CGRect(origin: nameLabelOrigin, size: nameLabelSize)
+    }
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutShadowAndIconView()
+        layoutNameLabel()
     }
     
     override func awakeFromNib() {
