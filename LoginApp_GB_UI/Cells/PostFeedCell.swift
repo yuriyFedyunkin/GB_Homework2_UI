@@ -9,7 +9,13 @@
 import UIKit
 import Kingfisher
 
+protocol PostFeedCellDelegate: AnyObject {
+    func showTextButtonPressed(postId: Int, isOpened: Bool )
+}
+
 class PostFeedCell: UITableViewCell {
+    
+    weak var delegate: PostFeedCellDelegate?
 
     @IBOutlet weak var authorAvatarImage: UIImageView! {
         didSet {
@@ -20,7 +26,7 @@ class PostFeedCell: UITableViewCell {
         }
     }
     @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var postTextView: UITextView!
+    @IBOutlet weak var postTextLabel: UILabel!
     
     @IBOutlet weak var likeImage: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
@@ -33,11 +39,62 @@ class PostFeedCell: UITableViewCell {
     
     @IBOutlet weak var viewsLabel: UILabel!
     
+    
+    @IBOutlet weak var postTextHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var showTextButton: UIButton!{
+        didSet{
+            showTextButton.setTitle("Show more...", for: .normal)
+        }
+    }
+    
     private var isLiked = false
     private var likes = 0
     private var comments = 0
     private var shares = 0
+    private var postId = 0
+    private var cachedTextHeight: CGFloat?
    
+    @IBAction func showTextAction(_ sender: UIButton) {
+        
+        if sender.tag == 0 {
+            openText()
+        } else {
+            shrinkText()
+        }
+    }
+    
+    private func openText() {
+        if cachedTextHeight == nil {
+            cachedTextHeight = self.getRowHeightFromText(strText: self.postTextLabel.text ?? "")
+        }
+        self.postTextHeightConstraint.constant = cachedTextHeight!
+        
+        layoutIfNeeded()
+        showTextButton.setTitle("ShowLess", for: .normal)
+        showTextButton.tag = 1
+        delegate?.showTextButtonPressed(postId: postId, isOpened: true)
+    }
+    
+    private func shrinkText() {
+        if cachedTextHeight == nil {
+            cachedTextHeight = self.getRowHeightFromText(strText: self.postTextLabel.text ?? "")
+        }
+        if cachedTextHeight! <= 200 {
+            self.postTextHeightConstraint.constant = cachedTextHeight!
+            showTextButton.isHidden = true
+        } else {
+            if self.postTextHeightConstraint.constant == 200,
+               showTextButton.tag == 0 {
+                return
+            }
+            self.postTextHeightConstraint.constant = 200
+            showTextButton.isHidden = false
+        }
+        layoutIfNeeded()
+        showTextButton.setTitle("ShowMore", for: .normal)
+        showTextButton.tag = 0
+        delegate?.showTextButtonPressed(postId: postId, isOpened: false)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,6 +104,13 @@ class PostFeedCell: UITableViewCell {
         setupGestureRecognizer(shareImage)
 
     }
+    
+    func getRowHeightFromText(strText: String!) -> CGFloat {
+        
+        let textSize = (strText as NSString).boundingRect(with: CGSize(width: postTextLabel.bounds.width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font : postTextLabel.font!], context: nil)
+        
+        return ceil(textSize.height)
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -54,7 +118,8 @@ class PostFeedCell: UITableViewCell {
     }
     
     // Конфигурация ячейки
-    func configure(_ post: NewsfeedPost) {
+    func configure(_ post: NewsfeedPost, isOpened: Bool) {
+        self.postId = post.postId
         self.likes = post.likes
         self.likeLabel.text = String(self.likes)
         
@@ -64,17 +129,30 @@ class PostFeedCell: UITableViewCell {
         self.shares = post.reposts
         self.shareLabel.text = String(self.shares)
         
-        self.viewsLabel.text = String(post.views)
-        self.postTextView.text = post.text
+        self.viewsLabel.text = String(post.views ?? 0)
+        self.postTextLabel.text = post.text
+        self.cachedTextHeight = self.getRowHeightFromText(strText: self.postTextLabel.text ?? "")
         
         authorNameLabel.text = post.authorName
         guard let url = URL(string: post.avatar) else { return }
         authorAvatarImage.kf.setImage(with: url)
+        
+        if isOpened {
+            openText()
+        } else if !isOpened {
+            shrinkText()
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.cachedTextHeight = self.getRowHeightFromText(strText: self.postTextLabel.text ?? "")
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         authorAvatarImage.image = nil
+        cachedTextHeight = nil
     }
    
     // Конфигурация нажатия кнопок like/comment/share

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PhotoSwipeController: UIViewController {
 
@@ -32,11 +33,8 @@ class PhotoSwipeController: UIViewController {
         
         guard let currentPhoto = photoLibrary[currentImage] else {return}
         guard let url = URL(string: currentPhoto.url) else { return }
-        if let data = try? Data(contentsOf: url) {
-            displayedImage.image = UIImage(data: data)
-        }
+        displayedImage.kf.setImage(with: url)
     }
-    
     //MARK: - Swipe and Pan Recognizer Logic
     
     @objc func respondToPanGesture(gesture: UIPanGestureRecognizer) {
