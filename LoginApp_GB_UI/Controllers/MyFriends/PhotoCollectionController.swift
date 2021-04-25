@@ -12,6 +12,7 @@ class PhotoCollectionController: UICollectionViewController {
     
     var photoLibrary = [Photo]()
     var currentUser: User?
+    private let gradient = GradientView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,7 @@ class PhotoCollectionController: UICollectionViewController {
             }
         }
         
-        
-        let gradient = GradientView()
-        gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
-        
-        gradient.alpha = 0.6
-        collectionView.backgroundView = gradient
+        gradient.setupGeneralGradientView(for: self.collectionView)
     }
     
     // MARK: - Методы добавления фото друзей в Realm и закрузка из Realm

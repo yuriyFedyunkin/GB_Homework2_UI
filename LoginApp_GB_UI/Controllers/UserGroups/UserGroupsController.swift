@@ -14,6 +14,7 @@ class UserGroupsController: UITableViewController {
 
     private var firebaseGroups = [FirebaseGroup]()
     private let ref = Database.database().reference(withPath: String(Session.shared.userId))
+    private let gradient = GradientView()
     
     var userGroups: Results<Group>?
     private var groupsRealm = GroupsDB()
@@ -26,11 +27,7 @@ class UserGroupsController: UITableViewController {
         firebaseGroupsHandler()
         pairTableAndRealm()
         
-        let gradient = GradientView()
-        gradient.setupGradient(startColor: .blue, endColor: .systemGray, startLocation: 0, endLocation: 1, startPoint: .zero, endPoint: CGPoint(x:0, y: 1))
-        
-        gradient.alpha = 0.6
-        tableView.backgroundView = gradient
+        gradient.setupGeneralGradientView(for: self.tableView)
     }
     
     @IBAction func addGroup(segue: UIStoryboardSegue){
