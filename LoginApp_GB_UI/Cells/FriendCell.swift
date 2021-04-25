@@ -78,14 +78,14 @@ class FriendCell: UITableViewCell {
         
         let iconOrigin = CGPoint(x: 0, y: 0)
         friendIcon.frame = CGRect(origin: iconOrigin, size: iconAndshadowSize)
-        shadowView.addSubview(friendIcon)
+        
     }
     
     private func layoutNameLabel() {
         let nameLabelSize = getNameLabelSize(text: friendName.text!, font: friendName.font!, maxWidth: bounds.width)
         let nameLabelOrigin = CGPoint(
             x: insets.left + shadowView.frame.maxX,
-            y: insets.top + friendName.frame.height/2)
+            y: insets.top + nameLabelSize.height/2)
         friendName.frame = CGRect(origin: nameLabelOrigin, size: nameLabelSize)
     }
     
@@ -98,7 +98,7 @@ class FriendCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        shadowView.addSubview(friendIcon)
         setupGestureRecognizer(friendIcon)
     }
     

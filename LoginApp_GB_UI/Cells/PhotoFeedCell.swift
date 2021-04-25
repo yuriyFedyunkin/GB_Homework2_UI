@@ -8,7 +8,7 @@
 
 
 import UIKit
-
+/*
 class PhotoFeedCell: UITableViewCell {
 
     @IBOutlet weak var authorAvatarImage: UIImageView! {
@@ -127,4 +127,4 @@ class PhotoFeedCell: UITableViewCell {
 
 
 }
-
+*/
