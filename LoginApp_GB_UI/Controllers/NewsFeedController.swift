@@ -13,6 +13,7 @@ class NewsFeedController: UITableViewController {
     private var postFeedList = [NewsfeedPost]()
     private let parser = NewsParser()
     private let gradient = GradientView()
+    var openedPostIds = Set<Int>()
     var nextFrom: String?
     var isLoading = false
     
@@ -22,20 +23,9 @@ class NewsFeedController: UITableViewController {
         setupRefreshControl()
         refreshNews()
         
-        
-//        newsfeedNetworkReqeust()
-        
         //Градиенти для tableView
         gradient.setupGeneralGradientView(for: self.tableView)
     }
-    
-    // Newsfeed network request
-//    private func newsfeedNetworkReqeust() {
-//        parser.parseNews { [weak self] posts in
-//            self?.postFeedList = posts
-//            self?.tableView.reloadData()
-//        }
-//    }
     
     fileprivate func setupRefreshControl() {
         // Инициализируем и присваиваем сущность UIRefreshControl
@@ -99,7 +89,7 @@ class NewsFeedController: UITableViewController {
         if indexPath.row == 0 {
             let postCell = tableView.dequeueReusableCell(withIdentifier: "PostFeedCell", for: indexPath) as! PostFeedCell
             postCell.delegate = self
-            postCell.configure(newsItem)
+            postCell.configure(newsItem, isOpened: openedPostIds.contains(newsItem.postId))
             postCell.selectionStyle = .none
             return postCell
         } else if let urlString = newsItem.photoUrl {
@@ -143,7 +133,12 @@ class NewsFeedController: UITableViewController {
 }
 
 extension NewsFeedController: PostFeedCellDelegate {
-    func showTextButtonPressed() {
+    func showTextButtonPressed(postId: Int, isOpened: Bool) {
+        if isOpened {
+            self.openedPostIds.insert(postId)
+        } else {
+            self.openedPostIds.remove(postId)
+        }
         tableView.beginUpdates()
         tableView.endUpdates()
     }

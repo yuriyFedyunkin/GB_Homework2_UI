@@ -10,6 +10,7 @@ import UIKit
 
 struct NewsfeedPost: Decodable {
     
+    var postId: Int = 0
     var sourceId: Int = 0
     var text: String = ""
     var comments: Int = 0
@@ -33,6 +34,7 @@ struct NewsfeedPost: Decodable {
         
     
     enum CodingKeys: String, CodingKey {
+        case postId = "post_id"
         case sourceId = "source_id"
         case text
         case comments
@@ -50,6 +52,7 @@ struct NewsfeedPost: Decodable {
     init(from decoder: Decoder) throws {
         // Парсим оснвоной контейнер JSON c массивом постов "items"
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.postId = try container.decode(Int.self, forKey: .postId)
         self.sourceId = try container.decode(Int.self, forKey: .sourceId)
         self.date = try container.decode(TimeInterval.self, forKey: .date)
         
