@@ -50,12 +50,7 @@ class AsyncAlbumsCollectionCell: ASCellNode {
         let insets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         coverNode.style.preferredSize = CGSize(width: 130, height: 120)
         titleNode.style.width = coverNode.style.width
-        
-//        let horizonatalStackSpec = ASStackLayoutSpec()
-//        horizonatalStackSpec.direction = .horizontal
-//        horizonatalStackSpec.children = [photosCountNode, titleNode]
-//        horizonatalStackSpec.spacing = 8
-//
+
         let verticalStackSpec = ASStackLayoutSpec()
         verticalStackSpec.direction = .vertical
         verticalStackSpec.children = [coverNode, titleNode, photosCountNode]

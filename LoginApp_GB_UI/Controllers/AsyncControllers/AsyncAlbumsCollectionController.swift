@@ -38,8 +38,8 @@ class AsyncPhotoCollectionController: ASDKViewController<ASCollectionNode>, ASCo
         if let user = currentUser {
             NetworkManager.shared.getUserAlbumsVK(owner: user) { [weak self] albums in
                 DispatchQueue.main.async {
-                    self?.albums = albums
-                    self?.collectionNode.reloadData()
+                    self?.addToAlbumsRealm(albums: albums)
+                    self?.readAlbumsRealm()
                 }
             }
         }
@@ -67,6 +67,19 @@ class AsyncPhotoCollectionController: ASDKViewController<ASCollectionNode>, ASCo
             return node
         }
         return cellNodeBlock
+    }
+    
+    // MARK: - Методы добавления альбомов друзей в Realm и загрузка из Realm
+    
+    private func addToAlbumsRealm(albums: [Album]) {
+        guard let user = currentUser else {return}
+        UsersDB.shared.wtiteAlbums(albums, user: user)
+    }
+    
+    private func readAlbumsRealm() {
+        guard let user = currentUser else {return}
+        albums = UsersDB.shared.readAlbums(user: user)
+        collectionNode.reloadData()
     }
     
 }
