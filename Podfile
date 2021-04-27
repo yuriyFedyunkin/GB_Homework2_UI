@@ -13,6 +13,7 @@ pod 'Firebase/Firestore'
 pod "PromiseKit", "~> 6.8"
 pod 'Alamofire', '~> 5.2'
 pod 'Kingfisher'
+pod 'Texture'
 
   # Pods for LoginApp_GB_UI
 
