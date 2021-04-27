@@ -154,7 +154,7 @@ class FriendsListController: UITableViewController {
     
     // Переход на контроллер с альбомами выбранного друга
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destVC = AsyncPhotoCollectionController()
+        let destVC = AsyncAlbumsCollectionController()
         if let indexPath = tableView.indexPathForSelectedRow {
             let friend: User
             if isFiltering {

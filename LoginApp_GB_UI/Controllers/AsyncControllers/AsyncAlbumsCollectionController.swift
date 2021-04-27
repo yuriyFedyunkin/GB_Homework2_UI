@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class AsyncPhotoCollectionController: ASDKViewController<ASCollectionNode>, ASCollectionDataSource, ASCollectionDelegate {
+class AsyncAlbumsCollectionController: ASDKViewController<ASCollectionNode>, ASCollectionDataSource, ASCollectionDelegate {
     
     private let gradient = GradientView()
     var albums = [Album]()
@@ -67,6 +67,17 @@ class AsyncPhotoCollectionController: ASDKViewController<ASCollectionNode>, ASCo
             return node
         }
         return cellNodeBlock
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        let album = albums[indexPath.row]
+        if let user = currentUser {
+            NetworkManager.shared.getPhotoFromAlbumVK(ownerId: String(user.id), albumId: String(album.id)) { (photos) in
+                print(photos)
+            }
+        }
+    
+        
     }
     
     // MARK: - Методы добавления альбомов друзей в Realm и загрузка из Realm
