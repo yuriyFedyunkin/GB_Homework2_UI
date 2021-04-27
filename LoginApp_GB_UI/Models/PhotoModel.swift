@@ -12,6 +12,8 @@ import RealmSwift
 class Photo: Object, Decodable {
     @objc dynamic var likes = 0
     @objc dynamic var id = 0
+    @objc dynamic var albumId = 0
+    @objc dynamic var ownerId = 0
     @objc dynamic var url = ""
         
     override class func primaryKey() -> String? {
@@ -22,6 +24,8 @@ class Photo: Object, Decodable {
         case id
         case sizes
         case likes
+        case albumId = "album_id"
+        case ownerId = "owner_id"
     }
     
     enum SizesKeys: String, CodingKey {
@@ -41,6 +45,8 @@ class Photo: Object, Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         self.id = try values.decode(Int.self, forKey: .id)
+        self.albumId = try values.decode(Int.self, forKey: .albumId)
+        self.ownerId = try values.decode(Int.self, forKey: .ownerId)
         
         let likesValues = try values.nestedContainer(keyedBy: LikesKeys.self, forKey: .likes)
         self.likes = (try likesValues.decode(Int.self, forKey: .count)) + (try likesValues.decode(Int.self, forKey: .userLikes))
