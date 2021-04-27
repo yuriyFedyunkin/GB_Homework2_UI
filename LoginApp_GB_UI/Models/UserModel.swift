@@ -16,6 +16,7 @@ class User: Object, Decodable {
     @objc dynamic var id = 0
     @objc dynamic var avatar = ""
     var photos = List<Photo>()
+    var albums = List<Album>()
     
     override class func primaryKey() -> String? {
         return "id"
