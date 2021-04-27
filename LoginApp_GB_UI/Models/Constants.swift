@@ -15,4 +15,5 @@ struct ApiData {
     static let photoGetMethod: String = "/method/photos.getAll"
     static let groupsGetMethod: String = "/method/groups.get"
     static let newsfeedGetMethod: String = "/method/newsfeed.get"
+    static let getAlbumsMethod: String = "/method/photos.getAlbums"
 }
