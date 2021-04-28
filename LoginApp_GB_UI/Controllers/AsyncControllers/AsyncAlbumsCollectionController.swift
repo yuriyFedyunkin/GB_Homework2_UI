@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 class AsyncAlbumsCollectionController: ASDKViewController<ASCollectionNode>, ASCollectionDataSource, ASCollectionDelegate {
     
-    private let gradient = GradientView()
+//    private let gradient = GradientView()
     var albums = [Album]()
     var currentUser: User?
     private var photoService: PhotoService?
@@ -32,7 +32,11 @@ class AsyncAlbumsCollectionController: ASDKViewController<ASCollectionNode>, ASC
         super.viewDidLoad()
         self.collectionNode.delegate = self
         self.collectionNode.dataSource = self
-        gradient.setupGeneralGradientView(for: self.collectionNode.view)
+        self.collectionNode.backgroundColor = UIColor(red: 121/255.0,
+                                                      green: 121/255.0,
+                                                      blue: 232/255.0,
+                                                      alpha: 1.0)
+//        gradient.setupGeneralGradientView(for: self.collectionNode.view)
         photoService = PhotoService(container: collectionNode.view)
         
         if let user = currentUser {
@@ -53,6 +57,7 @@ class AsyncAlbumsCollectionController: ASDKViewController<ASCollectionNode>, ASC
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+        guard albums.count > indexPath.row else { return { ASCellNode() } }
         let album = albums[indexPath.row]
         let coverURL = album.coverURL
         let photosCount = album.size
@@ -70,14 +75,16 @@ class AsyncAlbumsCollectionController: ASDKViewController<ASCollectionNode>, ASC
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        let album = albums[indexPath.row]
-        if let user = currentUser {
-            NetworkManager.shared.getPhotoFromAlbumVK(ownerId: String(user.id), albumId: String(album.id)) { (photos) in
-                print(photos)
-            }
-        }
-    
         
+        let destVC = AsyncPhotoCollectionController()
+        let album = albums[indexPath.row]
+        
+        destVC.photos = Array(album.photos)
+        destVC.albumId = String(album.id)
+        destVC.userId = String(album.ownerId)
+        
+        destVC.navigationItem.title = album.title
+        navigationController?.pushViewController(destVC, animated: true)    
     }
     
     // MARK: - Методы добавления альбомов друзей в Realm и загрузка из Realm

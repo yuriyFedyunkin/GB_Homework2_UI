@@ -35,7 +35,6 @@ class AsyncAlbumsCollectionCell: ASCellNode {
                                                             attributes: [.font: UIFont.italicSystemFont(ofSize: 14),
                                                                          .foregroundColor: UIColor.lightGray])
         photosCountNode.backgroundColor = .clear
-        photosCountNode.tintColor = .blue
         photosCountNode.maximumNumberOfLines = 1
         addSubnode(photosCountNode)
         
