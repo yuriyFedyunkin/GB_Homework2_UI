@@ -12,14 +12,18 @@ import Kingfisher
 class PhotoSwipeController: UIViewController {
 
     var photoLibrary = [Photo?]()
-    
     var currentImage = 0
     
-    @IBOutlet weak var displayedImage: UIImageView!
+    private var displayedImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setPhotoImageLayout()
         getImage()
         displayedImage.isUserInteractionEnabled = true
         displayedImage.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(respondToPanGesture)))
@@ -34,6 +38,16 @@ class PhotoSwipeController: UIViewController {
         guard let currentPhoto = photoLibrary[currentImage] else {return}
         guard let url = URL(string: currentPhoto.url) else { return }
         displayedImage.kf.setImage(with: url)
+    }
+    
+    // Layout для imageView с текущей фотографией
+    private func setPhotoImageLayout() {
+        let screenSize = self.view.frame.size
+        displayedImage.frame = CGRect(x: 0,
+                                      y: 0,
+                                      width: screenSize.width,
+                                      height: screenSize.height)
+        view.addSubview(displayedImage)
     }
     //MARK: - Swipe and Pan Recognizer Logic
     

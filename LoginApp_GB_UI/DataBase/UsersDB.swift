@@ -39,19 +39,21 @@ class UsersDB {
             db?.add(user, update: .all)
             try db?.commitWrite()
             
-            // TODO: преобразования фото в Data
-            /* var imagesData = [Data]()
-             
-             var arrayOfUrl = [String]()
-             photos.forEach{arrayOfUrl.append($0.url)}
-             
-             for str in arrayOfUrl {
-             guard let url = URL(string: str) else { return }
-             if let data = try? Data(contentsOf: url) {
-             imagesData.append(data)
-             }
-             }
-             */
+        } catch {
+            print(error)
+        }
+    }
+    
+    func wtiteAlbums(_ albums: [Album], user: User) {
+        do {
+            db?.beginWrite()
+            
+            let albums = List<Album>()
+            albums.append(objectsIn: albums)
+            user.albums = albums
+            
+            db?.add(user, update: .all)
+            try db?.commitWrite()
             
         } catch {
             print(error)
@@ -68,6 +70,10 @@ class UsersDB {
     
     func readPhotos(user: User) -> [Photo] {
         return Array(user.photos)
+    }
+    
+    func readAlbums(user: User) -> [Album] {
+        return Array(user.albums)
     }
 }
 

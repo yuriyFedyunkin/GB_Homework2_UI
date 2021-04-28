@@ -18,6 +18,64 @@ class NetworkManager {
     
     private init () {}
     
+    // MARK: - Метод запроса к VK API для получения альбомов пользователя
+    
+    func getUserAlbumsVK(owner: User, completion: @escaping ([Album]) -> Void) {
+        let session = URLSession(configuration: configuration)
+        urlConstructor.scheme = "https"
+        urlConstructor.host = ApiData.baseUrl
+        urlConstructor.path = ApiData.getAlbumsMethod
+        
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "owner_id", value: String(owner.id)),
+            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "v", value: ApiData.versionAPI),
+            URLQueryItem(name: "need_system", value: "1"),
+            URLQueryItem(name: "need_covers", value: "1")
+        ]
+        guard let url = urlConstructor.url else { return }
+        let task = session.dataTask(with: url) { (data, _, error) in
+            do {
+                if data != nil {
+                    let albums = try JSONDecoder().decode(VKAlbumsResponse.self, from: data!).response.items
+                    completion(albums)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
+    
+    // MARK: - Метод запроса к VK API для получения фотографий по id альбома пользователя
+    
+    func getPhotoFromAlbumVK(ownerId: String, albumId: String, completion: @escaping ([Photo]) -> Void) {
+        let session = URLSession(configuration: configuration)
+        urlConstructor.scheme = "https"
+        urlConstructor.host = ApiData.baseUrl
+        urlConstructor.path = ApiData.photosGetMethod
+        
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "owner_id", value: ownerId),
+            URLQueryItem(name: "album_id", value: albumId),
+            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "v", value: ApiData.versionAPI),
+            URLQueryItem(name: "extended", value: "1")
+        ]
+        guard let url = urlConstructor.url else { return }
+        let task = session.dataTask(with: url) { (data, _, error) in
+            do {
+                if data != nil {
+                    let photos = try JSONDecoder().decode(VKPhotoGroupsResponse.self, from: data!).response.items
+                    completion(photos)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
+    
     // MARK: - Метод запроса к VK API для получения Data групп через PromiseKit
     
     func getGroupsPromise() -> Promise<Data> {

@@ -17,6 +17,8 @@ class PhotoCollectionController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
         if let user = currentUser {
             NetworkManager.shared.getPhotosVK(owener: user) { [weak self] photos in
                 DispatchQueue.main.async {

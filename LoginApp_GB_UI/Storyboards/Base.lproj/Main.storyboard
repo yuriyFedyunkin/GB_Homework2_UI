@@ -614,7 +614,6 @@
                                     <outlet property="friendIcon" destination="LfM-s4-aQH" id="oQ2-0L-l1B"/>
                                     <outlet property="friendName" destination="Umv-PL-mb8" id="fR0-HN-wbu"/>
                                     <outlet property="shadowView" destination="jje-jQ-L7q" id="yTM-UG-TVu"/>
-                                    <segue destination="b9u-Ki-0e9" kind="show" identifier="showLibrary" id="zhV-zg-QYC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1118,12 +1117,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gi-Dg-Sqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5294.202898550725" y="-160.04464285714286"/>
+            <point key="canvasLocation" x="5052" y="-835"/>
         </scene>
-        <!--Photo Swipe Controller-->
+        <!--View Controller-->
         <scene sceneID="2oV-cm-i48">
             <objects>
-                <viewController storyboardIdentifier="SwipeMode" id="8Mo-NY-DA4" customClass="PhotoSwipeController" customModule="LoginApp_GB_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwipeMode" id="8Mo-NY-DA4" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wip-2s-Xm1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1144,13 +1143,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Hqx-dg-Tdi"/>
-                    <connections>
-                        <outlet property="displayedImage" destination="fdM-da-mGP" id="frw-MI-XCy"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOI-CX-OYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6166.666666666667" y="-160.04464285714286"/>
+            <point key="canvasLocation" x="5846" y="-835"/>
         </scene>
         <!--News-->
         <scene sceneID="Bur-FX-hCP">

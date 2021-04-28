@@ -79,7 +79,7 @@ class FriendsListController: UITableViewController {
         tableView.reloadData()
     }
     
-    
+    /*
     //MARK: - Segue с передачей библиотеки фото юзера из массива в PhotoCollection
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showLibrary" {
@@ -97,7 +97,7 @@ class FriendsListController: UITableViewController {
             }
         }
     }
-    
+    */
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -150,6 +150,23 @@ class FriendsListController: UITableViewController {
         }
         
         return cell
+    }
+    
+    // Переход на контроллер с альбомами выбранного друга
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destVC = AsyncAlbumsCollectionController()
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let friend: User
+            if isFiltering {
+                friend = filtredFriends[indexPath.row]
+            } else {
+                let key = friendsSectionTitle[indexPath.section]
+                friend = friendsDict[key]![indexPath.row]
+            }
+            destVC.currentUser = friend
+            destVC.navigationItem.title = "\(friend.firstName) \(friend.lastName) albums"
+        }
+        navigationController?.pushViewController(destVC, animated: true)
     }
     
     // Боковая панель для поиска по первой букве имени
