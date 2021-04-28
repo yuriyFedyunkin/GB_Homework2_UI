@@ -77,6 +77,14 @@ class AsyncPhotoCollectionController: ASDKViewController<ASCollectionNode>, ASCo
         return cellNodeBlock
     }
     
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        let swipeVC = PhotoSwipeController()
+        swipeVC.currentImage = indexPath.row
+        swipeVC.photoLibrary = self.photos
+        
+        navigationController?.pushViewController(swipeVC, animated: true)
+    }
+    
     
 }
 
