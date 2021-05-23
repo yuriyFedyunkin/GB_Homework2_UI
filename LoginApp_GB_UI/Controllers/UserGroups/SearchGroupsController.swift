@@ -58,8 +58,9 @@ class SearchGroupsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AvailableGroupsCell", for: indexPath) as! UserGroupCell
         let group = availableGroups[indexPath.row]
+        let groupViewModel = UserGroupViewModelFactory().createViewModel(group: group)
         
-        cell.configure(withGroup: group)
+        cell.configure(withGroup: groupViewModel)
 
         return cell
     }

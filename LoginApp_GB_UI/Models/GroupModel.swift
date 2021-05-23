@@ -9,7 +9,13 @@
 import UIKit
 import RealmSwift
 
-class Group: Object, Decodable {
+protocol GroupProtocol {
+    var name: String { get }
+    var id: Int { get }
+    var avatar: String { get }
+}
+
+class Group: Object, Decodable, GroupProtocol {
  
     @objc dynamic var name = ""
     @objc dynamic var id = 0

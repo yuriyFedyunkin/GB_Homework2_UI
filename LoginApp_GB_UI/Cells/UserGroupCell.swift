@@ -22,10 +22,10 @@ class UserGroupCell: UITableViewCell {
     }
     
     // Функция конфигурации ячейки с группой
-    func configure(withGroup group: Group) {
+    func configure(withGroup group: UserGroupViewModel) {
         groupNameText.text = group.name
         
-        guard let url = URL(string: group.avatar) else { return }
+        guard let url = URL(string: group.imageURLString) else { return }
         groupIcon.kf.setImage(with: url)
     }
     

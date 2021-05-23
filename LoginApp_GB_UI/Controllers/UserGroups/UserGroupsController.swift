@@ -98,7 +98,8 @@ class UserGroupsController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! UserGroupCell
         
         if let group = userGroups?[indexPath.row] {
-            cell.configure(withGroup: group)
+            let groupViewModel = UserGroupViewModel(name: group.name, imageURLString: group.avatar)
+            cell.configure(withGroup: groupViewModel)
         }
         return cell
     }
