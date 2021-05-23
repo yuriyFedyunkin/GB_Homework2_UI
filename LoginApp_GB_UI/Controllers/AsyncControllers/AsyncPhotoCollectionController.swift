@@ -33,11 +33,7 @@ class AsyncPhotoCollectionController: ASDKViewController<ASCollectionNode>, ASCo
         super.viewDidLoad()
         self.collectionNode.delegate = self
         self.collectionNode.dataSource = self
-        self.collectionNode.backgroundColor = UIColor(red: 121/255.0,
-                                                      green: 121/255.0,
-                                                      blue: 232/255.0,
-                                                      alpha: 1.0)
-//        gradient.setupGeneralGradientView(for: self.collectionNode.view)
+        self.collectionNode.backgroundColor = UIColor.brandPurple
         photoService = PhotoService(container: collectionNode.view)
         getPhotoRequest()
         
