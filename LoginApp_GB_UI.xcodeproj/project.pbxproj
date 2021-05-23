@@ -21,6 +21,7 @@
 		79259C922583DDFC0095DB95 /* UserGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79259C912583DDFC0095DB95 /* UserGroupCell.swift */; };
 		792CAA91259CDA1900109138 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CAA90259CDA1900109138 /* LoadingIndicatorView.swift */; };
 		794564EF25939F3900536AA8 /* Gradient View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794564EE25939F3900536AA8 /* Gradient View.swift */; };
+		794D30DF265A72FA0000B4E7 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794D30DE265A72FA0000B4E7 /* UIColor+.swift */; };
 		795111CC25C85FC600CD2933 /* GetGroupsByRequestVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */; };
 		7954BCCC26123E3400E3BD37 /* NewsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954BCCB26123E3400E3BD37 /* NewsParser.swift */; };
 		795E700225E3F208003CA563 /* UsersDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E700125E3F208003CA563 /* UsersDB.swift */; };
@@ -76,6 +77,7 @@
 		79259C912583DDFC0095DB95 /* UserGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupCell.swift; sourceTree = "<group>"; };
 		792CAA90259CDA1900109138 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		794564EE25939F3900536AA8 /* Gradient View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gradient View.swift"; sourceTree = "<group>"; };
+		794D30DE265A72FA0000B4E7 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		795111CB25C85FC600CD2933 /* GetGroupsByRequestVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupsByRequestVK.swift; sourceTree = "<group>"; };
 		7954BCCB26123E3400E3BD37 /* NewsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsParser.swift; sourceTree = "<group>"; };
 		795E700125E3F208003CA563 /* UsersDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDB.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				79E24C7A25A7A09C00655D73 /* CustomNavigationController.swift */,
 				798C780F25A89983006EE4D1 /* CustomInteractiveTransition.swift */,
+				794D30DE265A72FA0000B4E7 /* UIColor+.swift */,
 			);
 			path = "Custom UI elements";
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				7983DA2025C72A5800F17AD5 /* GetPhotosVK.swift in Sources */,
 				792CAA91259CDA1900109138 /* LoadingIndicatorView.swift in Sources */,
 				798AF236260BA98B00D0B815 /* PhotoFeedCell.swift in Sources */,
+				794D30DF265A72FA0000B4E7 /* UIColor+.swift in Sources */,
 				7983DA1D25C7211A00F17AD5 /* Constants.swift in Sources */,
 				79C6E7C2262222730072A2DC /* PhotoService.swift in Sources */,
 				79259C8C2583DD5D0095DB95 /* UserModel.swift in Sources */,
